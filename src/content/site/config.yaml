@@ -1,0 +1,16 @@
+name: "Hailey Gonnerman"
+credentials: "LMFT, MA"
+tagline: "Online therapy for individuals, families, and couples in Oregon"
+phone: "(503) 555-0123"
+email: "hello@haileygonnermancounseling.com"
+practice_type: "Telehealth Only"
+serving_areas: "Licensed in Oregon - Serving clients throughout Oregon via secure video sessions"
+hours:
+  weekdays: "Monday - Thursday: 9:00 AM - 6:00 PM"
+  weekend: "Friday: 9:00 AM - 3:00 PM"
+license: "Oregon LMFT #12345"
+socialMedia: []
+disclaimers:
+  crisis: "If you are experiencing a mental health crisis or having thoughts of suicide, please call 988 (Suicide & Crisis Lifeline) or go to your nearest emergency room immediately."
+  emergency: "This website is not intended for emergency situations. In case of emergency, call 911 or go to your nearest emergency room."
+  phi: "Please do not include personal health information (PHI) in any online forms or emails. This information is not secure and should only be shared during our confidential sessions."

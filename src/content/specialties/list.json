@@ -1,0 +1,50 @@
+[
+  {
+    "id": "anxiety",
+    "title": "Anxiety & Stress Management",
+    "description": "Learn practical tools to manage anxiety, reduce stress, and develop coping strategies for life's challenges. Primary specialty for all ages.",
+    "iconName": "heart"
+  },
+  {
+    "id": "relationships",
+    "title": "Relationship Stress",
+    "description": "Improve communication, resolve conflicts, and build healthier connections in all your relationships. Primary specialty for individuals, families, and couples.",
+    "iconName": "users"
+  },
+  {
+    "id": "family",
+    "title": "Family Dynamics",
+    "description": "Strengthen family bonds, improve communication, and resolve conflicts using systemic family therapy approaches.",
+    "iconName": "home"
+  },
+  {
+    "id": "couples",
+    "title": "Couples Therapy",
+    "description": "Build stronger partnerships through improved communication, emotional connection, and conflict resolution using EFT approaches.",
+    "iconName": "heart"
+  },
+  {
+    "id": "teens",
+    "title": "Teen & Preteen Support",
+    "description": "Support young people (ages 10-18) through developmental challenges, identity formation, and emotional regulation.",
+    "iconName": "compass"
+  },
+  {
+    "id": "trauma",
+    "title": "Trauma-Focused Therapy",
+    "description": "Heal from past experiences using specialized trauma-focused approaches in a safe, supportive therapeutic environment.",
+    "iconName": "shield"
+  },
+  {
+    "id": "transitions",
+    "title": "Life Transitions",
+    "description": "Navigate major life changes with support and guidance through career shifts, relationship changes, and personal growth.",
+    "iconName": "path"
+  },
+  {
+    "id": "christian",
+    "title": "Christian Counseling",
+    "description": "Integrate faith and spirituality into your healing journey when desired, honoring your beliefs and values.",
+    "iconName": "sun"
+  }
+]

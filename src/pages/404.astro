@@ -1,0 +1,77 @@
+---
+import Base from '../layouts/Base.astro';
+import Section from '../components/Section.astro';
+import Button from '../components/Button.astro';
+---
+
+<Base 
+  title="Page Not Found | Hailey Gonnerman Counseling"
+  description="The page you're looking for could not be found. Return to our homepage or contact us for assistance."
+  noIndex={true}
+>
+  <Section padding="large">
+    <div class="text-center max-w-2xl mx-auto">
+      <!-- 404 Illustration -->
+      <div class="mb-8">
+        <div class="w-24 h-24 bg-brand-bg rounded-full flex items-center justify-center mx-auto mb-6">
+          <svg class="w-12 h-12 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0118 12a8 8 0 11-16 0 8 8 0 011.238-4.291z" />
+          </svg>
+        </div>
+        <h1 class="text-6xl font-bold text-neutral-900 mb-4">404</h1>
+      </div>
+
+      <!-- Error Message -->
+      <h2 class="text-3xl font-bold text-neutral-900 mb-4">
+        Page Not Found
+      </h2>
+      <p class="text-lg text-neutral-600 mb-8">
+        Sorry, the page you're looking for doesn't exist. It might have been moved, 
+        deleted, or you entered the wrong URL.
+      </p>
+
+      <!-- Navigation Options -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+        <Button href="/" variant="primary">
+          Return Home
+        </Button>
+        <Button href="/contact" variant="outline">
+          Contact Me
+        </Button>
+      </div>
+
+      <!-- Helpful Links -->
+      <div class="bg-brand-bg rounded-2xl p-6">
+        <h3 class="text-lg font-semibold text-neutral-900 mb-4">
+          Looking for something specific?
+        </h3>
+        <div class="grid sm:grid-cols-2 gap-4 text-sm">
+          <div class="space-y-2">
+            <a href="/about" class="block text-brand-700 hover:text-brand-800 hover:underline">
+              Learn about my background and approach
+            </a>
+            <a href="/services" class="block text-brand-700 hover:text-brand-800 hover:underline">
+              View therapy services and specializations
+            </a>
+          </div>
+          <div class="space-y-2">
+            <a href="/contact" class="block text-brand-700 hover:text-brand-800 hover:underline">
+              Schedule a free consultation
+            </a>
+            <a href="tel:(408) 555-0123" class="block text-brand-700 hover:text-brand-800 hover:underline">
+              Call (408) 555-0123
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Support Message -->
+      <div class="mt-12 text-sm text-neutral-500">
+        <p>
+          If you believe this is an error or you're having trouble finding what you need, 
+          please don't hesitate to reach out. I'm here to help.
+        </p>
+      </div>
+    </div>
+  </Section>
+</Base>

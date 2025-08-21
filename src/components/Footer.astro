@@ -1,0 +1,105 @@
+---
+import { getSiteConfig } from '../lib/content';
+
+const siteData = await getSiteConfig();
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-neutral-900 text-neutral-100" role="contentinfo">
+  <div class="container">
+    <div class="py-12 lg:py-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+        
+        <!-- Contact Information -->
+        <div>
+          <h3 class="text-lg font-semibold text-white mb-4">Contact Information</h3>
+          <div class="space-y-3">
+            <div>
+              <p class="font-medium text-white">{siteData.name}, {siteData.credentials}</p>
+              <p class="text-neutral-300">{siteData.tagline}</p>
+            </div>
+            
+            <div class="space-y-2">
+              <p>
+                <a 
+                  href={`tel:${siteData.phone.replace(/\D/g, '')}`}
+                  class="text-brand-300 hover:text-brand-200 transition-colors"
+                >
+                  {siteData.phone}
+                </a>
+              </p>
+              <p>
+                <a 
+                  href={`mailto:${siteData.email}`}
+                  class="text-brand-300 hover:text-brand-200 transition-colors"
+                >
+                  {siteData.email}
+                </a>
+              </p>
+            </div>
+
+            <div class="text-sm text-neutral-400">
+              {siteData.practice_type && <p>{siteData.practice_type}</p>}
+              {siteData.serving_areas && <p>{siteData.serving_areas}</p>}
+              {siteData.address && (
+                <>
+                  <p>{siteData.address.street}</p>
+                  <p>{siteData.address.city}, {siteData.address.state} {siteData.address.zip}</p>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <!-- Office Hours -->
+        <div>
+          <h3 class="text-lg font-semibold text-white mb-4">Office Hours</h3>
+          <div class="space-y-2 text-sm">
+            <p>{siteData.hours.weekdays}</p>
+            <p>{siteData.hours.weekend}</p>
+            <p class="text-neutral-400 mt-3">Weekend and evening appointments may be available upon request</p>
+          </div>
+        </div>
+
+        <!-- Professional Information -->
+        <div>
+          <h3 class="text-lg font-semibold text-white mb-4">Professional Information</h3>
+          <div class="space-y-2 text-sm">
+            <p><strong>License:</strong> {siteData.license}</p>
+            <p><strong>Serving:</strong> Licensed in Oregon - Telehealth throughout Oregon</p>
+            <p class="text-neutral-400 mt-3">Oregon Association for Marriage and Family Therapy (OAMFT)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Crisis Resources -->
+    <div class="border-t border-neutral-800 py-8">
+      <div class="bg-red-900/20 border border-red-800 rounded-lg p-4 mb-6">
+        <h4 class="text-red-200 font-semibold mb-2">Crisis Resources</h4>
+        <p class="text-red-100 text-sm mb-2">{siteData.disclaimers.crisis}</p>
+        <div class="flex flex-wrap gap-4 text-sm">
+          <a href="tel:988" class="text-red-200 hover:text-red-100 font-medium">
+            988 - Suicide & Crisis Lifeline
+          </a>
+          <a href="tel:911" class="text-red-200 hover:text-red-100 font-medium">
+            911 - Emergency Services
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="border-t border-neutral-800 py-6">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-sm text-neutral-400">
+          <p>&copy; {currentYear} {siteData.name}. All rights reserved.</p>
+        </div>
+        
+        <div class="text-xs text-neutral-500">
+          <p>{siteData.disclaimers.phi}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

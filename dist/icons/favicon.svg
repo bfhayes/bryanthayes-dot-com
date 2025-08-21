@@ -1,0 +1,10 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="16" cy="16" r="16" fill="#6B705C"/>
+  
+  <!-- Simple "H" monogram -->
+  <path d="M10 8v16h3v-6h6v6h3V8h-3v6h-6V8h-3z" fill="white"/>
+  
+  <!-- Small accent dot -->
+  <circle cx="23" cy="9" r="1.5" fill="#CB997E"/>
+</svg>

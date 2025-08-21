@@ -1,0 +1,44 @@
+---
+interface Props {
+  class?: string;
+  background?: 'default' | 'subtle' | 'accent';
+  padding?: 'default' | 'large' | 'small';
+  container?: boolean;
+  id?: string;
+}
+
+const {
+  class: className = '',
+  background = 'default',
+  padding = 'default',
+  container = true,
+  id,
+  ...rest
+} = Astro.props;
+
+const backgroundClasses = {
+  default: '',
+  subtle: 'bg-brand-bg',
+  accent: 'bg-neutral-50',
+};
+
+const paddingClasses = {
+  default: 'section-y',
+  large: 'py-20 lg:py-32',
+  small: 'py-8 lg:py-12',
+};
+
+const sectionClasses = [
+  backgroundClasses[background],
+  paddingClasses[padding],
+  className,
+].filter(Boolean).join(' ');
+
+const contentClasses = container ? 'container' : '';
+---
+
+<section class={sectionClasses} id={id} {...rest}>
+  <div class={contentClasses}>
+    <slot />
+  </div>
+</section>

@@ -1,0 +1,233 @@
+---
+import Base from '../layouts/Base.astro';
+import Section from '../components/Section.astro';
+import Card from '../components/Card.astro';
+import Button from '../components/Button.astro';
+import TestimonialCarousel from '../components/TestimonialCarousel.jsx';
+import { getPageContent, getSiteConfig, getSpecialties, getTestimonials } from '../lib/content';
+
+const pageData = await getPageContent('home');
+const siteData = await getSiteConfig();
+const specialties = await getSpecialties();
+const testimonials = await getTestimonials();
+
+const { Content } = await pageData.render();
+---
+
+<Base 
+  title={pageData.data.title}
+  description={pageData.data.description}
+  type="website"
+>
+  <!-- Hero Section -->
+  <Section background="subtle" padding="large">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <!-- Hero Text -->
+      <div class="order-2 lg:order-1">
+        <h1 class="text-4xl lg:text-5xl xl:text-6xl font-bold text-neutral-900 text-balance mb-6">
+          Find Your Path Forward
+        </h1>
+        <p class="text-lg lg:text-xl text-neutral-600 mb-8 text-balance">
+          Life can feel overwhelming, but you don't have to navigate it alone. I'm {siteData.name}, 
+          a Licensed Marriage and Family Therapist dedicated to helping individuals find clarity, 
+          healing, and growth through life's challenges.
+        </p>
+        
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 mb-8">
+          <Button href={`tel:${siteData.phone.replace(/\D/g, '')}`} variant="primary">
+            Call Now
+          </Button>
+          <Button href={`mailto:${siteData.email}`} variant="outline">
+            Send Email
+          </Button>
+          <Button href="/contact" variant="subtle">
+            Request Consultation
+          </Button>
+        </div>
+
+        <!-- Quick Info -->
+        <div class="text-sm text-neutral-600 space-y-1">
+          <p><strong>Practice:</strong> Telehealth Only - Licensed in Oregon</p>
+          <p><strong>License:</strong> {siteData.license}</p>
+        </div>
+      </div>
+
+      <!-- Hero Image -->
+      <div class="order-1 lg:order-2">
+        <div class="relative">
+          <img
+            src="/images/headshot.jpg"
+            alt="Hailey Gonnerman, Licensed Marriage and Family Therapist"
+            class="rounded-2xl shadow-lg w-full max-w-md mx-auto"
+            width="400"
+            height="500"
+            loading="eager"
+          />
+          <div class="absolute -bottom-4 -right-4 bg-brand-500 text-white p-4 rounded-xl shadow-lg">
+            <p class="text-sm font-medium">Free 15-min consultation</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Specialties Section -->
+  <Section id="specialties">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+        How I Can Help
+      </h2>
+      <p class="text-lg text-neutral-600 max-w-3xl mx-auto">
+        Whether you're struggling with anxiety, navigating a major life transition, or working through 
+        relationship challenges, I provide a warm, non-judgmental space for healing and growth.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      {specialties.map((specialty) => (
+        <Card hover class="text-center h-full">
+          <div class="mb-4">
+            <div class="w-12 h-12 bg-brand-bg rounded-full flex items-center justify-center mx-auto mb-3">
+              <div class="w-6 h-6 bg-brand-500 rounded-full"></div>
+            </div>
+            <h3 class="font-semibold text-neutral-900 mb-2">{specialty.title}</h3>
+            <p class="text-sm text-neutral-600 leading-relaxed">{specialty.description}</p>
+          </div>
+        </Card>
+      ))}
+    </div>
+
+    <div class="text-center mt-12">
+      <Button href="/services">
+        Learn About My Services
+      </Button>
+    </div>
+  </Section>
+
+  <!-- Approach Section -->
+  <Section background="accent">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="text-3xl lg:text-4xl font-bold text-neutral-900 mb-6">
+          My Approach
+        </h2>
+        <div class="prose prose-lg text-neutral-700">
+          <p>
+            I believe therapy works best when it feels collaborative and authentic. Drawing from 
+            evidence-based approaches including Cognitive Behavioral Therapy (CBT), Acceptance and 
+            Commitment Therapy (ACT), and Emotion-Focused Therapy, I tailor our sessions to your 
+            unique needs and goals.
+          </p>
+          <p>
+            Every person's journey is different, and I'm here to walk alongside you as you discover 
+            your own path to wellness and fulfillment.
+          </p>
+        </div>
+        <div class="mt-8">
+          <Button href="/about">
+            Read More About Me
+          </Button>
+        </div>
+      </div>
+      
+      <div class="space-y-4">
+        {['Individual therapy sessions', 'Evidence-based approaches', 'Culturally sensitive care', 'Trauma-informed practice'].map((feature) => (
+          <div class="flex items-center gap-3">
+            <div class="w-6 h-6 bg-brand-500 rounded-full flex items-center justify-center flex-shrink-0">
+              <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <span class="text-neutral-700">{feature}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </Section>
+
+  <!-- Testimonials Section -->
+  <Section>
+    <div class="text-center mb-12">
+      <h2 class="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+        Client Experiences
+      </h2>
+      <p class="text-lg text-neutral-600 max-w-2xl mx-auto">
+        Hear from clients who have found healing and growth through our work together.
+      </p>
+    </div>
+
+    <TestimonialCarousel testimonials={testimonials} client:visible />
+  </Section>
+
+  <!-- Location & Contact Section -->
+  <Section background="subtle">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+          Location & Availability
+        </h2>
+        <p class="text-lg text-neutral-600">
+          Secure telehealth sessions available throughout Oregon
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Practice Information -->
+        <Card hover class="p-6">
+          <h3 class="text-xl font-semibold text-neutral-900 mb-4">
+            Telehealth Only
+          </h3>
+          <div class="space-y-3 text-neutral-600">
+            <p>Licensed in Oregon - Serving clients throughout Oregon via secure video sessions</p>
+            <div class="space-y-2 text-sm">
+              <p>• HIPAA-compliant secure video sessions</p>
+              <p>• No travel required - comfort of your home</p>
+              <p>• Private and convenient</p>
+            </div>
+          </div>
+        </Card>
+
+        <!-- Office Hours -->
+        <Card hover class="p-6">
+          <h3 class="text-xl font-semibold text-neutral-900 mb-4">
+            Office Hours
+          </h3>
+          <div class="space-y-2 text-neutral-600">
+            <p><strong>Monday - Thursday:</strong> 9:00 AM - 6:00 PM</p>
+            <p><strong>Friday:</strong> 9:00 AM - 3:00 PM</p>
+            <p class="text-sm text-neutral-500 mt-3">
+              Evening and weekend appointments available upon request
+            </p>
+          </div>
+        </Card>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Final CTA Section -->
+  <Section background="accent">
+    <div class="text-center max-w-3xl mx-auto">
+      <h2 class="text-3xl lg:text-4xl font-bold text-neutral-900 mb-6">
+        Ready to Take the First Step?
+      </h2>
+      <p class="text-lg text-neutral-600 mb-8">
+        I offer a free 15-minute consultation to discuss your needs and see if we're a good fit. 
+        There's no obligation, and it's a great way to start the conversation about your mental health journey.
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+        <Button href="/contact" variant="primary" size="md">
+          Schedule Free Consultation
+        </Button>
+        <Button href={`tel:${siteData.phone.replace(/\D/g, '')}`} variant="outline" size="md">
+          Call {siteData.phone}
+        </Button>
+      </div>
+
+      <p class="text-sm text-neutral-500">
+        Licensed in Oregon - Serving clients throughout Oregon via secure telehealth
+      </p>
+    </div>
+  </Section>
+</Base>
