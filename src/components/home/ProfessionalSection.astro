@@ -1,0 +1,113 @@
+---
+// Professional mode homepage content
+const skills = [
+  { category: 'Frontend', items: ['React', 'TypeScript', 'Tailwind CSS', 'Astro'] },
+  { category: 'Backend', items: ['Node.js', 'Python', 'PostgreSQL', 'REST APIs'] },
+  { category: 'Tools', items: ['Git', 'Docker', 'AWS', 'CI/CD'] },
+];
+
+const highlights = [
+  { number: '5+', label: 'Years Experience' },
+  { number: '20+', label: 'Projects Completed' },
+  { number: '100%', label: 'Client Satisfaction' },
+];
+
+const recentProjects = [
+  {
+    title: 'E-Commerce Platform',
+    description: 'Full-stack web application with React and Node.js',
+    tech: ['React', 'Node.js', 'PostgreSQL'],
+    link: '/projects#ecommerce'
+  },
+  {
+    title: 'Analytics Dashboard',
+    description: 'Real-time data visualization and reporting tool',
+    tech: ['TypeScript', 'D3.js', 'Python'],
+    link: '/projects#analytics'
+  },
+  {
+    title: 'Mobile App',
+    description: 'Cross-platform mobile application',
+    tech: ['React Native', 'Firebase', 'GraphQL'],
+    link: '/projects#mobile'
+  },
+];
+---
+
+<div class="container-custom py-16 space-y-20">
+  <!-- Quick Stats -->
+  <section>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {highlights.map((stat) => (
+        <div class="text-center">
+          <div class="text-4xl font-bold text-space-cadet mb-2">{stat.number}</div>
+          <div class="text-sm text-ultra-violet-600">{stat.label}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Skills Overview -->
+  <section>
+    <h2 class="text-3xl font-serif font-bold text-space-cadet mb-8 text-center">Technical Expertise</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {skills.map((skillGroup) => (
+        <div class="card p-6">
+          <h3 class="font-semibold text-lg text-space-cadet mb-4">{skillGroup.category}</h3>
+          <div class="flex flex-wrap gap-2">
+            {skillGroup.items.map((skill) => (
+              <span class="px-3 py-1 text-sm bg-pale-dogwood/20 text-space-cadet rounded-full">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Recent Projects -->
+  <section>
+    <h2 class="text-3xl font-serif font-bold text-space-cadet mb-8 text-center">Recent Projects</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {recentProjects.map((project) => (
+        <a href={project.link} class="card p-6 group hover:shadow-xl transition-all">
+          <h3 class="font-semibold text-xl text-space-cadet mb-2 group-hover:text-ultra-violet transition-colors">
+            {project.title}
+          </h3>
+          <p class="text-ultra-violet-600 mb-4 text-sm">
+            {project.description}
+          </p>
+          <div class="flex flex-wrap gap-2">
+            {project.tech.map((tech) => (
+              <span class="text-xs px-2 py-1 bg-ultra-violet/10 text-ultra-violet rounded">
+                {tech}
+              </span>
+            ))}
+          </div>
+        </a>
+      ))}
+    </div>
+    <div class="text-center mt-8">
+      <a href="/projects" class="btn-secondary">
+        View All Projects →
+      </a>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="bg-gradient-to-r from-space-cadet to-ultra-violet rounded-2xl p-12 text-center text-white">
+    <h2 class="text-3xl font-serif font-bold mb-4">Let's Work Together</h2>
+    <p class="text-lg mb-8 text-isabelline-200">
+      Looking for a dedicated developer to bring your ideas to life?
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="/contact" class="btn bg-isabelline text-space-cadet hover:bg-isabelline-100">
+        Get In Touch
+      </a>
+      <a href="/resume" class="btn bg-transparent border-2 border-isabelline text-isabelline hover:bg-isabelline hover:text-space-cadet">
+        Download Resume
+      </a>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,97 @@
+---
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/work', label: 'Work' },
+  { href: '/photography', label: 'Photography' },
+  { href: '/woodworking', label: 'Woodworking' },
+  { href: '/leatherwork', label: 'Leatherwork' },
+  { href: '/music', label: 'Music' },
+  { href: '/electronics', label: 'Electronics' },
+  { href: '/programming', label: 'Programming' },
+  { href: '/golf', label: 'Golf' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="sticky top-0 z-50 w-full border-b border-rose-quartz/20 bg-isabelline/80 backdrop-blur-md">
+  <nav class="container-custom">
+    <div class="flex h-16 items-center justify-between">
+      <!-- Logo/Name -->
+      <a href="/" class="flex items-center space-x-2 group">
+        <div class="h-8 w-8 rounded-md bg-space-cadet group-hover:bg-space-cadet-600 transition-colors flex items-center justify-center">
+          <span class="text-isabelline font-bold text-lg">BH</span>
+        </div>
+        <span class="font-serif text-xl font-semibold text-space-cadet hidden sm:inline-block">
+          Bryant Hayes
+        </span>
+      </a>
+
+      <!-- Navigation Links -->
+      <ul class="hidden lg:flex items-center space-x-4">
+        {links.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class={`text-sm font-medium transition-colors hover:text-ultra-violet px-2 py-1 rounded ${
+                currentPath === link.href 
+                  ? 'text-space-cadet bg-pale-dogwood/20' 
+                  : 'text-ultra-violet-600'
+              }`}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <!-- Mobile menu button -->
+      <div class="lg:hidden">
+        <button
+          id="mobile-menu-toggle"
+          class="p-2 rounded-md hover:bg-ultra-violet/10 transition-colors"
+          aria-label="Toggle menu"
+        >
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div id="mobile-menu" class="hidden lg:hidden pb-4">
+      <ul class="grid grid-cols-2 gap-2">
+        {links.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class={`block px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-ultra-violet/10 text-center ${
+                currentPath === link.href 
+                  ? 'text-space-cadet bg-pale-dogwood/20' 
+                  : 'text-ultra-violet-600'
+              }`}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+
+  toggle?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+  });
+</script>

@@ -1,0 +1,88 @@
+{
+  "$ref": "#/definitions/music",
+  "definitions": {
+    "music": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "date": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "integer",
+              "format": "unix-time"
+            }
+          ]
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "original",
+            "cover",
+            "improvisation"
+          ]
+        },
+        "genre": {
+          "type": "string"
+        },
+        "audio_file": {
+          "type": "string"
+        },
+        "video_file": {
+          "type": "string"
+        },
+        "sheet_music": {
+          "type": "string"
+        },
+        "tabs": {
+          "type": "string"
+        },
+        "instruments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "duration": {
+          "type": "string"
+        },
+        "featured": {
+          "type": "boolean",
+          "default": false
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "description",
+        "date",
+        "type",
+        "instruments",
+        "duration"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

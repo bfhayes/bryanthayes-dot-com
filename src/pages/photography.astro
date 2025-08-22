@@ -1,0 +1,148 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PhotoGallery from '@/components/gallery/PhotoGallery';
+
+// Sample photo data - in production this would come from content collections
+const photoCollections = [
+  {
+    title: 'Landscapes',
+    description: 'Capturing the beauty of natural environments',
+    photos: [
+      { id: 1, src: '/images/landscape-1.jpg', alt: 'Mountain sunrise', title: 'Mountain Sunrise', location: 'Rocky Mountains', camera: 'Canon EOS R5', settings: { aperture: 'f/8', shutter: '1/125s', iso: 100 } },
+      { id: 2, src: '/images/landscape-2.jpg', alt: 'Forest path', title: 'Forest Path', location: 'Pacific Northwest', camera: 'Canon EOS R5', settings: { aperture: 'f/11', shutter: '1/60s', iso: 200 } },
+      { id: 3, src: '/images/landscape-3.jpg', alt: 'Ocean waves', title: 'Ocean Waves', location: 'California Coast', camera: 'Canon EOS R5', settings: { aperture: 'f/16', shutter: '1/250s', iso: 100 } },
+    ]
+  },
+  {
+    title: 'Portraits',
+    description: 'Capturing the essence of people and personality',
+    photos: [
+      { id: 4, src: '/images/portrait-1.jpg', alt: 'Portrait 1', title: 'Natural Light Portrait', location: 'Studio', camera: 'Canon EOS R5', settings: { aperture: 'f/2.8', shutter: '1/125s', iso: 400 } },
+      { id: 5, src: '/images/portrait-2.jpg', alt: 'Portrait 2', title: 'Golden Hour Portrait', location: 'Outdoor', camera: 'Canon EOS R5', settings: { aperture: 'f/4', shutter: '1/200s', iso: 200 } },
+    ]
+  },
+  {
+    title: 'Street Photography',
+    description: 'Documenting life as it happens',
+    photos: [
+      { id: 6, src: '/images/street-1.jpg', alt: 'Street scene', title: 'City Life', location: 'Downtown', camera: 'Canon EOS R5', settings: { aperture: 'f/5.6', shutter: '1/250s', iso: 800 } },
+      { id: 7, src: '/images/street-2.jpg', alt: 'Street scene', title: 'Morning Rush', location: 'Metro Station', camera: 'Canon EOS R5', settings: { aperture: 'f/4', shutter: '1/125s', iso: 1600 } },
+    ]
+  }
+];
+
+const equipment = [
+  { category: 'Camera Body', items: ['Canon EOS R5', 'Canon EOS R6 Mark II'] },
+  { category: 'Lenses', items: ['24-70mm f/2.8L', '70-200mm f/2.8L', '16-35mm f/2.8L', '85mm f/1.4L'] },
+  { category: 'Accessories', items: ['Carbon Fiber Tripod', 'ND Filters', 'Polarizing Filter', 'Remote Shutter'] },
+  { category: 'Software', items: ['Adobe Lightroom', 'Adobe Photoshop', 'Capture One'] }
+];
+
+---
+
+<BaseLayout 
+  title="Photography" 
+  description="Explore Bryant Hayes' photography portfolio featuring landscapes, portraits, and street photography"
+>
+  <div class="container-custom py-12">
+    <!-- Hero Section -->
+    <div class="text-center mb-16">
+      <h1 class="text-4xl lg:text-6xl font-serif font-bold text-gray-900 mb-4">
+        Photography
+      </h1>
+      <p class="text-xl text-gray-700 max-w-3xl mx-auto">
+        Capturing moments, emotions, and the beauty of our world through the lens. 
+        From sweeping landscapes to intimate portraits, each image tells a story.
+      </p>
+    </div>
+
+    <!-- Photo Collections -->
+    {photoCollections.map((collection, index) => (
+      <section class="mb-16">
+        <div class="flex flex-col md:flex-row md:items-center justify-between mb-8">
+          <div>
+            <h2 class="text-3xl font-serif font-semibold text-gray-900 mb-2">
+              {collection.title}
+            </h2>
+            <p class="text-gray-600">{collection.description}</p>
+          </div>
+          <a href={`/hobbies/photography/${collection.title.toLowerCase()}`} class="btn-ghost mt-4 md:mt-0">
+            View All →
+          </a>
+        </div>
+        
+        <PhotoGallery client:load photos={collection.photos} />
+      </section>
+    ))}
+
+    <!-- Equipment Section -->
+    <section class="mb-16">
+      <h2 class="text-3xl font-serif font-semibold text-gray-900 mb-8 text-center">Equipment</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {equipment.map((category) => (
+          <div class="card p-6">
+            <h3 class="font-semibold text-gray-900 mb-4">{category.category}</h3>
+            <ul class="space-y-2">
+              {category.items.map((item) => (
+                <li class="text-sm text-gray-600 flex items-center">
+                  <span class="w-2 h-2 bg-pale-dogwood rounded-full mr-3"></span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="mb-16">
+      <h2 class="text-3xl font-serif font-semibold text-gray-900 mb-8 text-center">My Process</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 flex items-center justify-center">
+            <span class="text-2xl">🔍</span>
+          </div>
+          <h3 class="font-semibold text-gray-900 mb-2">Scout & Plan</h3>
+          <p class="text-sm text-gray-600">
+            Research locations, check weather conditions, and plan the optimal time for the best light.
+          </p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 flex items-center justify-center">
+            <span class="text-2xl">📸</span>
+          </div>
+          <h3 class="font-semibold text-gray-900 mb-2">Capture</h3>
+          <p class="text-sm text-gray-600">
+            Focus on composition, lighting, and the decisive moment that tells the story.
+          </p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 flex items-center justify-center">
+            <span class="text-2xl">✨</span>
+          </div>
+          <h3 class="font-semibold text-gray-900 mb-2">Edit & Refine</h3>
+          <p class="text-sm text-gray-600">
+            Careful post-processing to enhance the natural beauty while maintaining authenticity.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="bg-gray-900 rounded-2xl p-12 text-white text-center">
+      <h2 class="text-3xl font-serif font-bold mb-4 text-white">Commission a Photo Session</h2>
+      <p class="text-lg mb-8 text-gray-100">
+        Interested in portrait sessions, event photography, or prints of my work?
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/contact" class="btn-primary">
+          Get In Touch
+        </a>
+        <a href="https://instagram.com/bryanthayes" target="_blank" rel="noopener" class="btn bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900">
+          Follow on Instagram
+        </a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

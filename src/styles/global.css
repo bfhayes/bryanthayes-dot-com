@@ -1,0 +1,219 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Custom font imports */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Crimson+Text:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@layer base {
+  :root {
+    /* Professional Mode Colors */
+    --color-primary: theme('colors.space-cadet.DEFAULT');
+    --color-secondary: theme('colors.ultra-violet.DEFAULT');
+    --color-accent: theme('colors.pale-dogwood.DEFAULT');
+    --color-background: theme('colors.isabelline.DEFAULT');
+    --color-surface: theme('colors.isabelline.100');
+    --color-text-primary: theme('colors.space-cadet.DEFAULT');
+    --color-text-secondary: theme('colors.ultra-violet.600');
+    --color-text-muted: theme('colors.rose-quartz.DEFAULT');
+    --color-border: theme('colors.rose-quartz.300');
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+  }
+
+  [data-mode="creative"] {
+    --color-primary: theme('colors.ultra-violet.DEFAULT');
+    --color-secondary: theme('colors.rose-quartz.DEFAULT');
+    --color-accent: theme('colors.pale-dogwood.DEFAULT');
+  }
+
+  * {
+    @apply border-rose-quartz/20;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-white text-gray-900 font-sans antialiased;
+    font-feature-settings: "kern", "liga", "ss01";
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif font-semibold tracking-tight;
+  }
+
+  /* Focus styles */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-pale-dogwood ring-offset-2 ring-offset-isabelline;
+  }
+
+  /* Selection styles */
+  ::selection {
+    @apply bg-pale-dogwood/30 text-space-cadet;
+  }
+}
+
+@layer components {
+  /* Professional mode styles */
+  .professional-gradient {
+    @apply bg-gradient-to-br from-space-cadet to-ultra-violet;
+  }
+
+  /* Creative mode styles */
+  .creative-gradient {
+    @apply bg-gradient-to-br from-ultra-violet to-rose-quartz;
+  }
+
+  /* Card styles */
+  .card {
+    @apply bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100;
+  }
+
+  /* Button base styles */
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 font-medium rounded-md transition-all duration-200;
+  }
+
+  .btn-primary {
+    @apply btn bg-gray-900 text-white hover:bg-gray-800 active:bg-gray-700;
+  }
+
+  .btn-secondary {
+    @apply btn bg-white text-gray-900 border-2 border-gray-900 hover:bg-gray-100 active:bg-gray-200;
+  }
+
+  .btn-accent {
+    @apply btn bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800;
+  }
+
+  .btn-ghost {
+    @apply btn bg-transparent text-gray-900 hover:bg-gray-100 active:bg-gray-200;
+  }
+
+  /* Link styles */
+  .link {
+    @apply text-ultra-violet hover:text-ultra-violet-600 underline decoration-pale-dogwood/50 hover:decoration-pale-dogwood transition-colors duration-200;
+  }
+
+  /* Section padding */
+  .section-padding {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Container styles */
+  .container-custom {
+    @apply mx-auto max-w-7xl section-padding;
+  }
+
+  /* Prose customization */
+  .prose-custom {
+    @apply prose prose-space-cadet max-w-none
+           prose-headings:font-serif prose-headings:text-space-cadet
+           prose-a:text-ultra-violet prose-a:no-underline hover:prose-a:underline
+           prose-strong:text-space-cadet prose-strong:font-semibold
+           prose-code:text-ultra-violet prose-code:bg-ultra-violet/10 prose-code:px-1 prose-code:py-0.5 prose-code:rounded
+           prose-pre:bg-space-cadet prose-pre:text-isabelline;
+  }
+
+  /* Gallery grid */
+  .gallery-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4;
+  }
+
+  /* Masonry layout */
+  .masonry {
+    column-count: 1;
+    column-gap: 1rem;
+  }
+
+  @screen sm {
+    .masonry {
+      column-count: 2;
+    }
+  }
+
+  @screen lg {
+    .masonry {
+      column-count: 3;
+    }
+  }
+
+  @screen xl {
+    .masonry {
+      column-count: 4;
+    }
+  }
+
+  .masonry-item {
+    @apply inline-block w-full mb-4;
+    break-inside: avoid;
+  }
+}
+
+@layer utilities {
+  /* Text gradients */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-space-cadet to-ultra-violet;
+  }
+
+  .text-gradient-creative {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-ultra-violet to-rose-quartz;
+  }
+
+  /* Custom animations */
+  .animate-in {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  .animate-out {
+    animation: slideDown 0.3s ease-out;
+  }
+
+  /* Glass morphism */
+  .glass {
+    @apply bg-white/30 backdrop-blur-md border border-white/20;
+  }
+
+  /* Noise texture overlay */
+  .noise {
+    position: relative;
+  }
+
+  .noise::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+  }
+}
+
+/* Print styles for resume */
+@media print {
+  body {
+    @apply bg-white text-black;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  a {
+    @apply text-black underline;
+  }
+
+  .page-break {
+    page-break-after: always;
+  }
+}

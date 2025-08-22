@@ -1,0 +1,127 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ResumeViewer from '@/components/professional/ResumeViewer';
+
+// Work/Resume data - in production this would come from content collections
+const resumeData = {
+  name: 'Bryant Hayes',
+  title: 'Full Stack Developer',
+  location: 'Your Location',
+  email: 'hello@bryanthayes.com',
+  linkedin: 'linkedin.com/in/bryanthayes',
+  github: 'github.com/bryanthayes',
+  summary: 'Experienced full-stack developer with a passion for creating elegant solutions to complex problems. Specialized in modern web technologies with a focus on user experience and performance.',
+  
+  experience: [
+    {
+      company: 'Tech Company',
+      position: 'Senior Full Stack Developer',
+      startDate: '2021',
+      endDate: 'Present',
+      location: 'Remote',
+      highlights: [
+        'Led development of microservices architecture serving 1M+ users',
+        'Improved application performance by 40% through optimization',
+        'Mentored junior developers and conducted code reviews',
+        'Implemented CI/CD pipelines reducing deployment time by 60%'
+      ],
+      technologies: ['React', 'Node.js', 'TypeScript', 'AWS', 'PostgreSQL']
+    },
+    {
+      company: 'Previous Company',
+      position: 'Full Stack Developer',
+      startDate: '2019',
+      endDate: '2021',
+      location: 'City, State',
+      highlights: [
+        'Developed and maintained RESTful APIs',
+        'Built responsive web applications using React',
+        'Collaborated with design team to implement UI/UX improvements',
+        'Participated in agile development processes'
+      ],
+      technologies: ['JavaScript', 'Python', 'React', 'Django', 'MySQL']
+    }
+  ],
+  
+  education: [
+    {
+      institution: 'University Name',
+      degree: 'Bachelor of Science in Computer Science',
+      year: '2019',
+      gpa: '3.8/4.0'
+    }
+  ],
+  
+  skills: {
+    'Languages': ['JavaScript', 'TypeScript', 'Python', 'SQL', 'HTML/CSS'],
+    'Frontend': ['React', 'Vue.js', 'Tailwind CSS', 'Next.js', 'Astro'],
+    'Backend': ['Node.js', 'Express', 'Django', 'PostgreSQL', 'MongoDB'],
+    'Tools & Cloud': ['Git', 'Docker', 'AWS', 'CI/CD', 'Linux']
+  },
+  
+  certifications: [
+    { name: 'AWS Certified Developer', issuer: 'Amazon', year: '2022' },
+    { name: 'React Advanced Patterns', issuer: 'Course Platform', year: '2021' }
+  ]
+};
+---
+
+<BaseLayout 
+  title="Work" 
+  description="Bryant Hayes - Professional Work & Experience"
+>
+  <div class="container-custom py-12">
+    <!-- Page Header -->
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+      <div>
+        <h1 class="text-4xl font-serif font-bold text-gray-900 mb-2">Work</h1>
+        <p class="text-gray-600">Professional experience, skills, and projects</p>
+      </div>
+      <div class="flex gap-3 mt-4 md:mt-0">
+        <a 
+          href="/resume/Bryant_Hayes_Resume.pdf" 
+          download
+          class="btn-primary no-print"
+        >
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          Download PDF
+        </a>
+        <button 
+          onclick="window.print()"
+          class="btn-ghost no-print"
+        >
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+          </svg>
+          Print
+        </button>
+      </div>
+    </div>
+
+    <!-- Resume Content -->
+    <div class="bg-white rounded-lg shadow-lg p-8 md:p-12">
+      <ResumeViewer client:load resumeData={resumeData} />
+    </div>
+
+    <!-- Additional CTAs -->
+    <div class="mt-12 bg-gray-900 rounded-lg p-8 text-white text-center no-print">
+      <h2 class="text-2xl font-serif font-bold mb-4 text-white">Interested in working together?</h2>
+      <p class="mb-6 text-gray-100">Let's discuss how I can contribute to your team's success.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/contact" class="btn-primary">
+          Get In Touch
+        </a>
+        <a 
+          href="https://linkedin.com/in/bryanthayes" 
+          target="_blank" 
+          rel="noopener"
+          class="btn bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900"
+        >
+          Connect on LinkedIn
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

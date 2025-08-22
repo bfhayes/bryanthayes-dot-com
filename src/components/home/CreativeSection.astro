@@ -1,0 +1,137 @@
+---
+// Creative mode homepage content
+const hobbies = [
+  {
+    title: 'Photography',
+    description: 'Capturing moments through landscapes, portraits, and street photography',
+    image: '/images/photography-thumb.jpg',
+    link: '/hobbies/photography',
+    icon: '📷'
+  },
+  {
+    title: 'Woodworking',
+    description: 'Creating functional art from raw timber',
+    image: '/images/woodworking-thumb.jpg',
+    link: '/hobbies/woodworking',
+    icon: '🪵'
+  },
+  {
+    title: 'Leather Crafting',
+    description: 'Handcrafted leather goods with attention to detail',
+    image: '/images/leather-thumb.jpg',
+    link: '/hobbies/leatherwork',
+    icon: '👜'
+  },
+  {
+    title: 'Music',
+    description: 'Guitar compositions and acoustic performances',
+    image: '/images/music-thumb.jpg',
+    link: '/hobbies/music',
+    icon: '🎸'
+  },
+  {
+    title: 'Electronics',
+    description: 'DIY projects and circuit design',
+    image: '/images/electronics-thumb.jpg',
+    link: '/hobbies/electronics',
+    icon: '⚡'
+  },
+  {
+    title: 'Programming',
+    description: 'Personal projects and open-source contributions',
+    image: '/images/programming-thumb.jpg',
+    link: '/hobbies/programming',
+    icon: '💻'
+  },
+  {
+    title: 'Golf',
+    description: 'Pursuing the perfect swing',
+    image: '/images/golf-thumb.jpg',
+    link: '/hobbies/golf',
+    icon: '⛳'
+  },
+];
+
+const featuredWork = [
+  { title: 'Mountain Landscape', category: 'Photography', link: '#' },
+  { title: 'Oak Coffee Table', category: 'Woodworking', link: '#' },
+  { title: 'Leather Wallet', category: 'Leather Crafting', link: '#' },
+  { title: 'Acoustic Cover', category: 'Music', link: '#' },
+];
+---
+
+<div class="container-custom py-16 space-y-20">
+  <!-- Hobby Grid -->
+  <section>
+    <h2 class="text-3xl font-serif font-bold text-space-cadet mb-8 text-center">Creative Pursuits</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      {hobbies.map((hobby) => (
+        <a href={hobby.link} class="group">
+          <div class="card overflow-hidden hover:shadow-xl transition-all">
+            <div class="aspect-w-16 aspect-h-12 bg-gradient-to-br from-ultra-violet/20 to-rose-quartz/20 flex items-center justify-center">
+              <span class="text-6xl opacity-50 group-hover:scale-110 transition-transform">
+                {hobby.icon}
+              </span>
+            </div>
+            <div class="p-6">
+              <h3 class="font-semibold text-lg text-space-cadet mb-2 group-hover:text-ultra-violet transition-colors">
+                {hobby.title}
+              </h3>
+              <p class="text-sm text-ultra-violet-600">
+                {hobby.description}
+              </p>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Featured Work -->
+  <section>
+    <h2 class="text-3xl font-serif font-bold text-space-cadet mb-8 text-center">Featured Work</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {featuredWork.map((work) => (
+        <a href={work.link} class="card p-6 text-center group hover:shadow-lg transition-all">
+          <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-pale-dogwood/30 to-rose-quartz/30 flex items-center justify-center">
+            <span class="text-2xl">✨</span>
+          </div>
+          <h3 class="font-semibold text-space-cadet group-hover:text-ultra-violet transition-colors">
+            {work.title}
+          </h3>
+          <p class="text-sm text-ultra-violet-600 mt-1">{work.category}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Creative Philosophy -->
+  <section class="bg-gradient-to-r from-ultra-violet to-rose-quartz rounded-2xl p-12 text-white">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl font-serif font-bold mb-6">Creating with Purpose</h2>
+      <p class="text-lg mb-8 text-isabelline-200">
+        Each project is an opportunity to learn, grow, and express creativity. 
+        From the precision of woodworking to the artistry of photography, 
+        every hobby enriches my perspective and fuels my passion for craftsmanship.
+      </p>
+      <a href="/about" class="btn bg-isabelline text-space-cadet hover:bg-isabelline-100">
+        Learn More About My Journey
+      </a>
+    </div>
+  </section>
+
+  <!-- Instagram Feed Placeholder -->
+  <section>
+    <h2 class="text-3xl font-serif font-bold text-space-cadet mb-8 text-center">Recent Creations</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+        <div class="aspect-square bg-gradient-to-br from-pale-dogwood/20 to-rose-quartz/20 rounded-lg animate-pulse"></div>
+      ))}
+    </div>
+    <div class="text-center mt-8">
+      <a href="https://instagram.com/bryanthayes" target="_blank" rel="noopener" class="btn-secondary">
+        Follow on Instagram →
+      </a>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,122 @@
+% Bryant Hayes – framed-header résumé
+% NOTE: Compile with **XeLaTeX** or **LuaLaTeX** so the San Francisco system font is found.
+
+\documentclass[10pt,a4paper]{article}
+
+% ---------- Packages ----------
+\usepackage[a4paper,margin=1.5cm]{geometry}
+\usepackage{fontawesome5}         % icon set
+\usepackage{paracol}              % two unequal columns
+\usepackage{enumitem}             % compact itemize
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage{setspace}
+% --- Apple-style SF font (requires Xe/LuaLaTeX on macOS) ---
+\usepackage{fontspec}
+\setsansfont{SF Pro Text}[Scale=MatchLowercase]
+% Fallback if SF not present (e.g. non-macOS): Helvetica Neue
+\IfFontExistsTF{SF Pro Text}{}{\setsansfont{Helvetica Neue}[Scale=MatchLowercase]}
+
+% ---------- Global Style ----------
+\renewcommand{\familydefault}{\sfdefault}  % use the sans face (San Francisco)
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlist[itemize]{noitemsep,topsep=0pt,leftmargin=*}
+\pagenumbering{gobble}
+\definecolor{accent}{HTML}{708090}         % subtle slate gray
+
+\newcommand{\accentrule}{\color{accent}\hrule height .6pt}
+
+% Increase space above underline in section titles
+\newcommand{\sectiontitle}[1]{%
+  \vspace{1.0\baselineskip}\textbf{\uppercase{#1}}\par
+  \vspace{0.25\baselineskip}% extra breathing room
+  \accentrule\vspace{0.5\baselineskip}}
+
+% ---------- Document ----------
+\begin{document}\onehalfspacing
+
+% ===== Framed Name =====
+\begin{center}
+  \fboxsep=12pt
+  \fboxrule=.8pt
+  \fbox{%
+    \begin{minipage}{.9\linewidth}\centering
+      {\Huge\bfseries Bryant Hayes}\\[4pt]
+      {\large Senior Security Software Engineer}
+    \end{minipage}}
+\end{center}
+
+\vspace{1.0\baselineskip}
+
+% ===== Contact Row =====
+\faPhone*{} \href{tel:+15035518418}{503-551-8418}\hfill
+\faEnvelope{} \href{mailto:bryant.hayes@icloud.com}{bryant.hayes@icloud.com}\hfill
+\faMapMarker{} Santa Clara, CA\hfill
+\faLinkedin{} \href{https://linkedin.com/in/bryantfhayes}{linkedin.com/in/bryantfhayes}
+
+\bigskip\accentrule\bigskip
+
+% ===== Two-Column Layout =====
+\columnratio{0.32}                % ≈ 1/3 : 2/3
+\begin{paracol}{2}
+\switchcolumn[0]                  % -------- LEFT COLUMN --------
+
+\sectiontitle{Education}
+\textbf{B.S. Electrical \& Computer Engineering}\\
+Oregon State University — Corvallis, OR\\
+2011 – 2016\\
+Dean’s List · IEEE Chapter President
+
+\sectiontitle{Skills}
+\textbf{Security}\\
+DRM · Cryptography · Secure Boot · TrustZone · SEP\\[4pt]
+\textbf{Languages}\\
+C/C++17 · Swift · Python · TypeScript\\[4pt]
+\textbf{Frameworks}\\
+FastAPI · React · Docker · Kubernetes · Yocto\\[4pt]
+\textbf{Tools}\\
+Git · TeamCity · Vite · Vitest · Redis
+
+\sectiontitle{Certifications}
+AWS Cloud Practitioner (2023)\\
+CSSLP (ISC² — 2019)
+
+\switchcolumn                     % -------- RIGHT COLUMN --------
+
+\sectiontitle{Professional Summary}
+Seasoned security engineer (8 yrs) specializing in high-performance DRM and embedded Linux. Led cross-functional teams that shipped secure media services used by hundreds of millions of devices with zero critical incidents across two iOS releases.
+
+\sectiontitle{Professional Experience}
+
+\textbf{Senior Security Software Engineer}\hfill Apple Inc. — Cupertino, CA\\
+\textit{Dec 2020 – Present}
+\begin{itemize}
+  \item Designed DRM security architecture for Apple Services, protecting billions of streams across iOS, tvOS \& macOS.
+  \item Implemented cryptographic protocols in C++/Swift; integrated Secure Enclave \& TrustZone keys.
+  \item Re-wrote token-validation micro-service, cutting latency 45 \% and sustaining 50 k req/s.
+  \item Mentored six engineers; instituted threat modeling and fuzzing that kept P1 security incidents at 0.
+\end{itemize}
+
+\textbf{Senior Software Engineer}\hfill Cognex Corp. — Portland, OR\\
+\textit{Feb 2019 – Nov 2020}
+\begin{itemize}
+  \item Produced Yocto Linux images and enabled Secure Boot for ARM vision systems.
+  \item Containerized toolchains, reducing build times 60 \%; managed CI with TeamCity + Docker.
+\end{itemize}
+
+\textbf{Staff Software Engineer}\hfill Cognex Corp. — Portland, OR\\
+\textit{Feb 2017 – Jan 2019}
+\begin{itemize}
+  \item Scrum-mastered platform team; validated new ARM hardware with custom diagnostics.
+  \item Championed culture, earning “Minister of Culture” recognition.
+\end{itemize}
+
+\textbf{Associate Software Engineer}\hfill Cognex Corp. — Portland, OR\\
+\textit{Jul 2016 – Jan 2017}
+\begin{itemize}
+  \item Developed autofocus firmware and optimized discrete-I/O drivers on embedded Linux.
+\end{itemize}
+
+\end{paracol}
+\end{document}

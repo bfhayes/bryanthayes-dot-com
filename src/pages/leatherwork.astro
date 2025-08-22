@@ -1,0 +1,84 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const projects = [
+  {
+    title: 'Minimalist Wallet',
+    description: 'Slim wallet designed for everyday carry',
+    type: 'Wallet',
+    leather: 'Horween Chromexcel',
+    duration: '1 week'
+  },
+  {
+    title: 'Messenger Bag',
+    description: 'Full-grain leather bag with brass hardware',
+    type: 'Bag',
+    leather: 'Vegetable Tanned',
+    duration: '3 weeks'
+  },
+  {
+    title: 'Watch Strap',
+    description: 'Custom watch strap with hand stitching',
+    type: 'Accessory',
+    leather: 'Shell Cordovan',
+    duration: '3 days'
+  }
+];
+---
+
+<BaseLayout 
+  title="Leatherwork" 
+  description="Handcrafted leather goods with attention to detail and durability"
+>
+  <div class="container-custom py-12">
+    <div class="text-center mb-16">
+      <h1 class="text-4xl lg:text-6xl font-serif font-bold text-gray-900 mb-4">
+        Leatherwork
+      </h1>
+      <p class="text-xl text-gray-700 max-w-3xl mx-auto">
+        Handcrafting durable leather goods with premium materials and traditional techniques. 
+        Each piece is built to last and improve with age.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+      {projects.map((project) => (
+        <div class="card p-6">
+          <div class="w-full h-48 bg-gray-100 rounded-lg mb-4 flex items-center justify-center">
+            <span class="text-4xl opacity-60">👜</span>
+          </div>
+          <h3 class="text-xl font-serif font-semibold text-gray-900 mb-2">
+            {project.title}
+          </h3>
+          <p class="text-gray-600 mb-4 text-sm">
+            {project.description}
+          </p>
+          <div class="space-y-2">
+            <div class="flex justify-between">
+              <span class="text-sm font-medium text-gray-900">Type:</span>
+              <span class="text-sm text-gray-600">{project.type}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-sm font-medium text-gray-900">Leather:</span>
+              <span class="text-sm text-gray-600">{project.leather}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-sm font-medium text-gray-900">Duration:</span>
+              <span class="text-sm text-gray-600">{project.duration}</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <section class="bg-gray-900 rounded-2xl p-12 text-white text-center">
+      <h2 class="text-3xl font-serif font-bold mb-4 text-white">Crafted to Last</h2>
+      <p class="text-lg mb-8 text-gray-100">
+        Using premium leather and traditional hand-stitching techniques to create pieces that improve with age.
+      </p>
+      <a href="/contact" class="btn-primary">
+        Commission Custom Work
+      </a>
+    </section>
+  </div>
+</BaseLayout>
