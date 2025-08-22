@@ -10,7 +10,7 @@
         "description": {
           "type": "string"
         },
-        "date": {
+        "publishDate": {
           "anyOf": [
             {
               "type": "string",
@@ -26,18 +26,41 @@
             }
           ]
         },
+        "heroImage": {
+          "type": "string"
+        },
+        "gallery": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "featured": {
+          "type": "boolean",
+          "default": false
+        },
+        "draft": {
+          "type": "boolean",
+          "default": false
+        },
         "category": {
           "type": "string",
           "enum": [
-            "landscape",
-            "portrait",
+            "landscapes",
+            "portraits",
             "street",
+            "events",
+            "nature",
             "macro",
             "abstract"
           ]
-        },
-        "location": {
-          "type": "string"
         },
         "camera": {
           "type": "string"
@@ -61,29 +84,16 @@
               "type": "string"
             }
           },
-          "required": [
-            "aperture",
-            "shutter",
-            "iso"
-          ],
           "additionalProperties": false
         },
-        "image": {
+        "location": {
           "type": "string"
         },
-        "thumbnail": {
-          "type": "string"
-        },
-        "tags": {
-          "type": "array",
-          "items": {
+        "exifData": {
+          "type": "object",
+          "additionalProperties": {
             "type": "string"
-          },
-          "default": []
-        },
-        "featured": {
-          "type": "boolean",
-          "default": false
+          }
         },
         "$schema": {
           "type": "string"
@@ -92,11 +102,10 @@
       "required": [
         "title",
         "description",
-        "date",
-        "category",
-        "camera",
-        "settings",
-        "image"
+        "publishDate",
+        "heroImage",
+        "gallery",
+        "category"
       ],
       "additionalProperties": false
     }

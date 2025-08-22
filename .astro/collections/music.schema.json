@@ -10,7 +10,7 @@
         "description": {
           "type": "string"
         },
-        "date": {
+        "publishDate": {
           "anyOf": [
             {
               "type": "string",
@@ -26,28 +26,44 @@
             }
           ]
         },
+        "heroImage": {
+          "type": "string"
+        },
+        "gallery": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "featured": {
+          "type": "boolean",
+          "default": false
+        },
+        "draft": {
+          "type": "boolean",
+          "default": false
+        },
         "type": {
           "type": "string",
           "enum": [
-            "original",
+            "composition",
             "cover",
-            "improvisation"
+            "arrangement",
+            "recording"
           ]
         },
         "genre": {
-          "type": "string"
-        },
-        "audio_file": {
-          "type": "string"
-        },
-        "video_file": {
-          "type": "string"
-        },
-        "sheet_music": {
-          "type": "string"
-        },
-        "tabs": {
-          "type": "string"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "instruments": {
           "type": "array",
@@ -58,16 +74,23 @@
         "duration": {
           "type": "string"
         },
-        "featured": {
-          "type": "boolean",
-          "default": false
+        "key": {
+          "type": "string"
         },
-        "tags": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "default": []
+        "tempo": {
+          "type": "string"
+        },
+        "audioFile": {
+          "type": "string"
+        },
+        "sheetMusic": {
+          "type": "string"
+        },
+        "tabs": {
+          "type": "string"
+        },
+        "inspiration": {
+          "type": "string"
         },
         "$schema": {
           "type": "string"
@@ -76,10 +99,12 @@
       "required": [
         "title",
         "description",
-        "date",
+        "publishDate",
+        "heroImage",
+        "gallery",
         "type",
-        "instruments",
-        "duration"
+        "genre",
+        "instruments"
       ],
       "additionalProperties": false
     }

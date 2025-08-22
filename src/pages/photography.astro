@@ -1,35 +1,10 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import PhotoGallery from '@/components/gallery/PhotoGallery';
+import { getCollection } from 'astro:content';
+import ProjectTile from '@/components/projects/ProjectTile.astro';
 
-// Sample photo data - in production this would come from content collections
-const photoCollections = [
-  {
-    title: 'Landscapes',
-    description: 'Capturing the beauty of natural environments',
-    photos: [
-      { id: 1, src: '/images/landscape-1.jpg', alt: 'Mountain sunrise', title: 'Mountain Sunrise', location: 'Rocky Mountains', camera: 'Canon EOS R5', settings: { aperture: 'f/8', shutter: '1/125s', iso: 100 } },
-      { id: 2, src: '/images/landscape-2.jpg', alt: 'Forest path', title: 'Forest Path', location: 'Pacific Northwest', camera: 'Canon EOS R5', settings: { aperture: 'f/11', shutter: '1/60s', iso: 200 } },
-      { id: 3, src: '/images/landscape-3.jpg', alt: 'Ocean waves', title: 'Ocean Waves', location: 'California Coast', camera: 'Canon EOS R5', settings: { aperture: 'f/16', shutter: '1/250s', iso: 100 } },
-    ]
-  },
-  {
-    title: 'Portraits',
-    description: 'Capturing the essence of people and personality',
-    photos: [
-      { id: 4, src: '/images/portrait-1.jpg', alt: 'Portrait 1', title: 'Natural Light Portrait', location: 'Studio', camera: 'Canon EOS R5', settings: { aperture: 'f/2.8', shutter: '1/125s', iso: 400 } },
-      { id: 5, src: '/images/portrait-2.jpg', alt: 'Portrait 2', title: 'Golden Hour Portrait', location: 'Outdoor', camera: 'Canon EOS R5', settings: { aperture: 'f/4', shutter: '1/200s', iso: 200 } },
-    ]
-  },
-  {
-    title: 'Street Photography',
-    description: 'Documenting life as it happens',
-    photos: [
-      { id: 6, src: '/images/street-1.jpg', alt: 'Street scene', title: 'City Life', location: 'Downtown', camera: 'Canon EOS R5', settings: { aperture: 'f/5.6', shutter: '1/250s', iso: 800 } },
-      { id: 7, src: '/images/street-2.jpg', alt: 'Street scene', title: 'Morning Rush', location: 'Metro Station', camera: 'Canon EOS R5', settings: { aperture: 'f/4', shutter: '1/125s', iso: 1600 } },
-    ]
-  }
-];
+// Get all photography projects from content collections
+const allProjects = await getCollection('photography', ({ data }) => !data.draft);
 
 const equipment = [
   { category: 'Camera Body', items: ['Canon EOS R5', 'Canon EOS R6 Mark II'] },
@@ -56,24 +31,26 @@ const equipment = [
       </p>
     </div>
 
-    <!-- Photo Collections -->
-    {photoCollections.map((collection, index) => (
+    <!-- Photo Projects -->
+    {allProjects.length > 0 ? (
       <section class="mb-16">
-        <div class="flex flex-col md:flex-row md:items-center justify-between mb-8">
-          <div>
-            <h2 class="text-3xl font-serif font-semibold text-gray-900 mb-2">
-              {collection.title}
-            </h2>
-            <p class="text-gray-600">{collection.description}</p>
-          </div>
-          <a href={`/hobbies/photography/${collection.title.toLowerCase()}`} class="btn-ghost mt-4 md:mt-0">
-            View All →
-          </a>
+        <h2 class="text-3xl font-serif font-semibold text-gray-900 mb-8 text-center">Recent Work</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {allProjects.map((project) => (
+            <ProjectTile project={project} category="photography" />
+          ))}
         </div>
-        
-        <PhotoGallery client:load photos={collection.photos} />
       </section>
-    ))}
+    ) : (
+      <section class="mb-16 text-center">
+        <div class="w-32 h-32 mx-auto mb-8 rounded-full bg-gray-100 flex items-center justify-center">
+          <span class="text-6xl opacity-60">📷</span>
+        </div>
+        <p class="text-gray-600 mb-8">
+          Photography portfolio coming soon.
+        </p>
+      </section>
+    )}
 
     <!-- Equipment Section -->
     <section class="mb-16">

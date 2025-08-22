@@ -10,7 +10,7 @@
         "description": {
           "type": "string"
         },
-        "date": {
+        "publishDate": {
           "anyOf": [
             {
               "type": "string",
@@ -26,12 +26,36 @@
             }
           ]
         },
+        "heroImage": {
+          "type": "string"
+        },
+        "gallery": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "featured": {
+          "type": "boolean",
+          "default": false
+        },
+        "draft": {
+          "type": "boolean",
+          "default": false
+        },
         "difficulty": {
           "type": "string",
           "enum": [
-            "beginner",
-            "intermediate",
-            "advanced"
+            "Beginner",
+            "Intermediate",
+            "Advanced"
           ]
         },
         "duration": {
@@ -49,35 +73,32 @@
             "type": "string"
           }
         },
-        "techniques": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "images": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "thumbnail": {
+        "dimensions": {
           "type": "string"
         },
-        "featured": {
-          "type": "boolean",
-          "default": false
+        "woodSpecies": {
+          "type": "string"
         },
-        "completed": {
-          "type": "boolean",
-          "default": true
+        "finish": {
+          "type": "string"
         },
-        "tags": {
+        "joinery": {
           "type": "array",
           "items": {
             "type": "string"
+          }
+        },
+        "cost": {
+          "type": "object",
+          "properties": {
+            "materials": {
+              "type": "number"
+            },
+            "total": {
+              "type": "number"
+            }
           },
-          "default": []
+          "additionalProperties": false
         },
         "$schema": {
           "type": "string"
@@ -86,14 +107,13 @@
       "required": [
         "title",
         "description",
-        "date",
+        "publishDate",
+        "heroImage",
+        "gallery",
         "difficulty",
         "duration",
         "materials",
-        "tools",
-        "techniques",
-        "images",
-        "thumbnail"
+        "tools"
       ],
       "additionalProperties": false
     }

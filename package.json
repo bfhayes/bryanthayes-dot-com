@@ -11,7 +11,8 @@
     "preview": "astro preview",
     "preview:cloudflare": "wrangler pages dev dist",
     "astro": "astro",
-    "check": "astro check"
+    "check": "astro check",
+    "add-project": "node scripts/add-project.js"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +22,7 @@
     "@astrojs/check": "^0.9.4",
     "@astrojs/react": "^4.3.0",
     "@astrojs/tailwind": "^6.0.2",
+    "@inquirer/prompts": "^7.8.3",
     "@tailwindcss/typography": "^0.5.16",
     "astro": "^5.13.2",
     "react": "^19.1.1",

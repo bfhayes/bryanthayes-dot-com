@@ -1,17 +1,27 @@
 ---
 title: "Minimalist Leather Wallet"
 description: "A sleek, slim wallet designed for everyday carry with premium vegetable-tanned leather"
-date: 2024-02-20
+publishDate: 2024-02-20T00:00:00.000Z
+heroImage: "/images/projects/wallet-thumb.jpg"
+gallery: 
+  - "/images/projects/wallet-1.jpg"
+  - "/images/projects/wallet-2.jpg"
+  - "/images/projects/wallet-3.jpg"
 type: "wallet"
-leather_type: "Horween Chromexcel"
-techniques: ["Edge painting", "Hand stitching", "Burnishing", "Pattern making"]
-tools: ["Leather knife", "Edge beveler", "Stitching awl", "Pricking irons", "Edge paint brushes"]
-images: ["/images/projects/wallet-1.jpg", "/images/projects/wallet-2.jpg", "/images/projects/wallet-3.jpg"]
-thumbnail: "/images/projects/wallet-thumb.jpg"
+leather: "Horween Chromexcel"
+thickness: "3-4 oz"
+tanning: "combination"
+techniques: 
+  - "Edge painting"
+  - "Hand stitching"
+  - "Burnishing"
+  - "Pattern making"
 duration: "1 week"
-featured: true
-for_sale: false
+difficulty: "Intermediate"
+dimensions: "4.25\" × 3\" × 0.25\""
 tags: ["edc", "minimalist", "horween", "everyday-carry"]
+featured: true
+draft: false
 ---
 
 # Minimalist Leather Wallet

@@ -1,17 +1,34 @@
 ---
 title: "Live Edge Oak Coffee Table"
 description: "A stunning coffee table crafted from a single live edge oak slab with handcrafted steel legs"
-date: 2024-01-15
-difficulty: "intermediate"
+publishDate: 2024-01-15T00:00:00.000Z
+heroImage: "/images/projects/oak-table-thumb.jpg"
+gallery: 
+  - "/images/projects/oak-table-1.jpg"
+  - "/images/projects/oak-table-2.jpg" 
+  - "/images/projects/oak-table-3.jpg"
+difficulty: "Intermediate"
 duration: "3 weeks"
-materials: ["Live edge oak slab", "Steel tubing", "Wood finish", "Steel primer", "Matte black paint"]
-tools: ["Table saw", "Router", "Orbital sander", "Welder", "Grinder", "Hand planes"]
-techniques: ["Live edge preparation", "Steel fabrication", "Welding", "Wood finishing", "Joinery"]
-images: ["/images/projects/oak-table-1.jpg", "/images/projects/oak-table-2.jpg", "/images/projects/oak-table-3.jpg"]
-thumbnail: "/images/projects/oak-table-thumb.jpg"
-featured: true
-completed: true
+materials: 
+  - "8/4 Live edge white oak slab (6 feet long)"
+  - "1.5\" square steel tubing"
+  - "Steel primer and matte black paint"
+  - "Satin polyurethane finish"
+  - "220-400 grit sandpaper"
+tools: 
+  - "Table saw"
+  - "Router with sled"
+  - "Orbital sander"
+  - "TIG welder"
+  - "Metal chop saw"
+  - "Hand planes"
+dimensions: "48\" L × 24\" W × 16\" H"
+woodSpecies: "White Oak"
+finish: "Satin polyurethane"
+joinery: ["Welded steel joints", "Removable mounting system"]
 tags: ["furniture", "live-edge", "steel", "modern"]
+featured: true
+draft: false
 ---
 
 # Live Edge Oak Coffee Table

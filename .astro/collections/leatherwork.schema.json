@@ -10,7 +10,7 @@
         "description": {
           "type": "string"
         },
-        "date": {
+        "publishDate": {
           "anyOf": [
             {
               "type": "string",
@@ -26,53 +26,14 @@
             }
           ]
         },
-        "type": {
-          "type": "string",
-          "enum": [
-            "wallet",
-            "bag",
-            "belt",
-            "accessory",
-            "custom"
-          ]
-        },
-        "leather_type": {
+        "heroImage": {
           "type": "string"
         },
-        "techniques": {
+        "gallery": {
           "type": "array",
           "items": {
             "type": "string"
           }
-        },
-        "tools": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "images": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "thumbnail": {
-          "type": "string"
-        },
-        "duration": {
-          "type": "string"
-        },
-        "featured": {
-          "type": "boolean",
-          "default": false
-        },
-        "for_sale": {
-          "type": "boolean",
-          "default": false
-        },
-        "price": {
-          "type": "number"
         },
         "tags": {
           "type": "array",
@@ -81,6 +42,67 @@
           },
           "default": []
         },
+        "featured": {
+          "type": "boolean",
+          "default": false
+        },
+        "draft": {
+          "type": "boolean",
+          "default": false
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "wallet",
+            "bag",
+            "belt",
+            "accessory",
+            "other"
+          ]
+        },
+        "leather": {
+          "type": "string"
+        },
+        "thickness": {
+          "type": "string"
+        },
+        "tanning": {
+          "type": "string",
+          "enum": [
+            "vegetable",
+            "chrome",
+            "combination"
+          ]
+        },
+        "hardware": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "techniques": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "duration": {
+          "type": "string"
+        },
+        "difficulty": {
+          "type": "string",
+          "enum": [
+            "Beginner",
+            "Intermediate",
+            "Advanced"
+          ]
+        },
+        "dimensions": {
+          "type": "string"
+        },
+        "care_instructions": {
+          "type": "string"
+        },
         "$schema": {
           "type": "string"
         }
@@ -88,14 +110,13 @@
       "required": [
         "title",
         "description",
-        "date",
+        "publishDate",
+        "heroImage",
+        "gallery",
         "type",
-        "leather_type",
-        "techniques",
-        "tools",
-        "images",
-        "thumbnail",
-        "duration"
+        "leather",
+        "duration",
+        "difficulty"
       ],
       "additionalProperties": false
     }

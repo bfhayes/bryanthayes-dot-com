@@ -1,0 +1,181 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+type Project = 
+  | CollectionEntry<'photography'>
+  | CollectionEntry<'woodworking'>
+  | CollectionEntry<'leatherwork'>
+  | CollectionEntry<'music'>
+  | CollectionEntry<'engineering'>
+  | CollectionEntry<'costuming'>
+  | CollectionEntry<'food'>;
+
+interface Props {
+  project: Project;
+  category: string;
+}
+
+const { project, category } = Astro.props;
+
+// Extract common fields
+const title = project.data.title;
+const description = project.data.description;
+const heroImage = project.data.heroImage;
+const tags = project.data.tags;
+const featured = project.data.featured;
+
+// Extract category-specific metadata for display
+function getProjectMetadata(project: Project, category: string): { primary: string; secondary: string; tertiary?: string } {
+  switch (category) {
+    case 'woodworking':
+      const woodData = project.data as CollectionEntry<'woodworking'>['data'];
+      return {
+        primary: woodData.difficulty,
+        secondary: woodData.duration,
+        tertiary: `${woodData.materials.length} materials`
+      };
+    
+    case 'leatherwork':
+      const leatherData = project.data as CollectionEntry<'leatherwork'>['data'];
+      return {
+        primary: leatherData.difficulty,
+        secondary: leatherData.duration,
+        tertiary: leatherData.type
+      };
+    
+    case 'photography':
+      const photoData = project.data as CollectionEntry<'photography'>['data'];
+      return {
+        primary: photoData.category,
+        secondary: photoData.camera || 'Camera info',
+        tertiary: photoData.location
+      };
+    
+    case 'music':
+      const musicData = project.data as CollectionEntry<'music'>['data'];
+      return {
+        primary: musicData.type,
+        secondary: musicData.genre.join(', ') || 'Various',
+        tertiary: musicData.duration
+      };
+    
+    case 'engineering':
+      const engData = project.data as CollectionEntry<'engineering'>['data'];
+      return {
+        primary: engData.type,
+        secondary: engData.status,
+        tertiary: `${engData.technologies.length} technologies`
+      };
+    
+    case 'costuming':
+      const costumeData = project.data as CollectionEntry<'costuming'>['data'];
+      return {
+        primary: costumeData.type,
+        secondary: costumeData.duration,
+        tertiary: costumeData.character
+      };
+    
+    case 'food':
+      const foodData = project.data as CollectionEntry<'food'>['data'];
+      return {
+        primary: foodData.type,
+        secondary: foodData.difficulty,
+        tertiary: `${foodData.servings} servings`
+      };
+    
+    default:
+      return {
+        primary: 'Project',
+        secondary: 'Details',
+      };
+  }
+}
+
+const metadata = getProjectMetadata(project, category);
+const projectLink = `/${category}/${project.slug}`;
+---
+
+<a href={projectLink} class="group">
+  <article class="card overflow-hidden hover:shadow-xl transition-all duration-300 h-full">
+    {/* Hero Image */}
+    <div class="aspect-w-16 aspect-h-12 bg-gradient-to-br from-pale-dogwood/20 to-rose-quartz/20 overflow-hidden">
+      {heroImage ? (
+        <img 
+          src={heroImage} 
+          alt={title}
+          class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+        />
+      ) : (
+        <div class="w-full h-48 bg-gradient-to-br from-pale-dogwood/30 to-rose-quartz/30 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+          <span class="text-4xl opacity-60">
+            {category === 'woodworking' && '🪵'}
+            {category === 'leatherwork' && '👜'}
+            {category === 'photography' && '📷'}
+            {category === 'music' && '🎸'}
+            {category === 'engineering' && '⚙️'}
+            {category === 'costuming' && '🎭'}
+            {category === 'food' && '🍖'}
+            {!['woodworking', 'leatherwork', 'photography', 'music', 'engineering', 'costuming', 'food'].includes(category) && '✨'}
+          </span>
+        </div>
+      )}
+    </div>
+
+    {/* Content */}
+    <div class="p-6">
+      {/* Featured Badge */}
+      {featured && (
+        <div class="mb-3">
+          <span class="inline-block px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-800 rounded-full">
+            Featured
+          </span>
+        </div>
+      )}
+
+      {/* Title */}
+      <h3 class="text-xl font-serif font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+        {title}
+      </h3>
+
+      {/* Description */}
+      <p class="text-gray-600 mb-4 text-sm leading-relaxed">
+        {description}
+      </p>
+      
+      {/* Metadata */}
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded capitalize">
+          {metadata.primary}
+        </span>
+        <span class="text-xs text-gray-600">
+          {metadata.secondary}
+        </span>
+      </div>
+
+      {/* Secondary metadata and tags */}
+      <div class="space-y-3">
+        {metadata.tertiary && (
+          <div class="text-xs text-gray-500">
+            {metadata.tertiary}
+          </div>
+        )}
+
+        {/* Tags */}
+        {tags.length > 0 && (
+          <div class="flex flex-wrap gap-1">
+            {tags.slice(0, 3).map((tag) => (
+              <span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded">
+                {tag}
+              </span>
+            ))}
+            {tags.length > 3 && (
+              <span class="text-xs px-2 py-1 bg-gray-200 text-gray-700 rounded">
+                +{tags.length - 3}
+              </span>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  </article>
+</a>

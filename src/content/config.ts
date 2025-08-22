@@ -1,149 +1,145 @@
 import { defineCollection, z } from 'astro:content';
 
-// Photography collection
+// Base project schema that all hobby projects extend
+const baseProjectSchema = z.object({
+  title: z.string(),
+  description: z.string(),
+  publishDate: z.coerce.date(),
+  heroImage: z.string(),
+  gallery: z.array(z.string()),
+  tags: z.array(z.string()).default([]),
+  featured: z.boolean().default(false),
+  draft: z.boolean().default(false),
+});
+
+// Photography projects
 const photography = defineCollection({
-  type: 'data',
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    date: z.coerce.date(),
-    category: z.enum(['landscape', 'portrait', 'street', 'macro', 'abstract']),
-    location: z.string().optional(),
-    camera: z.string(),
+  type: 'content',
+  schema: baseProjectSchema.extend({
+    category: z.enum(['landscapes', 'portraits', 'street', 'events', 'nature', 'macro', 'abstract']),
+    camera: z.string().optional(),
     lens: z.string().optional(),
     settings: z.object({
-      aperture: z.string(),
-      shutter: z.string(),
-      iso: z.number(),
+      aperture: z.string().optional(),
+      shutter: z.string().optional(),
+      iso: z.number().optional(),
       focal_length: z.string().optional(),
-    }),
-    image: z.string(),
-    thumbnail: z.string().optional(),
-    tags: z.array(z.string()).default([]),
-    featured: z.boolean().default(false),
-  })
+    }).optional(),
+    location: z.string().optional(),
+    exifData: z.record(z.string()).optional(),
+  }),
 });
 
 // Woodworking projects
 const woodworking = defineCollection({
   type: 'content',
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    date: z.coerce.date(),
-    difficulty: z.enum(['beginner', 'intermediate', 'advanced']),
-    duration: z.string(), // e.g., "2 weeks"
+  schema: baseProjectSchema.extend({
+    difficulty: z.enum(['Beginner', 'Intermediate', 'Advanced']),
+    duration: z.string(),
     materials: z.array(z.string()),
     tools: z.array(z.string()),
-    techniques: z.array(z.string()),
-    images: z.array(z.string()),
-    thumbnail: z.string(),
-    featured: z.boolean().default(false),
-    completed: z.boolean().default(true),
-    tags: z.array(z.string()).default([]),
-  })
+    dimensions: z.string().optional(),
+    woodSpecies: z.string().optional(),
+    finish: z.string().optional(),
+    joinery: z.array(z.string()).optional(),
+    cost: z.object({
+      materials: z.number().optional(),
+      total: z.number().optional(),
+    }).optional(),
+  }),
 });
 
 // Leatherwork projects
 const leatherwork = defineCollection({
   type: 'content',
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    date: z.coerce.date(),
-    type: z.enum(['wallet', 'bag', 'belt', 'accessory', 'custom']),
-    leather_type: z.string(),
-    techniques: z.array(z.string()),
-    tools: z.array(z.string()),
-    images: z.array(z.string()),
-    thumbnail: z.string(),
+  schema: baseProjectSchema.extend({
+    type: z.enum(['wallet', 'bag', 'belt', 'accessory', 'other']),
+    leather: z.string(),
+    thickness: z.string().optional(),
+    tanning: z.enum(['vegetable', 'chrome', 'combination']).optional(),
+    hardware: z.array(z.string()).optional(),
+    techniques: z.array(z.string()).optional(),
     duration: z.string(),
-    featured: z.boolean().default(false),
-    for_sale: z.boolean().default(false),
-    price: z.number().optional(),
-    tags: z.array(z.string()).default([]),
-  })
+    difficulty: z.enum(['Beginner', 'Intermediate', 'Advanced']),
+    dimensions: z.string().optional(),
+    care_instructions: z.string().optional(),
+  }),
 });
 
-// Music tracks/compositions
+// Music projects
 const music = defineCollection({
   type: 'content',
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    date: z.coerce.date(),
-    type: z.enum(['original', 'cover', 'improvisation']),
-    genre: z.string().optional(),
-    audio_file: z.string().optional(),
-    video_file: z.string().optional(),
-    sheet_music: z.string().optional(),
-    tabs: z.string().optional(),
+  schema: baseProjectSchema.extend({
+    type: z.enum(['composition', 'cover', 'arrangement', 'recording']),
+    genre: z.array(z.string()),
     instruments: z.array(z.string()),
-    duration: z.string(), // e.g., "3:45"
-    featured: z.boolean().default(false),
-    tags: z.array(z.string()).default([]),
-  })
+    duration: z.string().optional(),
+    key: z.string().optional(),
+    tempo: z.string().optional(),
+    audioFile: z.string().optional(),
+    sheetMusic: z.string().optional(),
+    tabs: z.string().optional(),
+    inspiration: z.string().optional(),
+  }),
 });
 
-// Electronics projects
-const electronics = defineCollection({
+// Engineering projects (merged electronics + programming)
+const engineering = defineCollection({
   type: 'content',
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    date: z.coerce.date(),
-    difficulty: z.enum(['beginner', 'intermediate', 'advanced']),
-    components: z.array(z.string()),
-    tools: z.array(z.string()),
-    schematic: z.string().optional(),
-    code: z.string().optional(), // GitHub link or embedded code
-    images: z.array(z.string()),
-    thumbnail: z.string(),
-    duration: z.string(),
-    featured: z.boolean().default(false),
-    open_source: z.boolean().default(true),
-    tags: z.array(z.string()).default([]),
-  })
-});
-
-// Programming projects
-const programming = defineCollection({
-  type: 'content',
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    date: z.coerce.date(),
-    languages: z.array(z.string()),
-    frameworks: z.array(z.string()).default([]),
+  schema: baseProjectSchema.extend({
+    type: z.enum(['software', 'hardware', 'embedded', 'web', 'mobile', 'other']),
+    technologies: z.array(z.string()),
+    languages: z.array(z.string()).optional(),
+    frameworks: z.array(z.string()).optional(),
+    status: z.enum(['completed', 'in_progress', 'paused', 'archived']),
+    difficulty: z.enum(['Beginner', 'Intermediate', 'Advanced']),
     github_url: z.string().optional(),
     live_url: z.string().optional(),
-    images: z.array(z.string()).default([]),
-    thumbnail: z.string(),
-    status: z.enum(['completed', 'in-progress', 'archived']),
-    featured: z.boolean().default(false),
-    open_source: z.boolean().default(true),
-    tags: z.array(z.string()).default([]),
-  })
+    demo_video: z.string().optional(),
+    components: z.array(z.string()).optional(),
+    lessons_learned: z.string().optional(),
+  }),
 });
 
-// Golf content
-const golf = defineCollection({
+// Costuming projects
+const costuming = defineCollection({
   type: 'content',
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    date: z.coerce.date(),
-    type: z.enum(['round', 'lesson', 'equipment', 'course-review']),
-    course: z.string().optional(),
-    score: z.number().optional(),
-    handicap: z.number().optional(),
-    weather: z.string().optional(),
-    equipment: z.array(z.string()).default([]),
-    images: z.array(z.string()).default([]),
-    thumbnail: z.string().optional(),
-    featured: z.boolean().default(false),
-    tags: z.array(z.string()).default([]),
-  })
+  schema: baseProjectSchema.extend({
+    type: z.enum(['halloween', 'cosplay', 'historical', 'fantasy', 'theatrical']),
+    character: z.string().optional(),
+    source_material: z.string().optional(),
+    difficulty: z.enum(['Beginner', 'Intermediate', 'Advanced']),
+    duration: z.string(),
+    materials: z.array(z.string()),
+    techniques: z.array(z.string()).optional(),
+    size: z.string().optional(),
+    budget: z.number().optional(),
+    accessories: z.array(z.string()).optional(),
+    makeup_notes: z.string().optional(),
+  }),
+});
+
+// Food projects
+const food = defineCollection({
+  type: 'content',
+  schema: baseProjectSchema.extend({
+    type: z.enum(['recipe', 'technique', 'experiment', 'bbq', 'baking']),
+    cuisine: z.string().optional(),
+    difficulty: z.enum(['Easy', 'Medium', 'Hard']),
+    prep_time: z.string(),
+    cook_time: z.string(),
+    total_time: z.string(),
+    servings: z.number(),
+    ingredients: z.array(z.object({
+      item: z.string(),
+      amount: z.string(),
+      notes: z.string().optional(),
+    })),
+    equipment: z.array(z.string()).optional(),
+    temperature: z.string().optional(),
+    dietary_tags: z.array(z.enum(['vegetarian', 'vegan', 'gluten-free', 'dairy-free', 'keto', 'paleo'])).optional(),
+    nutritional_info: z.record(z.union([z.string(), z.number()])).optional(),
+  }),
 });
 
 // Professional experience
@@ -191,9 +187,57 @@ export const collections = {
   woodworking,
   leatherwork,
   music,
-  electronics,
-  programming,
-  golf,
+  engineering,
+  costuming,
+  food,
   experience,
   projects,
 };
+
+// Export category information for the project management script
+export const CATEGORIES = {
+  photography: {
+    collection: 'photography',
+    label: 'Photography',
+    icon: '📷',
+    description: 'Photos, collections, and photography projects'
+  },
+  woodworking: {
+    collection: 'woodworking',
+    label: 'Woodworking',
+    icon: '🪵',
+    description: 'Furniture and handcrafted wood pieces'
+  },
+  leatherwork: {
+    collection: 'leatherwork',
+    label: 'Leatherwork',
+    icon: '👜',
+    description: 'Custom bags, wallets, and leather accessories'
+  },
+  music: {
+    collection: 'music',
+    label: 'Music',
+    icon: '🎸',
+    description: 'Guitar compositions and recordings'
+  },
+  engineering: {
+    collection: 'engineering',
+    label: 'Engineering',
+    icon: '⚙️',
+    description: 'Software and hardware projects'
+  },
+  costuming: {
+    collection: 'costuming',
+    label: 'Costuming',
+    icon: '🎭',
+    description: 'Halloween costumes and cosplay'
+  },
+  food: {
+    collection: 'food',
+    label: 'Food',
+    icon: '🍖',
+    description: 'Recipes and cooking projects'
+  }
+} as const;
+
+export type CategoryKey = keyof typeof CATEGORIES;

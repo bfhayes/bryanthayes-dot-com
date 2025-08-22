@@ -1,5 +1,10 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import ProjectTile from '@/components/projects/ProjectTile.astro';
+
+// Get all engineering projects from content collections
+const allProjects = await getCollection('engineering', ({ data }) => !data.draft);
 ---
 
 <BaseLayout 
@@ -17,21 +22,48 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
       </p>
     </div>
 
-    <div class="text-center">
-      <div class="w-32 h-32 mx-auto mb-8 rounded-full bg-gray-100 flex items-center justify-center">
-        <span class="text-6xl opacity-60">⚙️</span>
+    {allProjects.length > 0 ? (
+      <!-- Projects Grid -->
+      <section class="mb-16">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {allProjects.map((project) => (
+            <ProjectTile project={project} category="engineering" />
+          ))}
+        </div>
+      </section>
+    ) : (
+      <div class="text-center">
+        <div class="w-32 h-32 mx-auto mb-8 rounded-full bg-gray-100 flex items-center justify-center">
+          <span class="text-6xl opacity-60">⚙️</span>
+        </div>
+        <p class="text-gray-600 mb-8">
+          Personal projects, open-source contributions, and hardware prototypes coming soon.
+        </p>
+        <div class="flex gap-4 justify-center">
+          <a href="https://github.com/bfhayes" target="_blank" rel="noopener" class="btn-primary">
+            View GitHub
+          </a>
+          <a href="/work" class="btn-secondary">
+            Professional Work
+          </a>
+        </div>
       </div>
-      <p class="text-gray-600 mb-8">
-        Personal projects, open-source contributions, and hardware prototypes coming soon.
+    )}
+
+    <!-- Links Section -->
+    <section class="bg-gray-900 rounded-2xl p-12 text-white text-center">
+      <h2 class="text-3xl font-serif font-bold mb-4 text-white">Explore My Engineering Work</h2>
+      <p class="text-lg mb-8 text-gray-100">
+        Check out my open source projects and professional development experience.
       </p>
       <div class="flex gap-4 justify-center">
         <a href="https://github.com/bfhayes" target="_blank" rel="noopener" class="btn-primary">
           View GitHub
         </a>
-        <a href="/work" class="btn-secondary">
+        <a href="/work" class="btn btn-ghost border-2 border-white text-white hover:bg-white hover:text-gray-900">
           Professional Work
         </a>
       </div>
-    </div>
+    </section>
   </div>
 </BaseLayout>

@@ -1,0 +1,162 @@
+{
+  "$ref": "#/definitions/food",
+  "definitions": {
+    "food": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "publishDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "integer",
+              "format": "unix-time"
+            }
+          ]
+        },
+        "heroImage": {
+          "type": "string"
+        },
+        "gallery": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "featured": {
+          "type": "boolean",
+          "default": false
+        },
+        "draft": {
+          "type": "boolean",
+          "default": false
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "recipe",
+            "technique",
+            "experiment",
+            "bbq",
+            "baking"
+          ]
+        },
+        "cuisine": {
+          "type": "string"
+        },
+        "difficulty": {
+          "type": "string",
+          "enum": [
+            "Easy",
+            "Medium",
+            "Hard"
+          ]
+        },
+        "prep_time": {
+          "type": "string"
+        },
+        "cook_time": {
+          "type": "string"
+        },
+        "total_time": {
+          "type": "string"
+        },
+        "servings": {
+          "type": "number"
+        },
+        "ingredients": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "item": {
+                "type": "string"
+              },
+              "amount": {
+                "type": "string"
+              },
+              "notes": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "item",
+              "amount"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "equipment": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "temperature": {
+          "type": "string"
+        },
+        "dietary_tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "vegetarian",
+              "vegan",
+              "gluten-free",
+              "dairy-free",
+              "keto",
+              "paleo"
+            ]
+          }
+        },
+        "nutritional_info": {
+          "type": "object",
+          "additionalProperties": {
+            "type": [
+              "string",
+              "number"
+            ]
+          }
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "description",
+        "publishDate",
+        "heroImage",
+        "gallery",
+        "type",
+        "difficulty",
+        "prep_time",
+        "cook_time",
+        "total_time",
+        "servings",
+        "ingredients"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

@@ -1,18 +1,10 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { getAllProjects } from '@/data/woodworking-projects';
+import { getCollection } from 'astro:content';
+import ProjectTile from '@/components/projects/ProjectTile.astro';
 
-// Get all woodworking projects from the data file
-const allProjects = getAllProjects();
-const projects = allProjects.map(project => ({
-  title: project.title,
-  description: project.description,
-  image: project.heroImage,
-  difficulty: project.difficulty,
-  duration: project.duration,
-  materials: project.materials,
-  link: `/woodworking/${project.slug}`
-}));
+// Get all woodworking projects from content collections
+const allProjects = await getCollection('woodworking', ({ data }) => !data.draft);
 
 const tools = [
   { category: 'Hand Tools', items: ['Chisels', 'Hand planes', 'Marking gauge', 'Dovetail saw'] },
@@ -41,48 +33,9 @@ const tools = [
 
     <!-- Projects Grid -->
     <section class="mb-16">
-      <h2 class="text-3xl font-serif font-semibold text-gray-900 mb-8 text-center">Recent Projects</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {projects.map((project) => (
-          <a href={project.link} class="group">
-            <article class="card overflow-hidden hover:shadow-xl transition-all duration-300">
-              <div class="aspect-w-16 aspect-h-12 bg-gradient-to-br from-pale-dogwood/20 to-rose-quartz/20 overflow-hidden">
-                <div class="w-full h-48 bg-gradient-to-br from-pale-dogwood/30 to-rose-quartz/30 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                  <span class="text-4xl opacity-60">🪵</span>
-                </div>
-              </div>
-              <div class="p-6">
-                <h3 class="text-xl font-serif font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
-                  {project.title}
-                </h3>
-                <p class="text-gray-600 mb-4 text-sm">
-                  {project.description}
-                </p>
-                
-                <div class="flex justify-between items-center mb-3">
-                  <span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded">
-                    {project.difficulty}
-                  </span>
-                  <span class="text-xs text-gray-600">
-                    {project.duration}
-                  </span>
-                </div>
-
-                <div class="flex flex-wrap gap-1">
-                  {project.materials.slice(0, 2).map((material) => (
-                    <span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded">
-                      {material}
-                    </span>
-                  ))}
-                  {project.materials.length > 2 && (
-                    <span class="text-xs px-2 py-1 bg-gray-200 text-gray-700 rounded">
-                      +{project.materials.length - 2} more
-                    </span>
-                  )}
-                </div>
-              </div>
-            </article>
-          </a>
+        {allProjects.map((project) => (
+          <ProjectTile project={project} category="woodworking" />
         ))}
       </div>
     </section>
