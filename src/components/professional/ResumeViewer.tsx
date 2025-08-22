@@ -17,11 +17,6 @@ interface Education {
   gpa?: string;
 }
 
-interface Certification {
-  name: string;
-  issuer: string;
-  year: string;
-}
 
 interface ResumeData {
   name: string;
@@ -34,7 +29,6 @@ interface ResumeData {
   experience: Experience[];
   education: Education[];
   skills: Record<string, string[]>;
-  certifications: Certification[];
 }
 
 interface Props {
@@ -155,22 +149,6 @@ export default function ResumeViewer({ resumeData }: Props) {
         </div>
       </section>
 
-      {/* Certifications */}
-      {resumeData.certifications.length > 0 && (
-        <section>
-          <h2 className="text-2xl font-serif font-semibold text-space-cadet mb-4">Certifications</h2>
-          <div className="space-y-2">
-            {resumeData.certifications.map((cert, index) => (
-              <div key={index} className="flex justify-between">
-                <span className="text-sm text-ultra-violet-700">
-                  <span className="font-medium">{cert.name}</span> - {cert.issuer}
-                </span>
-                <span className="text-sm text-ultra-violet-600">{cert.year}</span>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
     </div>
   );
 }
