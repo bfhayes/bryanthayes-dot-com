@@ -1,0 +1,237 @@
+---
+import { getProjectBySlug, getAllProjects } from '@/data/woodworking-projects';
+import type { WoodworkingProject } from '@/data/woodworking-projects';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ImageCarousel from '@/components/gallery/ImageCarousel';
+
+export async function getStaticPaths() {
+  const projects = getAllProjects();
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+interface Props {
+  project: WoodworkingProject;
+}
+
+const { project } = Astro.props;
+
+if (!project) {
+  return Astro.redirect('/404');
+}
+
+// Get related projects (excluding current one)
+const allProjects = getAllProjects();
+const relatedProjects = allProjects
+  .filter(p => p.slug !== project.slug)
+  .slice(0, 2);
+---
+
+<BaseLayout 
+  title={project.title}
+  description={project.description}
+>
+  <div class="container-custom py-12">
+    <!-- Hero Section -->
+    <div class="mb-16">
+      <!-- Breadcrumb -->
+      <nav class="text-sm text-gray-600 mb-6">
+        <a href="/" class="hover:text-gray-900">Home</a>
+        <span class="mx-2">/</span>
+        <a href="/woodworking" class="hover:text-gray-900">Woodworking</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-900">{project.title}</span>
+      </nav>
+
+      <!-- Hero Image and Title -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div class="aspect-w-4 aspect-h-3">
+          <div class="w-full h-96 bg-gray-100 rounded-lg overflow-hidden">
+            <div class="w-full h-full flex items-center justify-center text-4xl opacity-60">
+              🪵
+            </div>
+          </div>
+        </div>
+        
+        <div class="lg:pl-8">
+          <h1 class="text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-4">
+            {project.title}
+          </h1>
+          <p class="text-xl text-gray-700 mb-8">
+            {project.description}
+          </p>
+          
+          <!-- Quick Stats -->
+          <div class="grid grid-cols-3 gap-4">
+            <div class="text-center p-4 bg-gray-50 rounded-lg">
+              <div class="text-2xl font-bold text-gray-900">{project.difficulty}</div>
+              <div class="text-sm text-gray-600">Difficulty</div>
+            </div>
+            <div class="text-center p-4 bg-gray-50 rounded-lg">
+              <div class="text-2xl font-bold text-gray-900">{project.duration}</div>
+              <div class="text-sm text-gray-600">Duration</div>
+            </div>
+            <div class="text-center p-4 bg-gray-50 rounded-lg">
+              <div class="text-2xl font-bold text-gray-900">{project.materials.length}</div>
+              <div class="text-sm text-gray-600">Materials</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Image Gallery -->
+    <section class="mb-16">
+      <h2 class="text-3xl font-serif font-semibold text-gray-900 mb-8">Project Gallery</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {project.gallery.map((image, index) => (
+          <div class="aspect-w-4 aspect-h-3 bg-gray-100 rounded-lg overflow-hidden">
+            <div class="w-full h-48 flex items-center justify-center text-3xl opacity-60">
+              🖼️
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Project Story -->
+    <section class="mb-16">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-serif font-semibold text-gray-900 mb-8">The Story</h2>
+        <div class="prose prose-lg max-w-none">
+          <p class="text-lg leading-relaxed text-gray-700 whitespace-pre-line">
+            {project.story}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section class="mb-16">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-serif font-semibold text-gray-900 mb-8">Build Process</h2>
+        <div class="space-y-4">
+          {project.process.map((step, index) => (
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 w-8 h-8 bg-gray-900 text-white rounded-full flex items-center justify-center text-sm font-medium">
+                {index + 1}
+              </div>
+              <p class="text-gray-700 pt-1">{step}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Details -->
+    <section class="mb-16">
+      <div class="max-w-4xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <!-- Materials -->
+          <div>
+            <h3 class="text-2xl font-serif font-semibold text-gray-900 mb-6">Materials Used</h3>
+            <ul class="space-y-3">
+              {project.materials.map((material) => (
+                <li class="flex items-center text-gray-700">
+                  <span class="w-2 h-2 bg-gray-400 rounded-full mr-3"></span>
+                  {material}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Tools -->
+          <div>
+            <h3 class="text-2xl font-serif font-semibold text-gray-900 mb-6">Tools Used</h3>
+            <ul class="space-y-3">
+              {project.tools.map((tool) => (
+                <li class="flex items-center text-gray-700">
+                  <span class="w-2 h-2 bg-gray-400 rounded-full mr-3"></span>
+                  {tool}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Specifications -->
+    <section class="mb-16">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-serif font-semibold text-gray-900 mb-8">Specifications</h2>
+        <div class="bg-gray-50 rounded-lg p-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {Object.entries(project.specifications).map(([key, value]) => (
+              <div class="flex justify-between border-b border-gray-200 pb-2">
+                <span class="font-medium text-gray-900">{key}:</span>
+                <span class="text-gray-700">{value}</span>
+              </div>
+            ))}
+            {project.dimensions && (
+              <div class="flex justify-between border-b border-gray-200 pb-2">
+                <span class="font-medium text-gray-900">Dimensions:</span>
+                <span class="text-gray-700">{project.dimensions}</span>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lessons Learned -->
+    {project.lessonsLearned && (
+      <section class="mb-16">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl font-serif font-semibold text-gray-900 mb-8">Lessons Learned</h2>
+          <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-lg">
+            <p class="text-gray-700 leading-relaxed whitespace-pre-line">
+              {project.lessonsLearned}
+            </p>
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- Related Projects -->
+    {relatedProjects.length > 0 && (
+      <section class="mb-16">
+        <h2 class="text-3xl font-serif font-semibold text-gray-900 mb-8 text-center">More Projects</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {relatedProjects.map((relatedProject) => (
+            <a href={`/woodworking/${relatedProject.slug}`} class="group">
+              <article class="card overflow-hidden hover:shadow-xl transition-all duration-300">
+                <div class="aspect-w-16 aspect-h-12 bg-gray-100 overflow-hidden">
+                  <div class="w-full h-48 flex items-center justify-center text-4xl opacity-60 group-hover:scale-105 transition-transform duration-300">
+                    🪵
+                  </div>
+                </div>
+                <div class="p-6">
+                  <h3 class="text-xl font-serif font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                    {relatedProject.title}
+                  </h3>
+                  <p class="text-gray-600 text-sm">
+                    {relatedProject.description}
+                  </p>
+                </div>
+              </article>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Commission CTA -->
+    <section class="bg-gray-900 rounded-2xl p-12 text-white text-center">
+      <h2 class="text-3xl font-serif font-bold mb-4 text-white">Interested in Custom Work?</h2>
+      <p class="text-lg mb-8 text-gray-100">
+        Let's discuss your custom woodworking project.
+      </p>
+      <a href="/contact" class="btn-primary">
+        Get In Touch
+      </a>
+    </section>
+  </div>
+</BaseLayout>

@@ -5,63 +5,86 @@ import ResumeViewer from '@/components/professional/ResumeViewer';
 // Work/Resume data - in production this would come from content collections
 const resumeData = {
   name: 'Bryant Hayes',
-  title: 'Full Stack Developer',
-  location: 'Your Location',
-  email: 'hello@bryanthayes.com',
-  linkedin: 'linkedin.com/in/bryanthayes',
-  github: 'github.com/bryanthayes',
-  summary: 'Experienced full-stack developer with a passion for creating elegant solutions to complex problems. Specialized in modern web technologies with a focus on user experience and performance.',
+  title: 'Senior Security Software Engineer',
+  location: 'Santa Clara, CA',
+  phone: '503-551-8418',
+  email: 'bryant.hayes@icloud.com',
+  linkedin: 'www.linkedin.com/in/bryantfhayes/',
+  github: 'github.com/bfhayes',
+  summary: 'Seasoned security engineer (8 yrs) specializing in high-performance DRM and embedded Linux. Led cross-functional teams that shipped secure media services used by hundreds of millions of devices with zero critical incidents across two iOS releases.',
   
   experience: [
     {
-      company: 'Tech Company',
-      position: 'Senior Full Stack Developer',
-      startDate: '2021',
+      company: 'Apple Inc.',
+      position: 'Senior Security Software Engineer',
+      startDate: 'Dec 2020',
       endDate: 'Present',
-      location: 'Remote',
+      location: 'Cupertino, CA',
       highlights: [
-        'Led development of microservices architecture serving 1M+ users',
-        'Improved application performance by 40% through optimization',
-        'Mentored junior developers and conducted code reviews',
-        'Implemented CI/CD pipelines reducing deployment time by 60%'
+        'Designed DRM security architecture for Apple Services, protecting billions of streams across iOS, tvOS & macOS',
+        'Implemented cryptographic protocols in C++/Swift; integrated Secure Enclave & TrustZone keys',
+        'Re-wrote token-validation micro-service, cutting latency 45% and sustaining 50k req/s',
+        'Mentored six engineers; instituted threat modeling and fuzzing that kept P1 security incidents at 0'
       ],
-      technologies: ['React', 'Node.js', 'TypeScript', 'AWS', 'PostgreSQL']
+      technologies: ['C/C++17', 'Swift', 'DRM', 'Cryptography', 'Secure Enclave', 'TrustZone']
     },
     {
-      company: 'Previous Company',
-      position: 'Full Stack Developer',
-      startDate: '2019',
-      endDate: '2021',
-      location: 'City, State',
+      company: 'Cognex Corp.',
+      position: 'Senior Software Engineer',
+      startDate: 'Feb 2019',
+      endDate: 'Nov 2020',
+      location: 'Portland, OR',
       highlights: [
-        'Developed and maintained RESTful APIs',
-        'Built responsive web applications using React',
-        'Collaborated with design team to implement UI/UX improvements',
-        'Participated in agile development processes'
+        'Produced Yocto Linux images and enabled Secure Boot for ARM vision systems',
+        'Containerized toolchains, reducing build times 60%; managed CI with TeamCity + Docker'
       ],
-      technologies: ['JavaScript', 'Python', 'React', 'Django', 'MySQL']
+      technologies: ['Yocto', 'Linux', 'Secure Boot', 'ARM', 'Docker', 'TeamCity']
+    },
+    {
+      company: 'Cognex Corp.',
+      position: 'Staff Software Engineer',
+      startDate: 'Feb 2017',
+      endDate: 'Jan 2019',
+      location: 'Portland, OR',
+      highlights: [
+        'Scrum-mastered platform team; validated new ARM hardware with custom diagnostics',
+        'Championed culture, earning "Minister of Culture" recognition'
+      ],
+      technologies: ['ARM', 'Embedded Linux', 'Hardware Validation', 'Scrum']
+    },
+    {
+      company: 'Cognex Corp.',
+      position: 'Associate Software Engineer',
+      startDate: 'Jul 2016',
+      endDate: 'Jan 2017',
+      location: 'Portland, OR',
+      highlights: [
+        'Developed autofocus firmware and optimized discrete-I/O drivers on embedded Linux'
+      ],
+      technologies: ['Embedded Linux', 'Firmware', 'C/C++']
     }
   ],
   
   education: [
     {
-      institution: 'University Name',
-      degree: 'Bachelor of Science in Computer Science',
-      year: '2019',
-      gpa: '3.8/4.0'
+      institution: 'Oregon State University',
+      degree: 'B.S. Electrical & Computer Engineering',
+      year: '2011 – 2016',
+      location: 'Corvallis, OR',
+      honors: 'Dean\'s List · IEEE Chapter President'
     }
   ],
   
   skills: {
-    'Languages': ['JavaScript', 'TypeScript', 'Python', 'SQL', 'HTML/CSS'],
-    'Frontend': ['React', 'Vue.js', 'Tailwind CSS', 'Next.js', 'Astro'],
-    'Backend': ['Node.js', 'Express', 'Django', 'PostgreSQL', 'MongoDB'],
-    'Tools & Cloud': ['Git', 'Docker', 'AWS', 'CI/CD', 'Linux']
+    'Security': ['DRM', 'Cryptography', 'Secure Boot', 'TrustZone', 'SEP'],
+    'Languages': ['C/C++17', 'Swift', 'Python', 'TypeScript'],
+    'Frameworks': ['FastAPI', 'React', 'Docker', 'Kubernetes', 'Yocto'],
+    'Tools': ['Git', 'TeamCity', 'Vite', 'Vitest', 'Redis']
   },
   
   certifications: [
-    { name: 'AWS Certified Developer', issuer: 'Amazon', year: '2022' },
-    { name: 'React Advanced Patterns', issuer: 'Course Platform', year: '2021' }
+    { name: 'AWS Cloud Practitioner', issuer: 'Amazon', year: '2023' },
+    { name: 'CSSLP', issuer: 'ISC²', year: '2019' }
   ]
 };
 ---
@@ -114,7 +137,7 @@ const resumeData = {
           Get In Touch
         </a>
         <a 
-          href="https://linkedin.com/in/bryanthayes" 
+          href="https://www.linkedin.com/in/bryantfhayes/" 
           target="_blank" 
           rel="noopener"
           class="btn bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900"

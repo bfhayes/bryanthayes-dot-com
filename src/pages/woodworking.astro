@@ -1,36 +1,18 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getAllProjects } from '@/data/woodworking-projects';
 
-// Sample woodworking projects data
-const projects = [
-  {
-    title: 'Live Edge Oak Coffee Table',
-    description: 'A stunning coffee table crafted from a single live edge oak slab',
-    image: '/images/projects/oak-table-thumb.jpg',
-    difficulty: 'Intermediate',
-    duration: '3 weeks',
-    materials: ['Live edge oak slab', 'Steel tubing', 'Wood finish'],
-    link: '/woodworking/oak-coffee-table'
-  },
-  {
-    title: 'Walnut Cutting Board',
-    description: 'End grain cutting board with food-safe finish',
-    image: '/images/projects/cutting-board-thumb.jpg',
-    difficulty: 'Beginner',
-    duration: '1 week',
-    materials: ['Walnut', 'Mineral oil', 'Beeswax'],
-    link: '/woodworking/walnut-cutting-board'
-  },
-  {
-    title: 'Cherry Bookshelf',
-    description: 'Five-shelf bookcase with traditional joinery',
-    image: '/images/projects/bookshelf-thumb.jpg',
-    difficulty: 'Advanced',
-    duration: '6 weeks',
-    materials: ['Cherry wood', 'Traditional joinery', 'Danish oil'],
-    link: '/woodworking/cherry-bookshelf'
-  }
-];
+// Get all woodworking projects from the data file
+const allProjects = getAllProjects();
+const projects = allProjects.map(project => ({
+  title: project.title,
+  description: project.description,
+  image: project.heroImage,
+  difficulty: project.difficulty,
+  duration: project.duration,
+  materials: project.materials,
+  link: `/woodworking/${project.slug}`
+}));
 
 const tools = [
   { category: 'Hand Tools', items: ['Chisels', 'Hand planes', 'Marking gauge', 'Dovetail saw'] },
@@ -105,75 +87,16 @@ const tools = [
       </div>
     </section>
 
-    <!-- Tools & Workshop -->
-    <section class="mb-16">
-      <h2 class="text-3xl font-serif font-semibold text-gray-900 mb-8 text-center">Tools & Workshop</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {tools.map((category) => (
-          <div class="card p-6">
-            <h3 class="font-semibold text-gray-900 mb-4">{category.category}</h3>
-            <ul class="space-y-2">
-              {category.items.map((item) => (
-                <li class="text-sm text-gray-600 flex items-center">
-                  <span class="w-2 h-2 bg-pale-dogwood rounded-full mr-3"></span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-    </section>
 
-    <!-- Process Section -->
-    <section class="mb-16">
-      <h2 class="text-3xl font-serif font-semibold text-gray-900 mb-8 text-center">My Approach</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="text-center">
-          <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 flex items-center justify-center">
-            <span class="text-2xl">📐</span>
-          </div>
-          <h3 class="font-semibold text-gray-900 mb-2">Design & Plan</h3>
-          <p class="text-sm text-gray-600">
-            Every project starts with careful planning, material selection, and understanding the wood's character.
-          </p>
-        </div>
-        <div class="text-center">
-          <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 flex items-center justify-center">
-            <span class="text-2xl">🔨</span>
-          </div>
-          <h3 class="font-semibold text-gray-900 mb-2">Craft & Build</h3>
-          <p class="text-sm text-gray-600">
-            Using both traditional hand tools and modern machinery to shape, join, and refine each piece.
-          </p>
-        </div>
-        <div class="text-center">
-          <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 flex items-center justify-center">
-            <span class="text-2xl">✨</span>
-          </div>
-          <h3 class="font-semibold text-gray-900 mb-2">Finish & Perfect</h3>
-          <p class="text-sm text-gray-600">
-            The finishing process brings out the wood's natural beauty while protecting it for generations.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Philosophy -->
+    <!-- Commission -->
     <section class="bg-gray-900 rounded-2xl p-12 text-white text-center">
-      <h2 class="text-3xl font-serif font-bold mb-4">Working with Wood</h2>
-      <p class="text-lg mb-8 text-gray-200 max-w-3xl mx-auto">
-        "Wood is a living material with its own character and history. My job is to listen to what 
-        it wants to become and guide it there with skill, patience, and respect for the craft."
+      <h2 class="text-3xl font-serif font-bold mb-4 text-white">Interested in Custom Work?</h2>
+      <p class="text-lg mb-8 text-gray-100">
+        Let's discuss your custom woodworking project.
       </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/contact" class="btn-primary">
-          Commission a Piece
-        </a>
-        <a href="/woodworking/oak-coffee-table" class="btn bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900">
-          Read Project Details
-        </a>
-      </div>
+      <a href="/contact" class="btn-primary">
+        Get In Touch
+      </a>
     </section>
   </div>
 </BaseLayout>
