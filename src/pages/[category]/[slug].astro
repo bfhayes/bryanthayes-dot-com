@@ -2,6 +2,7 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { CATEGORIES, type CategoryKey } from '@/content/config';
+import AudioPlayer from '@/components/audio/AudioPlayer';
 
 export async function getStaticPaths() {
   const paths = [];
@@ -171,6 +172,19 @@ const { Content } = await project.render();
         </div>
       </div>
     </div>
+
+    <!-- Audio Player for Music Projects -->
+    {category === 'music' && project.data.audioFile && (
+      <section class="mb-16 max-w-4xl mx-auto">
+        <h2 class="text-3xl font-serif font-semibold text-gray-900 mb-8">Listen</h2>
+        <AudioPlayer 
+          src={project.data.audioFile} 
+          title={project.data.title}
+          artist="Bryant Hayes"
+          client:load
+        />
+      </section>
+    )}
 
     <!-- Project Gallery -->
     {project.data.gallery && project.data.gallery.length > 0 && (

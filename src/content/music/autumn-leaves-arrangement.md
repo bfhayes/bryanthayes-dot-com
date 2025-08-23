@@ -12,6 +12,7 @@ instruments: ["acoustic guitar"]
 duration: "3:45"
 key: "Gm"
 tempo: "Moderate ballad"
+audioFile: "/audio/sample.m4a"
 tags: ["fingerstyle", "jazz", "arrangement", "autumn", "standard"]
 featured: true
 draft: false
