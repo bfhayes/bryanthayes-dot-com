@@ -175,19 +175,20 @@ const { Content } = await project.render();
 
     <!-- Audio Player for Music Projects -->
     {category === 'music' && project.data.audioFile && (
-      <section class="mb-16 max-w-4xl mx-auto">
-        <h2 class="text-3xl font-serif font-semibold text-gray-900 mb-8">Listen</h2>
-        <AudioPlayer 
-          src={project.data.audioFile} 
-          title={project.data.title}
-          artist="Bryant Hayes"
-          client:load
-        />
+      <section class="mb-16">
+        <div class="content-narrow">
+          <AudioPlayer 
+            src={project.data.audioFile} 
+            title={project.data.title}
+            artist="Bryant Hayes"
+            client:load
+          />
+        </div>
       </section>
     )}
 
     <!-- Project Gallery -->
-    {project.data.gallery && project.data.gallery.length > 0 && (
+    {category !== 'music' && project.data.gallery && project.data.gallery.length > 0 && (
       <section class="mb-16">
         <h2 class="text-3xl font-serif font-semibold text-gray-900 mb-8">Project Gallery</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -206,7 +207,7 @@ const { Content } = await project.render();
 
     <!-- Project Content (Markdown) -->
     <section class="mb-16">
-      <div class="max-w-4xl mx-auto prose prose-lg max-w-none">
+      <div class="content-narrow prose prose-lg">
         <Content />
       </div>
     </section>
@@ -214,7 +215,7 @@ const { Content } = await project.render();
     <!-- Category-specific details sections -->
     {category === 'woodworking' && project.data.materials && (
       <section class="mb-16">
-        <div class="max-w-4xl mx-auto">
+        <div class="content-narrow">
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
               <h3 class="text-2xl font-serif font-semibold text-gray-900 mb-6">Materials Used</h3>
@@ -245,7 +246,7 @@ const { Content } = await project.render();
 
     {category === 'food' && project.data.ingredients && (
       <section class="mb-16">
-        <div class="max-w-4xl mx-auto">
+        <div class="content-narrow">
           <h3 class="text-2xl font-serif font-semibold text-gray-900 mb-6">Ingredients</h3>
           <div class="bg-gray-50 rounded-lg p-6">
             <ul class="space-y-2">
@@ -264,7 +265,7 @@ const { Content } = await project.render();
     <!-- Tags -->
     {project.data.tags && project.data.tags.length > 0 && (
       <section class="mb-16">
-        <div class="max-w-4xl mx-auto">
+        <div class="content-narrow">
           <h3 class="text-xl font-semibold text-gray-900 mb-4">Tags</h3>
           <div class="flex flex-wrap gap-2">
             {project.data.tags.map((tag: string) => (
@@ -281,7 +282,7 @@ const { Content } = await project.render();
     {relatedProjects.length > 0 && (
       <section class="mb-16">
         <h2 class="text-3xl font-serif font-semibold text-gray-900 mb-8 text-center">More {categoryInfo.label} Projects</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 content-narrow">
           {relatedProjects.map((relatedProject) => (
             <a href={`/${category}/${relatedProject.slug}`} class="group">
               <article class="card overflow-hidden hover:shadow-xl transition-all duration-300">
