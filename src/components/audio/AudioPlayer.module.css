@@ -1,51 +1,64 @@
 .volumeSlider {
   -webkit-appearance: none;
   appearance: none;
-  background: transparent;
+  background: #374151;
   cursor: pointer;
   width: 100px;
+  height: 3px;
   transform: rotate(-90deg);
   transform-origin: center;
+  outline: none;
+  border-radius: 2px;
 }
 
 .volumeSlider::-webkit-slider-track {
-  background: #e5e7eb;
-  height: 4px;
+  -webkit-appearance: none;
+  background: #374151;
+  height: 3px;
   border-radius: 2px;
+  border: none;
 }
 
 .volumeSlider::-moz-range-track {
-  background: #e5e7eb;
-  height: 4px;
+  background: #374151;
+  height: 3px;
   border-radius: 2px;
+  border: none;
 }
 
 .volumeSlider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   background: #111827;
-  height: 14px;
-  width: 14px;
+  height: 8px;
+  width: 8px;
   border-radius: 50%;
-  margin-top: -5px;
-  transition: background 0.2s;
+  margin-top: -2px;
+  transition: all 0.2s;
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
 }
 
 .volumeSlider::-moz-range-thumb {
   background: #111827;
-  height: 14px;
-  width: 14px;
+  height: 8px;
+  width: 8px;
   border-radius: 50%;
   border: none;
-  transition: background 0.2s;
+  transition: all 0.2s;
+  box-shadow: none;
+  cursor: pointer;
 }
 
 .volumeSlider:hover::-webkit-slider-thumb {
   background: #1f2937;
+  transform: scale(1.1);
 }
 
 .volumeSlider:hover::-moz-range-thumb {
   background: #1f2937;
+  transform: scale(1.1);
 }
 
 .volumeSlider:focus {

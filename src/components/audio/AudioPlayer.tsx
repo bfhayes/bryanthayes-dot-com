@@ -21,18 +21,38 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, title, artist }) => {
     if (!audio) return;
 
     const setAudioData = () => {
-      setDuration(audio.duration);
-      setCurrentTime(audio.currentTime);
+      if (!isNaN(audio.duration)) {
+        setDuration(audio.duration);
+      }
+      if (!isNaN(audio.currentTime)) {
+        setCurrentTime(audio.currentTime);
+      }
     };
 
-    const setAudioTime = () => setCurrentTime(audio.currentTime);
+    const setAudioTime = () => {
+      if (!isNaN(audio.currentTime)) {
+        setCurrentTime(audio.currentTime);
+      }
+    };
 
+    // Add multiple event listeners for better compatibility
+    audio.addEventListener('loadedmetadata', setAudioData);
     audio.addEventListener('loadeddata', setAudioData);
+    audio.addEventListener('canplay', setAudioData);
     audio.addEventListener('timeupdate', setAudioTime);
+    audio.addEventListener('progress', setAudioTime);
+
+    // Set initial values if already loaded
+    if (audio.readyState >= 1) {
+      setAudioData();
+    }
 
     return () => {
+      audio.removeEventListener('loadedmetadata', setAudioData);
       audio.removeEventListener('loadeddata', setAudioData);
+      audio.removeEventListener('canplay', setAudioData);
       audio.removeEventListener('timeupdate', setAudioTime);
+      audio.removeEventListener('progress', setAudioTime);
     };
   }, []);
 
@@ -70,6 +90,18 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, title, artist }) => {
     setVolume(newVolume);
   };
 
+  const handleVolumeClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    const rect = e.currentTarget.getBoundingClientRect();
+    const percent = 1 - ((e.clientY - rect.top) / rect.height); // Invert because we want top to be max volume
+    const newVolume = Math.max(0, Math.min(1, percent));
+    
+    audio.volume = newVolume;
+    setVolume(newVolume);
+  };
+
   const formatTime = (time: number) => {
     if (isNaN(time)) return '0:00';
     
@@ -78,7 +110,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, title, artist }) => {
     return `${minutes}:${seconds.toString().padStart(2, '0')}`;
   };
 
-  const progressPercent = duration ? (currentTime / duration) * 100 : 0;
+  const progressPercent = duration && !isNaN(duration) && !isNaN(currentTime) ? (currentTime / duration) * 100 : 0;
 
   return (
     <div className="bg-gray-50 rounded-lg p-6 shadow-sm border border-gray-200">
@@ -93,20 +125,21 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, title, artist }) => {
       )}
 
       {/* Progress Bar */}
-      <div className="mb-4">
-        <div 
-          ref={progressRef}
-          className="relative h-2 bg-gray-200 rounded-full cursor-pointer overflow-hidden"
-          onClick={handleProgressChange}
-        >
-          <div 
-            className="absolute h-full bg-gray-900 rounded-full transition-all duration-100"
-            style={{ width: `${progressPercent}%` }}
-          />
-        </div>
-        <div className="flex justify-between mt-2 text-xs text-gray-600">
+      <div className="mb-6">
+        <div className="flex justify-between mb-2 text-xs text-gray-600">
           <span>{formatTime(currentTime)}</span>
           <span>{formatTime(duration)}</span>
+        </div>
+        <div 
+          ref={progressRef}
+          className="relative h-3 bg-gray-300 rounded-full cursor-pointer overflow-hidden hover:h-4 transition-all duration-200 shadow-inner"
+          onClick={handleProgressChange}
+        >
+          {/* Progress fill */}
+          <div 
+            className="absolute h-full bg-gradient-to-r from-gray-800 to-gray-900 rounded-full transition-all duration-100 shadow-sm"
+            style={{ width: `${progressPercent}%` }}
+          />
         </div>
       </div>
 
@@ -149,16 +182,31 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, title, artist }) => {
             </button>
             
             {showVolume && (
-              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-white rounded-lg shadow-lg border border-gray-200 p-2" style={{ height: '120px', width: '40px' }}>
-                <div className="h-full w-full flex items-center justify-center">
+              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 bg-white rounded-lg shadow-xl border border-gray-200 p-3" style={{ height: '120px', width: '50px' }}>
+                <div 
+                  className="h-full w-full flex flex-col items-center justify-end relative cursor-pointer"
+                  onClick={handleVolumeClick}
+                >
+                  {/* Volume track background */}
+                  <div 
+                    className="absolute bottom-3 w-2 bg-gray-300 rounded-full"
+                    style={{ height: '84px' }}
+                  ></div>
+                  {/* Volume fill */}
+                  <div 
+                    className="absolute bottom-3 w-2 bg-gray-800 rounded-full transition-all duration-150"
+                    style={{ height: `${volume * 84}px` }}
+                  ></div>
+                  {/* Invisible input for drag interaction */}
                   <input
                     type="range"
                     min="0"
                     max="1"
-                    step="0.01"
+                    step="0.05"
                     value={volume}
                     onChange={handleVolumeChange}
-                    className={styles.volumeSlider}
+                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                    style={{ transform: 'rotate(270deg)' }}
                   />
                 </div>
               </div>
