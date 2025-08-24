@@ -37,9 +37,9 @@ for (const collection of allCollections) {
   }
 }
 
-// Sort all recent highlights by date and take top 6 most recent
+// Sort all recent highlights by date and take top 4 most recent
 recentHighlights.sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
-recentHighlights.splice(6); // Keep only top 6 most recent
+recentHighlights.splice(4); // Keep only top 4 most recent
 
 // Unified homepage that showcases all interests equally
 const interests = [
