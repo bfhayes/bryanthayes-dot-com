@@ -108,3 +108,14 @@ This is a modern portfolio website built with **Astro's Islands Architecture**, 
 **Performance**: Static site generation with minimal JavaScript, optimized images, and careful bundle splitting.
 
 **SEO**: Meta tags, structured data (Person schema), auto-generated sitemap, and social media optimization built into base layout.
+
+## Claude Code Workflow Rules
+
+**Git Workflow**: Always commit work as a git commit when done with a request. This ensures progress is saved and changes are properly tracked.
+
+**Browser Testing**: Use Playwright MCP services when necessary for testing UI functionality, taking screenshots, and verifying user interactions.
+
+**Image Generation**: When using imagegen MCP services:
+- Use text-to-image for creating new, original images
+- Use image-to-image when making similar images to ensure consistency (e.g., keeping the same item/object across multiple images)
+- This maintains visual consistency across project galleries and related content
