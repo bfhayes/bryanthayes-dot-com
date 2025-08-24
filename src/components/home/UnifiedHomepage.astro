@@ -1,56 +1,45 @@
 ---
 import { getCollection } from 'astro:content';
 
-// Get recent projects from all collections
-const woodworkingProjects = await getCollection('woodworking');
-const photographyProjects = await getCollection('photography');
-const leatherworkProjects = await getCollection('leatherwork');
-const musicProjects = await getCollection('music');
+// Get recent projects from ALL collections
+const allCollections = [
+  { name: 'woodworking', label: 'Woodworking' },
+  { name: 'photography', label: 'Photography' },
+  { name: 'leatherwork', label: 'Leatherwork' },
+  { name: 'music', label: 'Music' },
+  { name: 'engineering', label: 'Engineering' },
+  { name: 'costuming', label: 'Costuming' },
+  { name: 'food', label: 'Food' }
+];
 
-// Get most recent project from each category
-const recentWoodworking = woodworkingProjects
-  .filter(p => !p.data.draft)
-  .sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime())[0];
+// Get most recent project from each collection
+const recentHighlights = [];
 
-const recentPhotography = photographyProjects
-  .filter(p => !p.data.draft)
-  .sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime())[0];
+for (const collection of allCollections) {
+  try {
+    const projects = await getCollection(collection.name);
+    const recentProject = projects
+      .filter(p => !p.data.draft)
+      .sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime())[0];
+    
+    if (recentProject) {
+      recentHighlights.push({
+        title: recentProject.data.title,
+        category: collection.label,
+        image: recentProject.data.heroImage,
+        href: `/${collection.name}/${recentProject.slug}`,
+        publishDate: recentProject.data.publishDate
+      });
+    }
+  } catch (error) {
+    // Skip collections that don't exist or have no content
+    console.warn(`Could not load collection ${collection.name}:`, error);
+  }
+}
 
-const recentLeatherwork = leatherworkProjects
-  .filter(p => !p.data.draft)
-  .sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime())[0];
-
-const recentMusic = musicProjects
-  .filter(p => !p.data.draft)
-  .sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime())[0];
-
-// Dynamic recent highlights from actual content
-const recentHighlights = [
-  recentWoodworking && { 
-    title: recentWoodworking.data.title, 
-    category: 'Woodworking', 
-    image: recentWoodworking.data.heroImage,
-    href: `/woodworking/${recentWoodworking.slug}`
-  },
-  recentPhotography && { 
-    title: recentPhotography.data.title, 
-    category: 'Photography', 
-    image: recentPhotography.data.heroImage,
-    href: `/photography/${recentPhotography.slug}`
-  },
-  recentLeatherwork && { 
-    title: recentLeatherwork.data.title, 
-    category: 'Leatherwork', 
-    image: recentLeatherwork.data.heroImage,
-    href: `/leatherwork/${recentLeatherwork.slug}`
-  },
-  recentMusic && { 
-    title: recentMusic.data.title, 
-    category: 'Music', 
-    image: recentMusic.data.heroImage,
-    href: `/music/${recentMusic.slug}`
-  },
-].filter(Boolean);
+// Sort all recent highlights by date and take top 6 most recent
+recentHighlights.sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
+recentHighlights.splice(6); // Keep only top 6 most recent
 
 // Unified homepage that showcases all interests equally
 const interests = [
