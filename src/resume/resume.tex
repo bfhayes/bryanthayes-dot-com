@@ -1,119 +1,149 @@
-% Bryant Hayes – framed-header résumé
-% NOTE: Compile with **XeLaTeX** or **LuaLaTeX** so the San Francisco system font is found.
+% Bryant Hayes – Single Column Professional Resume
+% NOTE: Compile with **XeLaTeX** or **LuaLaTeX** for system fonts
 
-\documentclass[10pt,a4paper]{article}
+\documentclass[10pt,letterpaper]{article}
 
 % ---------- Packages ----------
-\usepackage[a4paper,margin=1.5cm]{geometry}
+\usepackage[letterpaper,margin=0.6in,top=0.5in,bottom=0.5in]{geometry}
 \usepackage{fontawesome5}         % icon set
-\usepackage{paracol}              % two unequal columns
 \usepackage{enumitem}             % compact itemize
 \usepackage{xcolor}
 \usepackage[hidelinks]{hyperref}
-\usepackage{setspace}
-% --- Apple-style SF font (requires Xe/LuaLaTeX on macOS) ---
 \usepackage{fontspec}
+\usepackage{titlesec}
+
+% ---------- Font Configuration ----------
 \setsansfont{SF Pro Text}[Scale=MatchLowercase]
-% Fallback if SF not present (e.g. non-macOS): Helvetica Neue
 \IfFontExistsTF{SF Pro Text}{}{\setsansfont{Helvetica Neue}[Scale=MatchLowercase]}
+\renewcommand{\familydefault}{\sfdefault}
 
 % ---------- Global Style ----------
-\renewcommand{\familydefault}{\sfdefault}  % use the sans face (San Francisco)
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0pt}
-\setlist[itemize]{noitemsep,topsep=0pt,leftmargin=*}
+\setlist[itemize]{noitemsep,topsep=1pt,leftmargin=*,parsep=0pt,itemsep=1pt}
 \pagenumbering{gobble}
-\definecolor{accent}{HTML}{708090}         % subtle slate gray
 
-\newcommand{\accentrule}{\color{accent}\hrule height .6pt}
+% ---------- Colors ----------
+\definecolor{headercolor}{HTML}{2C3E50}    % Dark blue-gray for headers
+\definecolor{accentcolor}{HTML}{34495E}    % Slightly lighter for accents
+\definecolor{rulecolor}{HTML}{BDC3C7}      % Light gray for lines
 
-% Increase space above underline in section titles
-\newcommand{\sectiontitle}[1]{%
-  \vspace{1.0\baselineskip}\textbf{\uppercase{#1}}\par
-  \vspace{0.25\baselineskip}% extra breathing room
-  \accentrule\vspace{0.5\baselineskip}}
+% ---------- Section Formatting ----------
+\titleformat{\section}
+  {\vspace{2pt}\large\bfseries\color{headercolor}}
+  {}
+  {0pt}
+  {}
+  [{\color{rulecolor}\titlerule[0.5pt]}]
+
+\titlespacing{\section}{0pt}{8pt}{6pt}
+
+% ---------- Custom Commands ----------
+\newcommand{\resumeheader}[6]{
+  \begin{center}
+    {\Huge\bfseries\color{headercolor} #1}\\[0.2em]
+    {\Large\color{accentcolor} #2}\\[0.3em]
+    \small
+    \faPhone*{} \href{tel:#3}{#3} \quad|\quad
+    \faEnvelope{} \href{mailto:#4}{#4} \quad|\quad
+    \faMapMarker*{} #5 \quad|\quad
+    \faLinkedin{} \href{https://linkedin.com/in/#6}{linkedin.com/in/#6}
+  \end{center}
+  \vspace{0.5em}
+}
+
+\newcommand{\experienceitem}[4]{
+  \textbf{#1} \hfill \textcolor{accentcolor}{#2}\\
+  \textit{#3} \hfill \textit{#4}\\[-0.5em]
+}
+
+\newcommand{\educationitem}[4]{
+  \textbf{#1}\\
+  #2 \hfill #3\\
+  \textit{#4}
+}
 
 % ---------- Document ----------
-\begin{document}\onehalfspacing
+\begin{document}
 
-% ===== Framed Name =====
-\begin{center}
-  \fboxsep=12pt
-  \fboxrule=.8pt
-  \fbox{%
-    \begin{minipage}{.9\linewidth}\centering
-      {\Huge\bfseries Bryant Hayes}\\[4pt]
-      {\large Senior Security Software Engineer}
-    \end{minipage}}
-\end{center}
+% ---------- Header ----------
+\resumeheader
+  {Bryant Hayes}
+  {Senior Security Software Engineer}
+  {503-551-8418}
+  {bryant.hayes@icloud.com}
+  {Santa Clara, CA}
+  {bryantfhayes}
 
-\vspace{1.0\baselineskip}
+% ---------- Professional Summary ----------
+\section{PROFESSIONAL SUMMARY}
+Senior security engineer with 4+ years at Apple specializing in enterprise-scale infrastructure and cryptography. Architected systems serving 1+ billion devices with zero security incidents while leading cross-functional teams across multiple product releases. Expert in DRM, secure boot, and embedded systems with proven ability to deliver production-critical security solutions.
 
-% ===== Contact Row =====
-\faPhone*{} \href{tel:+15035518418}{503-551-8418}\hfill
-\faEnvelope{} \href{mailto:bryant.hayes@icloud.com}{bryant.hayes@icloud.com}\hfill
-\faMapMarker{} Santa Clara, CA\hfill
-\faLinkedin{} \href{https://linkedin.com/in/bryantfhayes}{linkedin.com/in/bryantfhayes}
+% ---------- Education ----------
+\section{EDUCATION}
+\educationitem
+  {Bachelor of Science in Electrical \& Computer Engineering}
+  {Oregon State University, Corvallis, OR}
+  {2011 – 2016}
+  {Dean's List · IEEE Chapter President}
 
-\bigskip\accentrule\bigskip
+% ---------- Skills ----------
+\section{TECHNICAL SKILLS}
+\textbf{Security \& Infrastructure:} DRM · Cryptography · Secure Boot · TrustZone · SEP · Identity Management · License Validation\\
+\textbf{Programming Languages:} C/C++17 · Swift · Python · Objective-C\\
+\textbf{Technologies \& Tools:} Yocto Linux · Docker · FastAPI · React · Git · TeamCity · Redis · ARM Architecture\\
+\textbf{Domains:} Enterprise Security · Embedded Systems · Media Services · Cross-Platform Development
 
-% ===== Two-Column Layout =====
-\columnratio{0.32}                % ≈ 1/3 : 2/3
-\begin{paracol}{2}
-\switchcolumn[0]                  % -------- LEFT COLUMN --------
+% ---------- Professional Experience ----------
+\section{PROFESSIONAL EXPERIENCE}
 
-\sectiontitle{Education}
-\textbf{B.S. Electrical \& Computer Engineering}\\
-Oregon State University — Corvallis, OR\\
-2011 – 2016\\
-Dean’s List · IEEE Chapter President
-
-\sectiontitle{Skills}
-\textbf{Security}\\
-DRM · Cryptography · Secure Boot · TrustZone · SEP\\[4pt]
-\textbf{Languages}\\
-C/C++17 · Swift · Python\\[4pt]
-\textbf{Frameworks}\\
-FastAPI · React · Docker · Yocto\\[4pt]
-\textbf{Tools}\\
-Git · TeamCity · Redis
-
-\switchcolumn                     % -------- RIGHT COLUMN --------
-
-\sectiontitle{Professional Summary}
-Senior security engineer (4+ years at Apple) specializing in enterprise-scale infrastructure and cryptography. Architected systems serving 1+ billion devices with zero security incidents while leading cross-functional teams across multiple product releases.
-
-\sectiontitle{Professional Experience}
-
-\textbf{Senior Security Software Engineer}\hfill Apple Inc. — Cupertino, CA\\
-\textit{Dec 2020 – Present}
+\experienceitem
+  {Senior Security Software Engineer}
+  {Apple Inc. — Cupertino, CA}
+  {}
+  {Dec 2020 – Present}
+\vspace{2pt}
 \begin{itemize}
-  \item Architected enterprise-scale security infrastructure serving 1+ billion devices, implementing intelligent pre-loading mechanisms that eliminated server load spikes and improved system reliability.
-  \item Led end-to-end development of critical identity management framework from conception to production, securing cross-functional approval from 5+ teams and enabling seamless platform integrations.
-  \item Designed reusable software frameworks adopted across multiple engineering teams, reducing code duplication by 40\% through modular components for cryptography and inter-process communication.
-  \item Delivered production-critical daemon functionality and client libraries, implementing secure license validation and application launch controls with microsecond-level performance.
+  \item Architected enterprise-scale security infrastructure serving 1+ billion devices, implementing intelligent pre-loading mechanisms that eliminated server load spikes and improved system reliability by 40\%
+  \item Led end-to-end development of critical identity management framework from conception to production, securing cross-functional approval from 5+ teams and enabling seamless platform integrations
+  \item Designed reusable software frameworks adopted across multiple engineering teams, reducing code duplication by 40\% through modular components for cryptography and inter-process communication
+  \item Delivered production-critical daemon functionality and client libraries, implementing secure license validation and application launch controls with microsecond-level performance requirements
 \end{itemize}
 
-\textbf{Senior Software Engineer}\hfill Cognex Corp. — Portland, OR\\
-\textit{Feb 2019 – Nov 2020}
+\vspace{4pt}
+\experienceitem
+  {Senior Software Engineer}
+  {Cognex Corp. — Portland, OR}
+  {}
+  {Feb 2019 – Nov 2020}
+\vspace{2pt}
 \begin{itemize}
-  \item Led creation of embedded Linux distribution build system using Yocto Project to produce software images for custom hardware, enabling multiple engineering teams to perform distributed builds.
-  \item Architected secure boot infrastructure for ARM vision systems with TrustZone technology, implementing system-level security design and deployment.
+  \item Led creation of embedded Linux distribution build system using Yocto Project to produce software images for custom hardware, enabling multiple engineering teams to perform distributed builds
+  \item Architected secure boot infrastructure for ARM vision systems with TrustZone technology, implementing system-level security design and deployment across product line
 \end{itemize}
 
-\textbf{Staff Software Engineer}\hfill Cognex Corp. — Portland, OR\\
-\textit{Feb 2017 – Jan 2019}
+\vspace{4pt}
+\experienceitem
+  {Staff Software Engineer}
+  {Cognex Corp. — Portland, OR}
+  {}
+  {Feb 2017 – Jan 2019}
+\vspace{2pt}
 \begin{itemize}
-  \item Led platform architecture team as Scrum Master, developing diagnostic firmware to validate custom ARM SoC hardware and support debugging of complex system software.
-  \item Spearheaded cross-functional culture initiatives as elected "Minister of Culture," planning activities for multiple teams and promoting Cognex's "Work Hard, Play Hard, Move Fast" values.
+  \item Led platform architecture team as Scrum Master, developing diagnostic firmware to validate custom ARM SoC hardware and support debugging of complex system software
+  \item Spearheaded cross-functional culture initiatives as elected "Minister of Culture," planning activities for multiple teams and promoting Cognex's "Work Hard, Play Hard, Move Fast" values
 \end{itemize}
 
-\textbf{Associate Software Engineer}\hfill Cognex Corp. — Portland, OR\\
-\textit{Jul 2016 – Jan 2017}
+\vspace{4pt}
+\experienceitem
+  {Associate Software Engineer}
+  {Cognex Corp. — Portland, OR}
+  {}
+  {Jul 2016 – Jan 2017}
+\vspace{2pt}
 \begin{itemize}
-  \item Designed proprietary autofocus algorithm significantly decreasing focus time on embedded camera systems, creating Python simulation software for algorithm prototyping.
-  \item Optimized low-level system performance by analyzing and improving discrete I/O drivers for embedded Linux systems.
+  \item Designed proprietary autofocus algorithm significantly decreasing focus time on embedded camera systems, creating Python simulation software for algorithm prototyping
+  \item Optimized low-level system performance by analyzing and improving discrete I/O drivers for embedded Linux systems
 \end{itemize}
 
-\end{paracol}
 \end{document}
