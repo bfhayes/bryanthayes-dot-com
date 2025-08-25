@@ -210,15 +210,26 @@ function parseStringWithTechniques(stringContent, alphaTabString) {
     
     const char = stringContent[pos];
     
+    // Check if it's a muted string (dead note)
+    if (char === 'x') {
+      notes.push({
+        position: pos,
+        notation: `x.${alphaTabString}`,
+        fret: 'x',
+        string: alphaTabString
+      });
+      continue;
+    }
+    
     // Check if it's a fret number
     if (/\d/.test(char)) {
       const fret = parseInt(char, 10);
       
-      // Look ahead for hammer-on or pull-off
+      // Look ahead for hammer-ons, pull-offs, and slides
       let techniques = [];
       let nextPos = pos + 1;
       
-      // Check for technique patterns like "0h2", "5p3", "3h5p3"
+      // Check for technique patterns like "0h2", "5p3", "5/7", "5\\3"
       while (nextPos < length) {
         const nextChar = stringContent[nextPos];
         
@@ -238,6 +249,23 @@ function parseStringWithTechniques(stringContent, alphaTabString) {
           } else {
             break;
           }
+        } else if (nextChar === '/' || nextChar === '\\') {
+          // Found a slide, look for the target fret
+          processedPositions.add(nextPos); // Mark the slide character as processed
+          nextPos++;
+          if (nextPos < length && /\d/.test(stringContent[nextPos])) {
+            const targetFret = parseInt(stringContent[nextPos], 10);
+            techniques.push({
+              type: 'slide',
+              direction: nextChar === '/' ? 'up' : 'down',
+              targetFret: targetFret,
+              targetPos: nextPos
+            });
+            processedPositions.add(nextPos); // Mark the target fret position as processed
+            nextPos++;
+          } else {
+            break;
+          }
         } else {
           break;
         }
@@ -247,16 +275,31 @@ function parseStringWithTechniques(stringContent, alphaTabString) {
       let notation = `${fret}.${alphaTabString}`;
       
       if (techniques.length > 0) {
-        // Add hammer-on notation (AlphaTex uses {h} for both hammer-ons and pull-offs)
-        notation += '{h}';
+        // Determine the technique notation based on type
+        let hasHammerPull = techniques.some(t => t.type === 'h' || t.type === 'p');
+        let hasSlide = techniques.some(t => t.type === 'slide');
+        
+        if (hasSlide) {
+          notation += '{sl}'; // AlphaTex legato slide notation
+        } else if (hasHammerPull) {
+          notation += '{h}';  // AlphaTex hammer-on/pull-off notation
+        }
         
         // Add the technique target notes sequentially after the source note
         techniques.forEach((tech, index) => {
           // Check if this target note is also the source of another technique (chained techniques)
           const isChained = index < techniques.length - 1; // Not the last technique in the chain
-          const targetNotation = isChained 
-            ? `${tech.targetFret}.${alphaTabString}{h}` // Add {h} for chained techniques
-            : `${tech.targetFret}.${alphaTabString}`;    // No {h} for final target
+          let targetNotation;
+          
+          if (tech.type === 'slide') {
+            // For slides, don't add technique notation to target (slide effect is on source)
+            targetNotation = `${tech.targetFret}.${alphaTabString}`;
+          } else {
+            // For hammer-ons/pull-offs, add {h} for chained techniques
+            targetNotation = isChained 
+              ? `${tech.targetFret}.${alphaTabString}{h}` // Add {h} for chained techniques
+              : `${tech.targetFret}.${alphaTabString}`;    // No {h} for final target
+          }
           
           // For techniques, place them right after the source note
           notes.push({
