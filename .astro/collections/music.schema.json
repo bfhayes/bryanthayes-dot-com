@@ -86,7 +86,21 @@
         "sheetMusic": {
           "type": "string"
         },
+        "sheetMusicFormat": {
+          "type": "string",
+          "enum": [
+            "alphaTex",
+            "musicxml",
+            "gp"
+          ]
+        },
         "tabs": {
+          "type": "string"
+        },
+        "tuning": {
+          "type": "string"
+        },
+        "capo": {
           "type": "string"
         },
         "inspiration": {

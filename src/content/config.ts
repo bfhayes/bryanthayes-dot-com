@@ -78,7 +78,10 @@ const music = defineCollection({
     tempo: z.string().optional(),
     audioFile: z.string().optional(),
     sheetMusic: z.string().optional(),
+    sheetMusicFormat: z.enum(['alphaTex', 'musicxml', 'gp']).optional(),
     tabs: z.string().optional(),
+    tuning: z.string().optional(),
+    capo: z.string().optional(),
     inspiration: z.string().optional(),
   }),
 });

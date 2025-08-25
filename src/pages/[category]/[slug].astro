@@ -4,6 +4,8 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import { CATEGORIES, type CategoryKey } from '@/content/config';
 import AudioPlayer from '@/components/audio/AudioPlayer';
 import GalleryLightbox from '@/components/gallery/GalleryLightbox';
+import TabViewer from '@/components/music/TabViewer';
+import SheetMusicViewer from '@/components/music/SheetMusicViewer';
 
 export async function getStaticPaths() {
   const paths = [];
@@ -182,6 +184,39 @@ const { Content } = await project.render();
             src={project.data.audioFile} 
             title={project.data.title}
             artist="Bryant Hayes"
+            client:load
+          />
+        </div>
+      </section>
+    )}
+
+    <!-- Professional Sheet Music for Music Projects -->
+    {category === 'music' && project.data.sheetMusic && (
+      <section class="mb-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="text-3xl font-serif font-semibold text-gray-900 mb-8">Sheet Music</h2>
+          <SheetMusicViewer 
+            musicData={project.data.sheetMusic}
+            title={project.data.title}
+            format={project.data.sheetMusicFormat || 'alphaTex'}
+            client:load
+          />
+        </div>
+      </section>
+    )}
+
+    <!-- Guitar Tabs for Music Projects (fallback or additional) -->
+    {category === 'music' && project.data.tabs && !project.data.sheetMusic && (
+      <section class="mb-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="text-3xl font-serif font-semibold text-gray-900 mb-8">Guitar Tabs</h2>
+          <TabViewer 
+            tabs={project.data.tabs}
+            title={project.data.title}
+            tuning={project.data.tuning}
+            capo={project.data.capo}
+            tempo={project.data.tempo}
+            songKey={project.data.key}
             client:load
           />
         </div>
