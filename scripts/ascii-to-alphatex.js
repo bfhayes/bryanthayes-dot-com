@@ -87,7 +87,7 @@ function parseAsciiTabs(asciiTabs) {
 function parseTabGroup(tabLines) {
   // Extract the tab content (remove string labels)
   const cleanLines = tabLines.map(line => {
-    return line.replace(/^[eEbBgGdDaA][\|\-\[\]\s]*/, '');
+    return line.replace(/^[eEbBgGdDaA]\|/, '');
   });
   
   // Split by measure separators
@@ -131,9 +131,9 @@ function parseTabGroup(tabLines) {
 }
 
 /**
- * Parse measure strings into note positions
+ * Parse measure strings into note positions with guitar techniques
  * @param {Array} measureStrings - Array of 6 measure strings (one per string)
- * @returns {Array} Array of note positions with timing
+ * @returns {Array} Array of note positions with timing and techniques
  */
 function parseMeasureStrings(measureStrings) {
   if (measureStrings.length !== 6) {
@@ -143,34 +143,137 @@ function parseMeasureStrings(measureStrings) {
   // Find the maximum length to normalize all strings
   const maxLength = Math.max(...measureStrings.map(s => s.length));
   
-  const notes = [];
+  const allNotes = [];
   
-  // Parse character by character
-  for (let pos = 0; pos < maxLength; pos++) {
-    const simultaneousNotes = [];
-    
-    // Check each string at this position
-    measureStrings.forEach((stringContent, stringIndex) => {
-      if (pos < stringContent.length) {
-        const char = stringContent[pos];
-        
-        // Check if it's a fret number
-        if (/\d/.test(char)) {
-          const fret = parseInt(char, 10);
-          const alphaTabString = 6 - stringIndex; // Convert to alphaTab string numbering
-          simultaneousNotes.push(`${fret}.${alphaTabString}`);
+  // Parse each string separately to handle techniques
+  measureStrings.forEach((stringContent, stringIndex) => {
+    const alphaTabString = stringIndex + 1; // Convert to alphaTab string numbering
+    const stringNotes = parseStringWithTechniques(stringContent, alphaTabString);
+    allNotes.push(...stringNotes);
+  });
+  
+  // Sort notes by position and group simultaneous notes
+  allNotes.sort((a, b) => a.position - b.position);
+  
+  const groupedNotes = [];
+  let currentPos = -1;
+  let currentGroup = [];
+  
+  allNotes.forEach(note => {
+    if (note.position !== currentPos) {
+      // New position, save previous group and start new one
+      if (currentGroup.length > 0) {
+        if (currentGroup.length === 1) {
+          groupedNotes.push(currentGroup[0].notation);
+        } else {
+          const noteStrings = currentGroup.map(n => n.notation);
+          groupedNotes.push(`(${noteStrings.join(' ')})`);
         }
       }
-    });
+      currentPos = note.position;
+      currentGroup = [note];
+    } else {
+      // Same position, add to current group
+      currentGroup.push(note);
+    }
+  });
+  
+  // Don't forget the last group
+  if (currentGroup.length > 0) {
+    if (currentGroup.length === 1) {
+      groupedNotes.push(currentGroup[0].notation);
+    } else {
+      const noteStrings = currentGroup.map(n => n.notation);
+      groupedNotes.push(`(${noteStrings.join(' ')})`);
+    }
+  }
+  
+  return groupedNotes;
+}
+
+/**
+ * Parse a single string with guitar techniques (hammer-ons, pull-offs)
+ * @param {string} stringContent - The content of one guitar string
+ * @param {number} alphaTabString - The alphaTab string number (1-6)
+ * @returns {Array} Array of note objects with position, fret, and techniques
+ */
+function parseStringWithTechniques(stringContent, alphaTabString) {
+  const notes = [];
+  const length = stringContent.length;
+  const processedPositions = new Set(); // Track positions we've already processed
+  
+  for (let pos = 0; pos < length; pos++) {
+    // Skip if we've already processed this position as part of a technique
+    if (processedPositions.has(pos)) {
+      continue;
+    }
     
-    // If we found notes at this position, add them
-    if (simultaneousNotes.length > 0) {
-      if (simultaneousNotes.length === 1) {
-        notes.push(simultaneousNotes[0]);
-      } else {
-        // Multiple simultaneous notes (chord)
-        notes.push(`(${simultaneousNotes.join(' ')})`);
+    const char = stringContent[pos];
+    
+    // Check if it's a fret number
+    if (/\d/.test(char)) {
+      const fret = parseInt(char, 10);
+      
+      // Look ahead for hammer-on or pull-off
+      let techniques = [];
+      let nextPos = pos + 1;
+      
+      // Check for technique patterns like "0h2", "5p3", "3h5p3"
+      while (nextPos < length) {
+        const nextChar = stringContent[nextPos];
+        
+        if (nextChar === 'h' || nextChar === 'p') {
+          // Found a technique, look for the target fret
+          processedPositions.add(nextPos); // Mark the h/p as processed
+          nextPos++;
+          if (nextPos < length && /\d/.test(stringContent[nextPos])) {
+            const targetFret = parseInt(stringContent[nextPos], 10);
+            techniques.push({
+              type: nextChar,
+              targetFret: targetFret,
+              targetPos: nextPos
+            });
+            processedPositions.add(nextPos); // Mark the target fret position as processed
+            nextPos++;
+          } else {
+            break;
+          }
+        } else {
+          break;
+        }
       }
+      
+      // Create the note notation
+      let notation = `${fret}.${alphaTabString}`;
+      
+      if (techniques.length > 0) {
+        // Add hammer-on notation (AlphaTex uses {h} for both hammer-ons and pull-offs)
+        notation += '{h}';
+        
+        // Add the technique target notes sequentially after the source note
+        techniques.forEach((tech, index) => {
+          // Check if this target note is also the source of another technique (chained techniques)
+          const isChained = index < techniques.length - 1; // Not the last technique in the chain
+          const targetNotation = isChained 
+            ? `${tech.targetFret}.${alphaTabString}{h}` // Add {h} for chained techniques
+            : `${tech.targetFret}.${alphaTabString}`;    // No {h} for final target
+          
+          // For techniques, place them right after the source note
+          notes.push({
+            position: pos + 0.1 * (index + 1), // Use fractional positions for sequential ordering
+            notation: targetNotation,
+            fret: tech.targetFret,
+            string: alphaTabString
+          });
+        });
+      }
+      
+      notes.push({
+        position: pos,
+        notation: notation,
+        fret: fret,
+        string: alphaTabString
+      });
     }
   }
   

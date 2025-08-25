@@ -16,9 +16,6 @@ const SheetMusicViewer: React.FC<SheetMusicViewerProps> = ({
   const apiRef = useRef<alphaTab.AlphaTabApi | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [currentTempo, setCurrentTempo] = useState(120);
-  const [playbackSpeed, setPlaybackSpeed] = useState(1.0);
 
   useEffect(() => {
     if (!viewerRef.current) return;
@@ -32,7 +29,7 @@ const SheetMusicViewer: React.FC<SheetMusicViewerProps> = ({
         fontDirectory: '/font/',
       },
       display: {
-        staveProfile: 0, // Standard notation with tablature
+        staveProfile: 3, // Tablature only
       },
       notation: {
         notationMode: 0, // Standard notation
@@ -42,11 +39,7 @@ const SheetMusicViewer: React.FC<SheetMusicViewerProps> = ({
           guitarTuning: true,
         }
       },
-      player: {
-        enablePlayer: true,
-        soundFont: '/soundfont/sonivox.sf2',
-        scrollElement: viewerRef.current
-      }
+      // No player configuration for tablature-only display
     };
 
     try {
@@ -68,13 +61,6 @@ const SheetMusicViewer: React.FC<SheetMusicViewerProps> = ({
         setIsLoading(false);
       });
 
-      api.playerStateChanged.on((e) => {
-        setIsPlaying(e.state === 1); // 1 = Playing state
-      });
-
-      api.playerReady.on(() => {
-        console.log('Player ready');
-      });
 
       // Load the music data
       try {
@@ -110,33 +96,6 @@ const SheetMusicViewer: React.FC<SheetMusicViewerProps> = ({
     };
   }, [musicData, format]);
 
-  const handlePlayPause = () => {
-    if (!apiRef.current) return;
-    
-    if (isPlaying) {
-      apiRef.current.pause();
-    } else {
-      apiRef.current.play();
-    }
-  };
-
-  const handleStop = () => {
-    if (!apiRef.current) return;
-    apiRef.current.stop();
-  };
-
-  const handleSpeedChange = (speed: number) => {
-    if (!apiRef.current) return;
-    setPlaybackSpeed(speed);
-    apiRef.current.playbackSpeed = speed;
-  };
-
-  const handleTempoChange = (change: number) => {
-    if (!apiRef.current) return;
-    const newTempo = Math.max(40, Math.min(300, currentTempo + change));
-    setCurrentTempo(newTempo);
-    // Note: Tempo changes would need to be applied to the score data itself
-  };
 
   const handlePrint = () => {
     if (!apiRef.current) return;
@@ -158,70 +117,13 @@ const SheetMusicViewer: React.FC<SheetMusicViewerProps> = ({
             {title && <h3 className="text-xl font-bold mb-2">{title}</h3>}
             <div className="flex flex-wrap gap-4 text-sm">
               <span className="flex items-center">
-                <span className="font-semibold mr-1">Format:</span> Professional Notation
-              </span>
-              <span className="flex items-center">
-                <span className="font-semibold mr-1">Tempo:</span> {currentTempo} BPM
-              </span>
-              <span className="flex items-center">
-                <span className="font-semibold mr-1">Speed:</span> {playbackSpeed}x
+                <span className="font-semibold mr-1">Format:</span> Guitar Tablature
               </span>
             </div>
           </div>
           
           {/* Controls */}
           <div className="flex items-center gap-4">
-            {/* Playback Controls */}
-            <div className="flex items-center gap-2">
-              <button
-                onClick={handlePlayPause}
-                className="p-2 hover:bg-gray-800 rounded transition-colors"
-                title={isPlaying ? "Pause" : "Play"}
-                disabled={isLoading}
-              >
-                {isPlaying ? (
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
-                  </svg>
-                ) : (
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z"/>
-                  </svg>
-                )}
-              </button>
-              
-              <button
-                onClick={handleStop}
-                className="p-2 hover:bg-gray-800 rounded transition-colors"
-                title="Stop"
-                disabled={isLoading}
-              >
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <rect x="6" y="6" width="12" height="12"/>
-                </svg>
-              </button>
-            </div>
-
-            {/* Speed Control */}
-            <div className="flex items-center gap-2 text-sm">
-              <button
-                onClick={() => handleSpeedChange(Math.max(0.25, playbackSpeed - 0.25))}
-                className="px-2 py-1 hover:bg-gray-800 rounded transition-colors"
-                title="Decrease speed"
-              >
-                -
-              </button>
-              <span className="min-w-[50px] text-center">
-                {playbackSpeed}x
-              </span>
-              <button
-                onClick={() => handleSpeedChange(Math.min(2, playbackSpeed + 0.25))}
-                className="px-2 py-1 hover:bg-gray-800 rounded transition-colors"
-                title="Increase speed"
-              >
-                +
-              </button>
-            </div>
 
             {/* Utility buttons */}
             <div className="flex gap-2">
@@ -293,21 +195,6 @@ const SheetMusicViewer: React.FC<SheetMusicViewerProps> = ({
           background: white;
         }
         
-        .sheet-music-viewer .at-cursor-bar {
-          background: rgba(255, 196, 0, 0.3);
-        }
-        
-        .sheet-music-viewer .at-cursor-beat {
-          background: rgba(64, 64, 255, 0.4);
-        }
-        
-        .sheet-music-viewer .at-highlight {
-          background: rgba(255, 196, 0, 0.2);
-        }
-        
-        .sheet-music-viewer .at-selection {
-          background: rgba(64, 64, 255, 0.1);
-        }
         
         @media print {
           .sheet-music-viewer .bg-gray-900 {
