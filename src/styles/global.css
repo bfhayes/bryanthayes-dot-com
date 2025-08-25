@@ -43,6 +43,11 @@
     @apply bg-white text-gray-900 font-sans antialiased;
     font-feature-settings: "kern", "liga", "ss01";
   }
+  
+  /* Dark mode body styles */
+  .dark body {
+    @apply bg-gray-900 text-gray-100;
+  }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif font-semibold tracking-tight;
@@ -178,6 +183,29 @@
 
   .animate-out {
     animation: slideDown 0.3s ease-out;
+  }
+  
+  /* Fade in animations */
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fade-in-scale {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 
   /* Glass morphism */

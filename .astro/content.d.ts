@@ -266,14 +266,6 @@ declare module 'astro:content' {
   rendered?: RenderedContent;
   filePath?: string;
 }>;
-"resume": Record<string, {
-  id: string;
-  body?: string;
-  collection: "resume";
-  data: any;
-  rendered?: RenderedContent;
-  filePath?: string;
-}>;
 "woodworking": Record<string, {
   id: string;
   render(): Render[".md"];

@@ -1,0 +1,290 @@
+---
+// Enhanced Hero with advanced animations and visual effects
+---
+
+<div class="min-h-screen relative overflow-hidden bg-gradient-to-b from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+  <!-- Animated background elements -->
+  <div class="absolute inset-0">
+    <!-- Gradient orbs -->
+    <div class="absolute top-20 left-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+    <div class="absolute top-40 right-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+    <div class="absolute -bottom-8 left-20 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+    
+    <!-- Grid pattern -->
+    <div class="absolute inset-0 bg-grid-pattern opacity-[0.02]"></div>
+  </div>
+
+  <section class="container-custom relative py-20 lg:py-32">
+    <div class="max-w-4xl mx-auto text-center">
+      <!-- Greeting badge with shimmer effect -->
+      <div class="mb-6 opacity-0 animate-fade-in-down">
+        <span class="inline-block px-4 py-2 text-sm font-medium rounded-full bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 text-gray-900 dark:text-gray-100 relative overflow-hidden group">
+          <span class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-30 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></span>
+          <span class="relative">Welcome to my world</span>
+        </span>
+      </div>
+      
+      <!-- Profile image with advanced effects -->
+      <div class="mb-8 opacity-0 animate-fade-in-scale" style="animation-delay: 200ms;">
+        <div class="relative inline-block">
+          <!-- Rotating border gradient -->
+          <div class="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 animate-spin-slow blur-sm"></div>
+          
+          <!-- Image container -->
+          <div class="relative">
+            <img 
+              src="/images/general/headshot.jpeg" 
+              alt="Bryant Hayes" 
+              class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-white shadow-2xl object-cover relative z-10 hover:scale-105 transition-transform duration-300"
+            />
+            <!-- Pulse effect -->
+            <div class="absolute inset-0 rounded-full bg-blue-400 animate-ping opacity-20"></div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Name with typewriter effect -->
+      <h1 class="text-5xl lg:text-7xl font-serif font-bold mb-6">
+        <span class="block text-gray-900 dark:text-gray-100 opacity-0 animate-fade-in-up" style="animation-delay: 400ms;">
+          Bryant Hayes
+        </span>
+        <span class="block text-3xl lg:text-5xl mt-4 text-gradient-animated typewriter" style="animation-delay: 600ms;">
+          <span class="typewriter-text" data-text="Maker of Things"></span>
+          <span class="typewriter-cursor">|</span>
+        </span>
+      </h1>
+      
+      <!-- Animated subtitle with word-by-word reveal -->
+      <p class="text-xl text-gray-700 dark:text-gray-300 mb-10 max-w-3xl mx-auto">
+        <span class="inline-block opacity-0 animate-fade-in-word" style="animation-delay: 800ms;">I build with</span>
+        <span class="inline-block opacity-0 animate-fade-in-word font-semibold text-blue-600" style="animation-delay: 900ms;">code,</span>
+        <span class="inline-block opacity-0 animate-fade-in-word" style="animation-delay: 1000ms;">craft with</span>
+        <span class="inline-block opacity-0 animate-fade-in-word font-semibold text-purple-600" style="animation-delay: 1100ms;">wood,</span>
+        <span class="inline-block opacity-0 animate-fade-in-word" style="animation-delay: 1200ms;">capture with</span>
+        <span class="inline-block opacity-0 animate-fade-in-word font-semibold text-pink-600" style="animation-delay: 1300ms;">cameras,</span>
+        <span class="inline-block opacity-0 animate-fade-in-word" style="animation-delay: 1400ms;">and create with my</span>
+        <span class="inline-block opacity-0 animate-fade-in-word font-semibold text-gray-900 dark:text-gray-100" style="animation-delay: 1500ms;">hands.</span>
+        <br />
+        <span class="inline-block opacity-0 animate-fade-in-word text-lg text-gray-600 dark:text-gray-400" style="animation-delay: 1700ms;">
+          Each pursuit teaches me something new about problem-solving, patience, and the art of making.
+        </span>
+      </p>
+
+      <!-- Interactive CTA buttons -->
+      <div class="flex flex-wrap justify-center gap-4 opacity-0 animate-fade-in-up" style="animation-delay: 2000ms;">
+        <a href="/work" class="group relative inline-flex items-center px-6 py-3 overflow-hidden font-medium transition-all bg-gray-900 dark:bg-gray-100 rounded-lg hover:bg-gray-900 dark:hover:bg-gray-100 text-white dark:text-gray-900">
+          <span class="absolute w-0 h-0 transition-all duration-500 ease-out bg-white rounded-full group-hover:w-56 group-hover:h-56 opacity-10"></span>
+          <span class="relative">View My Work</span>
+        </a>
+        <a href="/contact" class="group relative inline-flex items-center px-6 py-3 overflow-hidden font-medium transition-all border-2 border-gray-900 dark:border-gray-100 rounded-lg hover:text-white dark:hover:text-gray-900 text-gray-900 dark:text-gray-100">
+          <span class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-gray-700"></span>
+          <span class="absolute top-0 left-0 w-full h-0 transition-all duration-200 delay-100 bg-gray-900 dark:bg-gray-100 group-hover:h-full ease"></span>
+          <span class="relative">Get In Touch</span>
+        </a>
+      </div>
+    </div>
+    
+    <!-- Enhanced scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 animate-fade-in" style="animation-delay: 2500ms;">
+      <div class="relative">
+        <div class="absolute inset-0 bg-gray-400 rounded-full animate-ping"></div>
+        <div class="relative bg-white dark:bg-gray-800 rounded-full p-2 shadow-lg animate-bounce-slow">
+          <svg class="w-6 h-6 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  /* Blob animation */
+  @keyframes blob {
+    0% { transform: translate(0px, 0px) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+    100% { transform: translate(0px, 0px) scale(1); }
+  }
+  
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+  
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+  
+  /* Spin slow animation */
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  .animate-spin-slow {
+    animation: spin-slow 20s linear infinite;
+  }
+  
+  /* Fade animations */
+  @keyframes fade-in-down {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fade-in-scale {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes fade-in-word {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .animate-fade-in-down {
+    animation: fade-in-down 0.6s ease-out forwards;
+  }
+  
+  .animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out forwards;
+  }
+  
+  .animate-fade-in-scale {
+    animation: fade-in-scale 0.6s ease-out forwards;
+  }
+  
+  .animate-fade-in-word {
+    animation: fade-in-word 0.4s ease-out forwards;
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 0.6s ease-out forwards;
+  }
+  
+  /* Bounce slow */
+  @keyframes bounce-slow {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  .animate-bounce-slow {
+    animation: bounce-slow 2s ease-in-out infinite;
+  }
+  
+  /* Gradient animation */
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  .text-gradient-animated {
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899, #3b82f6);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-shift 5s ease infinite;
+  }
+  
+  /* Typewriter effect */
+  .typewriter {
+    display: inline-block;
+  }
+  
+  .typewriter-text {
+    overflow: hidden;
+    border-right: 2px solid transparent;
+    white-space: nowrap;
+    animation: typing 2s steps(15, end) forwards;
+  }
+  
+  .typewriter-cursor {
+    display: inline-block;
+    width: 2px;
+    animation: blink 1s step-end infinite;
+    margin-left: 2px;
+  }
+  
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+  
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+  
+  /* Grid pattern */
+  .bg-grid-pattern {
+    background-image: 
+      linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+</style>
+
+<script>
+  // Typewriter effect implementation
+  document.addEventListener('DOMContentLoaded', () => {
+    const typewriterElements = document.querySelectorAll('.typewriter-text');
+    
+    typewriterElements.forEach(element => {
+      const text = element.getAttribute('data-text') || '';
+      element.textContent = '';
+      let i = 0;
+      
+      const typeWriter = () => {
+        if (i < text.length) {
+          element.textContent += text.charAt(i);
+          i++;
+          setTimeout(typeWriter, 100);
+        }
+      };
+      
+      setTimeout(typeWriter, 600);
+    });
+  });
+</script>

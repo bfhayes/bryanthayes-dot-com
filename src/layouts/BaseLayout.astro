@@ -2,6 +2,7 @@
 import '@/styles/global.css';
 import Header from '@/components/layout/Header.astro';
 import Footer from '@/components/layout/Footer.astro';
+import DarkModeToggle from '@/components/ui/DarkModeToggle.astro';
 
 export interface Props {
   title: string;
@@ -68,5 +69,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       <slot />
     </main>
     <Footer />
+    <DarkModeToggle />
   </body>
 </html>
