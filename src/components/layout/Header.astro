@@ -23,7 +23,7 @@ const currentPath = Astro.url.pathname;
         <div class="h-8 w-8 rounded-md bg-space-cadet group-hover:bg-space-cadet-600 transition-colors flex items-center justify-center">
           <span class="text-isabelline font-bold text-lg">BH</span>
         </div>
-        <span class="font-serif text-xl font-semibold text-space-cadet hidden sm:inline-block">
+        <span class="font-serif text-xl font-semibold text-text-primary dark:text-gray-100 hidden sm:inline-block">
           Bryant Hayes
         </span>
       </a>
@@ -34,10 +34,10 @@ const currentPath = Astro.url.pathname;
           <li>
             <a
               href={link.href}
-              class={`text-sm font-medium transition-colors hover:text-ultra-violet px-2 py-1 rounded ${
+              class={`text-sm font-medium transition-colors hover:text-text-primary dark:hover:text-gray-100 px-2 py-1 rounded ${
                 currentPath === link.href 
-                  ? 'text-space-cadet bg-pale-dogwood/20' 
-                  : 'text-ultra-violet-600'
+                  ? 'text-text-primary dark:text-gray-100 bg-pale-dogwood/20 dark:bg-gray-700/30' 
+                  : 'text-text-secondary dark:text-gray-300'
               }`}
             >
               {link.label}
@@ -72,10 +72,10 @@ const currentPath = Astro.url.pathname;
           <li>
             <a
               href={link.href}
-              class={`block px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-ultra-violet/10 text-center ${
+              class={`block px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-ultra-violet/10 dark:hover:bg-gray-700/30 text-center ${
                 currentPath === link.href 
-                  ? 'text-space-cadet bg-pale-dogwood/20' 
-                  : 'text-ultra-violet-600'
+                  ? 'text-text-primary dark:text-gray-100 bg-pale-dogwood/20 dark:bg-gray-700/30' 
+                  : 'text-text-secondary dark:text-gray-300'
               }`}
             >
               {link.label}

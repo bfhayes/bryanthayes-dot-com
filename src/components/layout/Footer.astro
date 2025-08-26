@@ -40,7 +40,7 @@ const quickLinks = [
             Bryant Hayes
           </span>
         </div>
-        <p class="text-sm text-ultra-violet-600 max-w-md">
+        <p class="text-sm text-text-secondary dark:text-ultra-violet-700 max-w-md">
           Maker of things with code, wood, leather, cameras, and more. 
           Showcasing professional work and creative pursuits.
         </p>
@@ -48,13 +48,13 @@ const quickLinks = [
 
       <!-- Quick Links -->
       <div>
-        <h3 class="font-semibold text-space-cadet mb-3">Quick Links</h3>
+        <h3 class="font-semibold text-text-primary dark:text-gray-100 mb-3">Quick Links</h3>
         <ul class="space-y-2">
           {quickLinks.map((link) => (
             <li>
               <a
                 href={link.href}
-                class="text-sm text-ultra-violet-600 hover:text-ultra-violet transition-colors"
+                class="text-sm text-text-secondary dark:text-ultra-violet-700 hover:text-text-primary dark:hover:text-gray-100 transition-colors"
               >
                 {link.label}
               </a>
@@ -65,14 +65,14 @@ const quickLinks = [
 
       <!-- Connect -->
       <div>
-        <h3 class="font-semibold text-space-cadet mb-3">Connect</h3>
+        <h3 class="font-semibold text-text-primary dark:text-gray-100 mb-3">Connect</h3>
         <div class="flex space-x-3">
           {socialLinks.map((link) => (
             <a
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              class="p-2 rounded-md bg-ultra-violet/10 hover:bg-ultra-violet/20 text-ultra-violet-600 hover:text-ultra-violet transition-all"
+              class="p-2 rounded-md bg-ultra-violet/10 dark:bg-gray-700/50 hover:bg-ultra-violet/20 dark:hover:bg-gray-600/50 text-text-muted dark:text-ultra-violet-700 hover:text-text-primary dark:hover:text-gray-100 transition-all"
               aria-label={link.name}
             >
               <Fragment set:html={link.icon} />
@@ -83,13 +83,13 @@ const quickLinks = [
     </div>
 
     <!-- Bottom bar -->
-    <div class="mt-8 pt-8 border-t border-rose-quartz/20">
+    <div class="mt-8 pt-8 border-t border-rose-quartz/20 dark:border-gray-700/30">
       <div class="flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0">
-        <p class="text-xs text-ultra-violet-600">
+        <p class="text-xs text-text-muted dark:text-ultra-violet-800">
           &copy; {currentYear} Bryant Hayes. All rights reserved.
         </p>
-        <p class="text-xs text-ultra-violet-600">
-          Built with <span class="text-pale-dogwood">♥</span> using Astro & Tailwind CSS
+        <p class="text-xs text-text-muted dark:text-ultra-violet-800">
+          Built with <span class="text-pink-500 dark:text-pink-400">♥</span> using Astro & Tailwind CSS
         </p>
       </div>
     </div>

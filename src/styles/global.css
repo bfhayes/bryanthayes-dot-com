@@ -40,7 +40,7 @@
   }
 
   body {
-    @apply bg-white text-gray-900 font-sans antialiased;
+    @apply bg-white text-text-secondary font-sans antialiased;
     font-feature-settings: "kern", "liga", "ss01";
   }
   
@@ -50,7 +50,11 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif font-semibold tracking-tight;
+    @apply font-serif font-semibold tracking-tight text-text-primary;
+  }
+  
+  .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+    @apply text-gray-100;
   }
 
   /* Focus styles */
@@ -77,7 +81,7 @@
 
   /* Card styles */
   .card {
-    @apply bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100;
+    @apply bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100 dark:border-gray-700;
   }
   
   /* Card hover isolation */

@@ -29,6 +29,13 @@ export default {
           800: '#b1b4c8',
           900: '#d8dae3'
         },
+        // Enhanced text colors for better accessibility
+        'text': {
+          primary: '#22223b',     // space-cadet - highest contrast for headings
+          secondary: '#2c2f3f',   // ultra-violet-300 - good contrast for body text  
+          muted: '#3b3e54',       // ultra-violet-400 - subtle text
+          light: '#666b8f'        // ultra-violet-600 - light text on dark backgrounds
+        },
         'rose-quartz': {
           DEFAULT: '#9a8c98',
           100: '#1f1c1f',
