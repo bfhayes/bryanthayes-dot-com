@@ -15,6 +15,7 @@ tempo: "Ambient/Drone"
 tags: ["ambient", "electronic", "experimental", "soundscape", "synthesis"]
 featured: true
 draft: false
+hidden: true
 ---
 
 ## The Concept

@@ -94,6 +94,7 @@ tabs: |
 tags: ["acoustic", "folk", "indie", "jack-johnson", "fingerstyle", "strumming"]
 featured: false
 draft: false
+hidden: true
 ---
 
 ## About This Arrangement

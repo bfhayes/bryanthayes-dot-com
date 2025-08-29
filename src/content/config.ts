@@ -10,6 +10,7 @@ const baseProjectSchema = z.object({
   tags: z.array(z.string()).default([]),
   featured: z.boolean().default(false),
   draft: z.boolean().default(false),
+  hidden: z.boolean().default(false),
 });
 
 // Photography projects

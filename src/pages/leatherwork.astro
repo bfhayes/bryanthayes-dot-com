@@ -2,9 +2,10 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import ProjectTile from '@/components/projects/ProjectTile.astro';
+import WorkInProgress from '@/components/projects/WorkInProgress.astro';
 
 // Get all leatherwork projects from content collections
-const allProjects = await getCollection('leatherwork', ({ data }) => !data.draft);
+const allProjects = await getCollection('leatherwork', ({ data }) => !data.draft && !data.hidden);
 ---
 
 <BaseLayout 
@@ -22,11 +23,17 @@ const allProjects = await getCollection('leatherwork', ({ data }) => !data.draft
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-      {allProjects.map((project) => (
-        <ProjectTile project={project} category="leatherwork" />
-      ))}
-    </div>
+    {allProjects.length > 0 ? (
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        {allProjects.map((project) => (
+          <ProjectTile project={project} category="leatherwork" />
+        ))}
+      </div>
+    ) : (
+      <div class="mb-16">
+        <WorkInProgress category="leatherwork" />
+      </div>
+    )}
 
     <!-- Commission -->
     <section class="bg-gray-50 border border-gray-200 rounded-lg p-6 text-center">

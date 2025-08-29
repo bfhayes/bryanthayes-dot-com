@@ -15,6 +15,7 @@ tempo: "Shuffle feel"
 tags: ["blues", "live", "improvisation", "electric", "traditional"]
 featured: false
 draft: false
+hidden: true
 ---
 
 ## The Performance

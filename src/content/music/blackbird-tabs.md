@@ -102,6 +102,7 @@ tabs: |
 tags: ["fingerpicking", "beatles", "classic", "acoustic"]
 featured: true
 draft: false
+hidden: true
 ---
 
 ## The Classic Fingerpicking Pattern

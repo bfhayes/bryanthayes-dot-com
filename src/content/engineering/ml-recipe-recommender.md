@@ -14,6 +14,7 @@ frameworks: ["FastAPI", "React", "scikit-learn"]
 status: "completed"
 difficulty: "Advanced"
 github_url: "https://github.com/bfhayes/recipe-ai"
+hidden: true
 tags: ["machine-learning", "ai", "python", "recommendation-system", "nlp"]
 featured: true
 draft: false

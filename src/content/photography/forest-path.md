@@ -8,6 +8,7 @@ gallery:
 category: "landscapes"
 camera: "Canon EOS R5"
 lens: "24-70mm f/2.8L"
+hidden: true
 settings:
   aperture: "f/11"
   shutter: "1/60s"

@@ -37,6 +37,7 @@ dietary_tags: ["gluten-free", "keto", "paleo"]
 tags: ["bbq", "brisket", "texas", "smoking", "beef"]
 featured: true
 draft: false
+hidden: true
 ---
 
 ## The Art of Brisket

@@ -9,6 +9,7 @@ gallery:
   - "/images/projects/oak-table-3.jpg"
 difficulty: "Intermediate"
 duration: "3 weeks"
+hidden: true
 materials: 
   - "8/4 Live edge white oak slab (6 feet long)"
   - "1.5\" square steel tubing"

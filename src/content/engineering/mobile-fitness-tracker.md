@@ -17,6 +17,7 @@ github_url: "https://github.com/bfhayes/fitness-tracker"
 tags: ["mobile", "react-native", "firebase", "fitness", "ios", "android"]
 featured: false
 draft: false
+hidden: true
 ---
 
 ## Project Overview

@@ -14,6 +14,7 @@ frameworks: ["Express.js", "Tailwind CSS"]
 status: "completed"
 difficulty: "Intermediate"
 github_url: "https://github.com/bfhayes/home-dashboard"
+hidden: true
 tags: ["iot", "dashboard", "react", "mqtt", "home-automation"]
 featured: true
 draft: false

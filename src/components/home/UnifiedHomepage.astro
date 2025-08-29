@@ -20,7 +20,7 @@ for (const collection of allCollections) {
   try {
     const projects = await getCollection(collection.name);
     const recentProject = projects
-      .filter(p => !p.data.draft)
+      .filter(p => !p.data.draft && !p.data.hidden)
       .sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime())[0];
     
     if (recentProject) {

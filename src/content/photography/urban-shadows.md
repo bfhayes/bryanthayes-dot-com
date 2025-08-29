@@ -8,6 +8,7 @@ gallery:
 category: "street"
 camera: "Canon EOS R6 Mark II"
 lens: "35mm f/1.8"
+hidden: true
 settings:
   aperture: "f/2.8"
   shutter: "1/250s"

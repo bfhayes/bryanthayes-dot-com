@@ -2,9 +2,10 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import ProjectTile from '@/components/projects/ProjectTile.astro';
+import WorkInProgress from '@/components/projects/WorkInProgress.astro';
 
 // Get all woodworking projects from content collections
-const allProjects = await getCollection('woodworking', ({ data }) => !data.draft);
+const allProjects = await getCollection('woodworking', ({ data }) => !data.draft && !data.hidden);
 
 const tools = [
   { category: 'Hand Tools', items: ['Chisels', 'Hand planes', 'Marking gauge', 'Dovetail saw'] },
@@ -32,13 +33,19 @@ const tools = [
     </div>
 
     <!-- Projects Grid -->
-    <section class="mb-16">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {allProjects.map((project) => (
-          <ProjectTile project={project} category="woodworking" />
-        ))}
-      </div>
-    </section>
+    {allProjects.length > 0 ? (
+      <section class="mb-16">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {allProjects.map((project) => (
+            <ProjectTile project={project} category="woodworking" />
+          ))}
+        </div>
+      </section>
+    ) : (
+      <section class="mb-16">
+        <WorkInProgress category="woodworking" />
+      </section>
+    )}
 
 
     <!-- Commission -->

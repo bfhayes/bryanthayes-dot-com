@@ -34,6 +34,7 @@ makeup_notes: "Pale foundation, dark circles, blood effects"
 tags: ["halloween", "vampire", "victorian", "gothic", "costume"]
 featured: true
 draft: false
+hidden: true
 ---
 
 ## Concept Development

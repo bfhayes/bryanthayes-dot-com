@@ -22,6 +22,7 @@ dimensions: "4.25\" × 3\" × 0.25\""
 tags: ["edc", "minimalist", "horween", "everyday-carry"]
 featured: true
 draft: false
+hidden: true
 ---
 
 # Minimalist Leather Wallet

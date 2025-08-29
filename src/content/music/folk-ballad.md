@@ -15,6 +15,7 @@ tempo: "Gentle waltz"
 tags: ["folk", "original", "ballad", "acoustic", "vocals"]
 featured: false
 draft: false
+hidden: true
 ---
 
 ## The Song

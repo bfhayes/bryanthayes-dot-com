@@ -13,6 +13,7 @@ frameworks: ["Ethereum", "React", "Node.js"]
 status: "completed"
 difficulty: "Advanced"
 github_url: "https://github.com/bfhayes/secure-voting-dapp"
+hidden: true
 tags: ["blockchain", "ethereum", "smart-contracts", "web3", "cryptography"]
 featured: true
 draft: false

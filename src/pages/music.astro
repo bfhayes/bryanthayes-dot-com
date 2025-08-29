@@ -2,9 +2,10 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import ProjectTile from '@/components/projects/ProjectTile.astro';
+import WorkInProgress from '@/components/projects/WorkInProgress.astro';
 
 // Get all music projects from content collections
-const allProjects = await getCollection('music', ({ data }) => !data.draft);
+const allProjects = await getCollection('music', ({ data }) => !data.draft && !data.hidden);
 ---
 
 <BaseLayout 
@@ -32,17 +33,9 @@ const allProjects = await getCollection('music', ({ data }) => !data.draft);
         </div>
       </section>
     ) : (
-      <div class="text-center">
-        <div class="w-32 h-32 mx-auto mb-8 rounded-full bg-gray-100 flex items-center justify-center">
-          <span class="text-6xl opacity-60">🎸</span>
-        </div>
-        <p class="text-gray-600 mb-8">
-          Content coming soon. Check back for original compositions and recordings.
-        </p>
-        <a href="/contact" class="btn-primary">
-          Get In Touch
-        </a>
-      </div>
+      <section class="mb-16">
+        <WorkInProgress category="music" />
+      </section>
     )}
 
     <!-- Commission -->

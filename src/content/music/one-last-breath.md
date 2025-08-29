@@ -79,6 +79,7 @@ tabs: |
 tags: ["fingerstyle", "rock", "ballad", "creed", "arrangement"]
 featured: false
 draft: false
+hidden: true
 ---
 
 ## About This Arrangement

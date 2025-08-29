@@ -8,6 +8,7 @@ gallery:
   - "/images/projects/cutting-board-2.jpg"
 difficulty: "Beginner"
 duration: "1 week"
+hidden: true
 materials:
   - "Black walnut lumber (8/4 thickness)"
   - "Food-safe mineral oil"

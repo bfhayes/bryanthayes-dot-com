@@ -13,6 +13,7 @@ frameworks: ["Gin", "gRPC"]
 status: "in_progress"
 difficulty: "Advanced"
 github_url: "https://github.com/bfhayes/go-task-queue"
+hidden: true
 tags: ["golang", "distributed-systems", "microservices", "rabbitmq", "kubernetes"]
 featured: false
 draft: false

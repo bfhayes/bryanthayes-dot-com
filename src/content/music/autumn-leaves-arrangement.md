@@ -16,6 +16,7 @@ audioFile: "/audio/sample.m4a"
 tags: ["fingerstyle", "jazz", "arrangement", "autumn", "standard"]
 featured: true
 draft: false
+hidden: true
 ---
 
 ## The Arrangement
