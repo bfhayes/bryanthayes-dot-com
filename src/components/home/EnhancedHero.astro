@@ -3,16 +3,6 @@
 ---
 
 <div class="min-h-screen relative overflow-hidden bg-gradient-to-b from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-  <!-- Animated background elements -->
-  <div class="absolute inset-0">
-    <!-- Gradient orbs -->
-    <div class="absolute top-20 left-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-    <div class="absolute top-40 right-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
-    <div class="absolute -bottom-8 left-20 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
-    
-    <!-- Grid pattern -->
-    <div class="absolute inset-0 bg-grid-pattern opacity-[0.02]"></div>
-  </div>
 
   <section class="container-custom relative py-20 lg:py-32">
     <div class="max-w-4xl mx-auto text-center">
@@ -27,17 +17,11 @@
       <!-- Profile image with advanced effects -->
       <div class="mb-8 opacity-0 animate-fade-in-scale" style="animation-delay: 200ms;">
         <div class="relative inline-block">
-          <!-- Rotating border gradient -->
-          <div class="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 animate-spin-slow blur-sm"></div>
-          
-          <!-- Image container -->
-          <div class="relative">
-            <img 
-              src="/images/general/headshot.jpeg" 
-              alt="Bryant Hayes" 
-              class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-white shadow-2xl object-cover relative z-10 hover:scale-105 transition-transform duration-300"
-            />
-          </div>
+          <img 
+            src="/images/general/headshot.jpeg" 
+            alt="Bryant Hayes" 
+            class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-white dark:border-gray-700 shadow-2xl object-cover hover:scale-105 transition-transform duration-300"
+          />
         </div>
       </div>
       
@@ -54,18 +38,14 @@
       
       <!-- Animated subtitle with word-by-word reveal -->
       <p class="text-xl text-gray-700 dark:text-gray-300 mb-10 max-w-3xl mx-auto">
-        <span class="inline-block opacity-0 animate-fade-in-word" style="animation-delay: 800ms;">I build with</span>
+        <span class="inline-block opacity-0 animate-fade-in-word" style="animation-delay: 800ms;">I write</span>
         <span class="inline-block opacity-0 animate-fade-in-word font-semibold text-blue-600" style="animation-delay: 900ms;">code,</span>
-        <span class="inline-block opacity-0 animate-fade-in-word" style="animation-delay: 1000ms;">craft with</span>
+        <span class="inline-block opacity-0 animate-fade-in-word" style="animation-delay: 1000ms;">build stuff with</span>
         <span class="inline-block opacity-0 animate-fade-in-word font-semibold text-purple-600" style="animation-delay: 1100ms;">wood,</span>
-        <span class="inline-block opacity-0 animate-fade-in-word" style="animation-delay: 1200ms;">capture with</span>
-        <span class="inline-block opacity-0 animate-fade-in-word font-semibold text-pink-600" style="animation-delay: 1300ms;">cameras,</span>
-        <span class="inline-block opacity-0 animate-fade-in-word" style="animation-delay: 1400ms;">and create with my</span>
+        <span class="inline-block opacity-0 animate-fade-in-word" style="animation-delay: 1200ms;">take</span>
+        <span class="inline-block opacity-0 animate-fade-in-word font-semibold text-pink-600" style="animation-delay: 1300ms;">photos,</span>
+        <span class="inline-block opacity-0 animate-fade-in-word" style="animation-delay: 1400ms;">and make things with my</span>
         <span class="inline-block opacity-0 animate-fade-in-word font-semibold text-gray-900 dark:text-gray-100" style="animation-delay: 1500ms;">hands.</span>
-        <br />
-        <span class="inline-block opacity-0 animate-fade-in-word text-lg text-gray-600 dark:text-gray-400" style="animation-delay: 1700ms;">
-          Each pursuit teaches me something new about problem-solving, patience, and the art of making.
-        </span>
       </p>
 
       <!-- Interactive CTA buttons with enhanced styles -->
@@ -249,13 +229,6 @@
     50% { opacity: 0; }
   }
   
-  /* Grid pattern */
-  .bg-grid-pattern {
-    background-image: 
-      linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
-    background-size: 50px 50px;
-  }
 </style>
 
 <script>

@@ -48,57 +48,49 @@ const interests = [
     title: 'Work',
     description: 'Professional development & career',
     href: '/work',
-    icon: '💼',
-    recent: 'DRM security architecture'
+    icon: '💼'
   },
   {
     title: 'Photography',
     description: 'Landscapes, portraits & street photography',
     href: '/photography',
-    icon: '📷',
-    recent: 'Mountain sunrise series'
+    icon: '📷'
   },
   {
     title: 'Woodworking',
     description: 'Furniture & handcrafted pieces',
     href: '/woodworking',
-    icon: '🪵',
-    recent: 'Live edge oak coffee table'
+    icon: '🪵'
   },
   {
     title: 'Leatherwork',
     description: 'Custom bags, wallets & accessories',
     href: '/leatherwork',
-    icon: '👜',
-    recent: 'Minimalist wallet design'
+    icon: '👜'
   },
   {
     title: 'Music',
     description: 'Guitar compositions & recordings',
     href: '/music',
-    icon: '🎸',
-    recent: 'Acoustic fingerstyle pieces'
+    icon: '🎸'
   },
   {
     title: 'Engineering',
     description: 'Software development, embedded systems & circuit design',
     href: '/engineering',
-    icon: '⚙️',
-    recent: 'Full-stack apps & Arduino projects'
+    icon: '⚙️'
   },
   {
     title: 'Costuming',
     description: 'Halloween costumes, cosplay & character design',
     href: '/costuming',
-    icon: '🎭',
-    recent: 'Victorian vampire costume'
+    icon: '🎭'
   },
   {
     title: 'Food',
     description: 'Recipes, BBQ & culinary experiments',
     href: '/food',
-    icon: '🍖',
-    recent: 'Smoked brisket recipe'
+    icon: '🍖'
   }
 ];
 ---
@@ -145,14 +137,6 @@ const interests = [
               <p class="text-sm text-gray-600 dark:text-gray-400 mb-3 group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors">
                 {interest.description}
               </p>
-              
-              <!-- Recent badge with shimmer effect -->
-              <div class="relative inline-block">
-                <div class="text-xs text-gray-500 dark:text-gray-400 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 rounded-full px-3 py-1 relative overflow-hidden">
-                  <span class="relative z-10">Recent: {interest.recent}</span>
-                  <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-30 -translate-x-full group-hover:translate-x-full transition-all duration-1000"></div>
-                </div>
-              </div>
             </div>
           </article>
         </a>
@@ -236,18 +220,16 @@ const interests = [
   <section class="container-custom py-20">
     <div class="max-w-4xl mx-auto text-center">
       <h2 class="text-3xl lg:text-4xl font-serif font-bold text-gray-900 dark:text-gray-100 mb-8">
-        Why I Make Things
+        Why I Build Stuff
       </h2>
       <div class="prose prose-lg mx-auto text-gray-700 dark:text-gray-300">
         <p class="text-xl leading-relaxed">
-          Whether I'm debugging code, hand-cutting dovetail joints, or composing a photograph, 
-          the process is similar: understanding the problem, choosing the right tools, 
-          and iterating until it's right.
+          Whether I'm fixing a bug, cutting wood joints, or framing a shot—it's all the same process: 
+          figure out the problem, grab the right tools, try stuff until it works.
         </p>
         <p class="text-lg leading-relaxed mt-6">
-          Each pursuit informs the others. The patience learned in woodworking helps with complex coding problems. 
-          The attention to detail from photography improves my craftsmanship. 
-          The problem-solving from programming applies everywhere.
+          Everything connects. Woodworking taught me patience for debugging. Photography made me pickier about details. 
+          Coding logic applies everywhere.
         </p>
       </div>
     </div>
