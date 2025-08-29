@@ -3,8 +3,14 @@
 ---
 
 <div class="min-h-screen relative overflow-hidden bg-gradient-to-b from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+  <!-- Animated background orbs -->
+  <div class="absolute inset-0 z-0">
+    <div class="absolute top-[20%] left-[10%] w-[400px] h-[400px] bg-gradient-to-br from-blue-400 to-blue-600 dark:from-blue-300 dark:to-blue-500 rounded-full blur-[150px] opacity-10 dark:opacity-[0.17] animate-drift-1" style="will-change: transform;"></div>
+    <div class="absolute top-[60%] left-[70%] w-[400px] h-[400px] bg-gradient-to-br from-purple-400 to-purple-600 dark:from-purple-300 dark:to-purple-500 rounded-full blur-[150px] opacity-10 dark:opacity-[0.17] animate-drift-2" style="will-change: transform;"></div>
+    <div class="absolute top-[80%] left-[15%] w-[400px] h-[400px] bg-gradient-to-br from-pink-400 to-pink-600 dark:from-pink-300 dark:to-pink-500 rounded-full blur-[150px] opacity-10 dark:opacity-[0.17] animate-drift-3" style="will-change: transform;"></div>
+  </div>
 
-  <section class="container-custom relative py-20 lg:py-32">
+  <section class="container-custom relative z-10 py-20 lg:py-32">
     <div class="max-w-4xl mx-auto text-center">
       <!-- Greeting badge with shimmer effect -->
       <div class="mb-6 opacity-0 animate-fade-in-down">
@@ -71,24 +77,42 @@
 </div>
 
 <style>
-  /* Blob animation */
-  @keyframes blob {
-    0% { transform: translate(0px, 0px) scale(1); }
-    33% { transform: translate(30px, -50px) scale(1.1); }
-    66% { transform: translate(-20px, 20px) scale(0.9); }
-    100% { transform: translate(0px, 0px) scale(1); }
+  /* Drifting orb animations - full viewport movement */
+  @keyframes drift-1 {
+    0% { transform: translate(0px, 0px); }
+    20% { transform: translate(400px, -150px); }
+    40% { transform: translate(200px, 300px); }
+    60% { transform: translate(-300px, 100px); }
+    80% { transform: translate(-100px, -200px); }
+    100% { transform: translate(0px, 0px); }
   }
   
-  .animate-blob {
-    animation: blob 7s infinite;
+  @keyframes drift-2 {
+    0% { transform: translate(0px, 0px); }
+    25% { transform: translate(-450px, -100px); }
+    50% { transform: translate(-200px, -400px); }
+    75% { transform: translate(350px, -250px); }
+    100% { transform: translate(0px, 0px); }
   }
   
-  .animation-delay-2000 {
-    animation-delay: 2s;
+  @keyframes drift-3 {
+    0% { transform: translate(0px, 0px); }
+    30% { transform: translate(-250px, 200px); }
+    60% { transform: translate(400px, -100px); }
+    90% { transform: translate(100px, 150px); }
+    100% { transform: translate(0px, 0px); }
   }
   
-  .animation-delay-4000 {
-    animation-delay: 4s;
+  .animate-drift-1 {
+    animation: drift-1 25s ease-in-out infinite;
+  }
+  
+  .animate-drift-2 {
+    animation: drift-2 30s ease-in-out infinite;
+  }
+  
+  .animate-drift-3 {
+    animation: drift-3 35s ease-in-out infinite;
   }
   
   /* Spin slow animation */
