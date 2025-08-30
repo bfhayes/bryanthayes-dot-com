@@ -66,7 +66,7 @@ export default function ContactForm({}: ContactFormProps) {
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-space-cadet mb-2">
+          <label htmlFor="name" className="block text-sm font-medium text-space-cadet dark:text-gray-200 mb-2">
             Name *
           </label>
           <input
@@ -76,13 +76,13 @@ export default function ContactForm({}: ContactFormProps) {
             required
             value={formData.name}
             onChange={handleChange}
-            className="w-full px-4 py-2 border border-rose-quartz/30 rounded-md bg-white focus:ring-2 focus:ring-pale-dogwood focus:border-transparent transition-all"
+            className="w-full px-4 py-2 border border-rose-quartz/30 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 dark:text-gray-100 focus:ring-2 focus:ring-pale-dogwood focus:border-transparent transition-all"
             placeholder="Your name"
           />
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-space-cadet mb-2">
+          <label htmlFor="email" className="block text-sm font-medium text-space-cadet dark:text-gray-200 mb-2">
             Email *
           </label>
           <input
@@ -92,14 +92,14 @@ export default function ContactForm({}: ContactFormProps) {
             required
             value={formData.email}
             onChange={handleChange}
-            className="w-full px-4 py-2 border border-rose-quartz/30 rounded-md bg-white focus:ring-2 focus:ring-pale-dogwood focus:border-transparent transition-all"
+            className="w-full px-4 py-2 border border-rose-quartz/30 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 dark:text-gray-100 focus:ring-2 focus:ring-pale-dogwood focus:border-transparent transition-all"
             placeholder="your@email.com"
           />
         </div>
       </div>
 
       <div>
-        <label htmlFor="subject" className="block text-sm font-medium text-space-cadet mb-2">
+        <label htmlFor="subject" className="block text-sm font-medium text-space-cadet dark:text-gray-200 mb-2">
           Subject *
         </label>
         <select
@@ -108,7 +108,7 @@ export default function ContactForm({}: ContactFormProps) {
           required
           value={formData.subject}
           onChange={handleChange}
-          className="w-full px-4 py-2 border border-rose-quartz/30 rounded-md bg-white focus:ring-2 focus:ring-pale-dogwood focus:border-transparent transition-all"
+          className="w-full px-4 py-2 border border-rose-quartz/30 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 dark:text-gray-100 focus:ring-2 focus:ring-pale-dogwood focus:border-transparent transition-all"
         >
           {subjects.map(subject => (
             <option key={subject.value} value={subject.value}>
@@ -119,7 +119,7 @@ export default function ContactForm({}: ContactFormProps) {
       </div>
 
       <div>
-        <label htmlFor="message" className="block text-sm font-medium text-space-cadet mb-2">
+        <label htmlFor="message" className="block text-sm font-medium text-space-cadet dark:text-gray-200 mb-2">
           Message *
         </label>
         <textarea
@@ -129,21 +129,21 @@ export default function ContactForm({}: ContactFormProps) {
           rows={6}
           value={formData.message}
           onChange={handleChange}
-          className="w-full px-4 py-2 border border-rose-quartz/30 rounded-md bg-white focus:ring-2 focus:ring-pale-dogwood focus:border-transparent transition-all resize-none"
+          className="w-full px-4 py-2 border border-rose-quartz/30 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 dark:text-gray-100 focus:ring-2 focus:ring-pale-dogwood focus:border-transparent transition-all resize-none"
           placeholder="Tell me about your project, opportunity, or idea..."
         />
       </div>
 
       {/* Status Messages */}
       {status === 'success' && (
-        <div className="p-4 bg-green-50 border border-green-200 rounded-md">
-          <p className="text-green-800">Thank you for your message! I'll get back to you soon.</p>
+        <div className="p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-700 rounded-md">
+          <p className="text-green-800 dark:text-green-300">Thank you for your message! I'll get back to you soon.</p>
         </div>
       )}
 
       {status === 'error' && (
-        <div className="p-4 bg-red-50 border border-red-200 rounded-md">
-          <p className="text-red-800">{errorMessage}</p>
+        <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700 rounded-md">
+          <p className="text-red-800 dark:text-red-300">{errorMessage}</p>
         </div>
       )}
 
