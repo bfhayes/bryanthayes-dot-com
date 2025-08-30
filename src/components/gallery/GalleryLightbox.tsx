@@ -113,7 +113,7 @@ export default function GalleryLightbox({ images, projectTitle }: GalleryLightbo
           )}
 
           {/* Image container */}
-          <div className="relative max-w-[95vw] max-h-[95vh]">
+          <div className="relative max-w-[95vw] max-h-[90vh] flex flex-col items-center">
             <img 
               src={selectedImage}
               alt={projectTitle}
@@ -122,7 +122,7 @@ export default function GalleryLightbox({ images, projectTitle }: GalleryLightbo
             />
             {/* Image counter - only show if multiple images */}
             {images.length > 1 && (
-              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-50 text-white px-3 py-1 rounded-full text-sm">
+              <div className="mt-4 bg-black bg-opacity-50 text-white px-3 py-1 rounded-full text-sm">
                 {currentIndex + 1} of {images.length}
               </div>
             )}

@@ -73,12 +73,12 @@ const { Content } = await project.render();
 >
   <div class="container-custom py-12">
     <!-- Breadcrumb -->
-    <nav class="text-sm text-gray-600 mb-6">
-      <a href="/" class="hover:text-gray-900">Home</a>
+    <nav class="text-sm text-gray-600 dark:text-gray-400 mb-6">
+      <a href="/" class="hover:text-gray-900 dark:hover:text-gray-200">Home</a>
       <span class="mx-2">/</span>
-      <a href={`/${category}`} class="hover:text-gray-900 capitalize">{categoryInfo.label}</a>
+      <a href={`/${category}`} class="hover:text-gray-900 dark:hover:text-gray-200 capitalize">{categoryInfo.label}</a>
       <span class="mx-2">/</span>
-      <span class="text-gray-900">{project.data.title}</span>
+      <span class="text-gray-900 dark:text-gray-100">{project.data.title}</span>
     </nav>
 
     <!-- Hero Section -->
@@ -101,72 +101,72 @@ const { Content } = await project.render();
         
         <!-- Title and Metadata -->
         <div class="lg:pl-8">
-          <h1 class="text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-4">
+          <h1 class="text-4xl lg:text-5xl font-serif font-bold text-gray-900 dark:text-gray-100 mb-4">
             {project.data.title}
           </h1>
-          <p class="text-xl text-gray-700 mb-8">
+          <p class="text-xl text-gray-700 dark:text-gray-300 mb-8">
             {project.data.description}
           </p>
           
           <!-- Category-specific Quick Stats -->
           {category === 'woodworking' && (
             <div class="grid grid-cols-3 gap-4">
-              <div class="text-center p-4 bg-gray-50 rounded-lg">
-                <div class="text-2xl font-bold text-gray-900">{project.data.difficulty}</div>
-                <div class="text-sm text-gray-600">Difficulty</div>
+              <div class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                <div class="text-2xl font-bold text-gray-900 dark:text-gray-100">{project.data.difficulty}</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">Difficulty</div>
               </div>
-              <div class="text-center p-4 bg-gray-50 rounded-lg">
-                <div class="text-2xl font-bold text-gray-900">{project.data.duration}</div>
-                <div class="text-sm text-gray-600">Duration</div>
+              <div class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                <div class="text-2xl font-bold text-gray-900 dark:text-gray-100">{project.data.duration}</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">Duration</div>
               </div>
-              <div class="text-center p-4 bg-gray-50 rounded-lg">
-                <div class="text-2xl font-bold text-gray-900">{project.data.materials?.length || 0}</div>
-                <div class="text-sm text-gray-600">Materials</div>
+              <div class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                <div class="text-2xl font-bold text-gray-900 dark:text-gray-100">{project.data.materials?.length || 0}</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">Materials</div>
               </div>
             </div>
           )}
 
           {category === 'leatherwork' && (
             <div class="grid grid-cols-3 gap-4">
-              <div class="text-center p-4 bg-gray-50 rounded-lg">
-                <div class="text-2xl font-bold text-gray-900 capitalize">{project.data.type}</div>
-                <div class="text-sm text-gray-600">Type</div>
+              <div class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                <div class="text-2xl font-bold text-gray-900 dark:text-gray-100 capitalize">{project.data.type}</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">Type</div>
               </div>
-              <div class="text-center p-4 bg-gray-50 rounded-lg">
-                <div class="text-2xl font-bold text-gray-900">{project.data.difficulty}</div>
-                <div class="text-sm text-gray-600">Difficulty</div>
+              <div class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                <div class="text-2xl font-bold text-gray-900 dark:text-gray-100">{project.data.difficulty}</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">Difficulty</div>
               </div>
-              <div class="text-center p-4 bg-gray-50 rounded-lg">
-                <div class="text-2xl font-bold text-gray-900">{project.data.duration}</div>
-                <div class="text-sm text-gray-600">Duration</div>
+              <div class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                <div class="text-2xl font-bold text-gray-900 dark:text-gray-100">{project.data.duration}</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">Duration</div>
               </div>
             </div>
           )}
 
           {category === 'photography' && (
             <div class="grid grid-cols-2 gap-4">
-              <div class="text-center p-4 bg-gray-50 rounded-lg">
-                <div class="text-lg font-bold text-gray-900 capitalize">{project.data.category}</div>
-                <div class="text-sm text-gray-600">Category</div>
+              <div class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                <div class="text-lg font-bold text-gray-900 dark:text-gray-100 capitalize">{project.data.category}</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">Category</div>
               </div>
-              <div class="text-center p-4 bg-gray-50 rounded-lg">
-                <div class="text-lg font-bold text-gray-900">{project.data.camera || 'Camera'}</div>
-                <div class="text-sm text-gray-600">Equipment</div>
+              <div class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                <div class="text-lg font-bold text-gray-900 dark:text-gray-100">{project.data.camera || 'Camera'}</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">Equipment</div>
               </div>
             </div>
           )}
 
           {(category === 'engineering' || category === 'costuming' || category === 'music' || category === 'food') && (
             <div class="grid grid-cols-2 gap-4">
-              <div class="text-center p-4 bg-gray-50 rounded-lg">
-                <div class="text-lg font-bold text-gray-900 capitalize">{project.data.type}</div>
-                <div class="text-sm text-gray-600">Type</div>
+              <div class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                <div class="text-lg font-bold text-gray-900 dark:text-gray-100 capitalize">{project.data.type}</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">Type</div>
               </div>
-              <div class="text-center p-4 bg-gray-50 rounded-lg">
-                <div class="text-lg font-bold text-gray-900">
+              <div class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                <div class="text-lg font-bold text-gray-900 dark:text-gray-100">
                   {project.data.difficulty || project.data.status || project.data.duration || 'Details'}
                 </div>
-                <div class="text-sm text-gray-600">
+                <div class="text-sm text-gray-600 dark:text-gray-400">
                   {project.data.difficulty ? 'Difficulty' : project.data.status ? 'Status' : 'Duration'}
                 </div>
               </div>
@@ -194,7 +194,7 @@ const { Content } = await project.render();
     {category === 'music' && project.data.sheetMusic && (
       <section class="mb-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 class="text-3xl font-serif font-semibold text-gray-900 mb-8">Sheet Music</h2>
+          <h2 class="text-3xl font-serif font-semibold text-gray-900 dark:text-gray-100 mb-8">Sheet Music</h2>
           <SheetMusicViewer 
             musicData={project.data.sheetMusic}
             title={project.data.title}
@@ -209,7 +209,7 @@ const { Content } = await project.render();
     {category === 'music' && project.data.tabs && !project.data.sheetMusic && (
       <section class="mb-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 class="text-3xl font-serif font-semibold text-gray-900 mb-8">Guitar Tabs</h2>
+          <h2 class="text-3xl font-serif font-semibold text-gray-900 dark:text-gray-100 mb-8">Guitar Tabs</h2>
           <TabViewer 
             tabs={project.data.tabs}
             title={project.data.title}
@@ -227,7 +227,7 @@ const { Content } = await project.render();
     {category !== 'music' && project.data.gallery && project.data.gallery.length > 0 && (
       <section class="mb-16">
         <div class="content-narrow">
-          <h2 class="text-3xl font-serif font-semibold text-gray-900 mb-8">Project Gallery</h2>
+          <h2 class="text-3xl font-serif font-semibold text-gray-900 dark:text-gray-100 mb-8">Project Gallery</h2>
           <GalleryLightbox 
             images={project.data.gallery} 
             projectTitle={project.data.title}
@@ -239,7 +239,7 @@ const { Content } = await project.render();
 
     <!-- Project Content (Markdown) -->
     <section class="mb-16">
-      <div class="content-narrow prose prose-lg">
+      <div class="content-narrow prose prose-lg dark:prose-invert">
         <Content />
       </div>
     </section>
@@ -250,22 +250,22 @@ const { Content } = await project.render();
         <div class="content-narrow">
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
-              <h3 class="text-2xl font-serif font-semibold text-gray-900 mb-6">Materials Used</h3>
+              <h3 class="text-2xl font-serif font-semibold text-gray-900 dark:text-gray-100 mb-6">Materials Used</h3>
               <ul class="space-y-3">
                 {project.data.materials.map((material: string) => (
-                  <li class="flex items-center text-gray-700">
-                    <span class="w-2 h-2 bg-gray-400 rounded-full mr-3"></span>
+                  <li class="flex items-center text-gray-700 dark:text-gray-300">
+                    <span class="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full mr-3"></span>
                     {material}
                   </li>
                 ))}
               </ul>
             </div>
             <div>
-              <h3 class="text-2xl font-serif font-semibold text-gray-900 mb-6">Tools Used</h3>
+              <h3 class="text-2xl font-serif font-semibold text-gray-900 dark:text-gray-100 mb-6">Tools Used</h3>
               <ul class="space-y-3">
                 {project.data.tools.map((tool: string) => (
-                  <li class="flex items-center text-gray-700">
-                    <span class="w-2 h-2 bg-gray-400 rounded-full mr-3"></span>
+                  <li class="flex items-center text-gray-700 dark:text-gray-300">
+                    <span class="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full mr-3"></span>
                     {tool}
                   </li>
                 ))}
@@ -279,13 +279,13 @@ const { Content } = await project.render();
     {category === 'food' && project.data.ingredients && (
       <section class="mb-16">
         <div class="content-narrow">
-          <h3 class="text-2xl font-serif font-semibold text-gray-900 mb-6">Ingredients</h3>
-          <div class="bg-gray-50 rounded-lg p-6">
+          <h3 class="text-2xl font-serif font-semibold text-gray-900 dark:text-gray-100 mb-6">Ingredients</h3>
+          <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6">
             <ul class="space-y-2">
               {project.data.ingredients.map((ingredient: any) => (
-                <li class="flex justify-between border-b border-gray-200 pb-2">
-                  <span class="font-medium text-gray-900">{ingredient.item}</span>
-                  <span class="text-gray-700">{ingredient.amount}</span>
+                <li class="flex justify-between border-b border-gray-200 dark:border-gray-600 pb-2">
+                  <span class="font-medium text-gray-900 dark:text-gray-100">{ingredient.item}</span>
+                  <span class="text-gray-700 dark:text-gray-300">{ingredient.amount}</span>
                 </li>
               ))}
             </ul>
@@ -298,10 +298,10 @@ const { Content } = await project.render();
     {project.data.tags && project.data.tags.length > 0 && (
       <section class="mb-16">
         <div class="content-narrow">
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Tags</h3>
+          <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Tags</h3>
           <div class="flex flex-wrap gap-2">
             {project.data.tags.map((tag: string) => (
-              <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">
+              <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-sm">
                 {tag}
               </span>
             ))}
@@ -313,7 +313,7 @@ const { Content } = await project.render();
     <!-- Related Projects -->
     {relatedProjects.length > 0 && (
       <section class="mb-16">
-        <h2 class="text-3xl font-serif font-semibold text-gray-900 mb-8 text-center">More {categoryInfo.label} Projects</h2>
+        <h2 class="text-3xl font-serif font-semibold text-gray-900 dark:text-gray-100 mb-8 text-center">More {categoryInfo.label} Projects</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 content-narrow">
           {relatedProjects.map((relatedProject) => (
             <a href={`/${category}/${relatedProject.slug}`} class="group">
@@ -332,10 +332,10 @@ const { Content } = await project.render();
                   )}
                 </div>
                 <div class="p-6">
-                  <h3 class="text-xl font-serif font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                  <h3 class="text-xl font-serif font-semibold text-gray-900 dark:text-gray-100 mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                     {relatedProject.data.title}
                   </h3>
-                  <p class="text-gray-600 text-sm">
+                  <p class="text-gray-600 dark:text-gray-400 text-sm">
                     {relatedProject.data.description}
                   </p>
                 </div>
@@ -347,9 +347,9 @@ const { Content } = await project.render();
     )}
 
     <!-- Commission CTA -->
-    <section class="bg-gray-50 border border-gray-200 rounded-lg p-6 text-center">
-      <h2 class="text-xl font-serif font-semibold mb-3 text-gray-900">Interested in Custom Work?</h2>
-      <p class="text-base mb-6 text-gray-600">
+    <section class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-6 text-center">
+      <h2 class="text-xl font-serif font-semibold mb-3 text-gray-900 dark:text-gray-100">Interested in Custom Work?</h2>
+      <p class="text-base mb-6 text-gray-600 dark:text-gray-400">
         {category === 'woodworking' && "Let's discuss your custom woodworking project."}
         {category === 'leatherwork' && "Custom leather goods made to your specifications."}
         {category === 'photography' && "Available for portraits, events, and fine art prints."}
