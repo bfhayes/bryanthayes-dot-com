@@ -113,16 +113,20 @@ export default function GalleryLightbox({ images, projectTitle }: GalleryLightbo
           )}
 
           {/* Image container */}
-          <div className="relative max-w-[95vw] max-h-[90vh] flex flex-col items-center">
+          <div className="relative max-w-[95vw] max-h-[95vh] flex flex-col items-center">
             <img 
               src={selectedImage}
               alt={projectTitle}
-              className="max-w-full max-h-full object-contain rounded-lg"
+              className={`${
+                images.length > 1 
+                  ? 'max-h-[calc(95vh-4rem)]' 
+                  : 'max-h-[95vh]'
+              } max-w-full object-contain rounded-lg`}
               onClick={(e) => e.stopPropagation()}
             />
             {/* Image counter - only show if multiple images */}
             {images.length > 1 && (
-              <div className="mt-4 bg-black bg-opacity-50 text-white px-3 py-1 rounded-full text-sm">
+              <div className="mt-4 bg-black bg-opacity-50 text-white px-3 py-1 rounded-full text-sm flex-shrink-0">
                 {currentIndex + 1} of {images.length}
               </div>
             )}
