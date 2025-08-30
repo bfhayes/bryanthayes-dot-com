@@ -19,7 +19,7 @@ export async function getStaticPaths() {
       const collection = await getCollection(category as keyof typeof import('@/content/config').collections);
       
       for (const entry of collection) {
-        if (!entry.data.draft) {
+        if (!entry.data.draft && !entry.data.hidden) {
           paths.push({
             params: { 
               category: category,
@@ -58,7 +58,7 @@ let relatedProjects: CollectionEntry<any>[] = [];
 try {
   const allProjects = await getCollection(category as keyof typeof import('@/content/config').collections);
   relatedProjects = allProjects
-    .filter(p => p.slug !== project.slug && !p.data.draft)
+    .filter(p => p.slug !== project.slug && !p.data.draft && !p.data.hidden)
     .slice(0, 2);
 } catch (error) {
   console.warn(`Could not load related projects for ${category}:`, error);
