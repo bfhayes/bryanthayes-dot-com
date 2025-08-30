@@ -1,0 +1,80 @@
+{
+  "personal": {
+    "name": "Bryant Hayes",
+    "title": "Senior Security Software Engineer",
+    "location": "Santa Clara, CA",
+    "phone": "503-551-8418",
+    "email": "bryant.hayes@icloud.com",
+    "linkedin": "bryantfhayes",
+    "github": "bfhayes"
+  },
+  "summary": "Senior security engineer with 4+ years at Apple specializing in enterprise-scale infrastructure and cryptography. Architected systems serving 1+ billion devices with zero security incidents while leading cross-functional teams across multiple product releases. Expert in DRM, secure boot, and embedded systems with proven ability to deliver production-critical security solutions.",
+  "experience": [
+    {
+      "company": "Apple Inc.",
+      "position": "Senior Security Software Engineer",
+      "startDate": "Dec 2020",
+      "endDate": "Present",
+      "location": "Cupertino, CA",
+      "highlights": [
+        "Architected enterprise-scale security infrastructure serving 1+ billion devices, implementing intelligent pre-loading mechanisms that eliminated server load spikes and improved system reliability by 40%",
+        "Led end-to-end development of critical identity management framework from conception to production, securing cross-functional approval from 5+ teams and enabling seamless platform integrations",
+        "Designed reusable software frameworks adopted across multiple engineering teams, reducing code duplication by 40% through modular components for cryptography and inter-process communication",
+        "Delivered production-critical daemon functionality and client libraries, implementing secure license validation and application launch controls with microsecond-level performance requirements"
+      ],
+      "technologies": ["C/C++17", "Swift", "DRM", "Cryptography", "Secure Enclave", "TrustZone"]
+    },
+    {
+      "company": "Cognex Corp.",
+      "position": "Senior Software Engineer",
+      "startDate": "Feb 2019",
+      "endDate": "Nov 2020",
+      "location": "Portland, OR",
+      "highlights": [
+        "Led creation of embedded Linux distribution build system using Yocto Project to produce software images for custom hardware, enabling multiple engineering teams to perform distributed builds",
+        "Architected secure boot infrastructure for ARM vision systems with TrustZone technology, implementing system-level security design and deployment across product line"
+      ],
+      "technologies": ["Yocto", "Linux", "Secure Boot", "ARM", "TrustZone", "Docker", "TeamCity"]
+    },
+    {
+      "company": "Cognex Corp.",
+      "position": "Staff Software Engineer", 
+      "startDate": "Feb 2017",
+      "endDate": "Jan 2019",
+      "location": "Portland, OR",
+      "highlights": [
+        "Led platform architecture team as Scrum Master, developing diagnostic firmware to validate custom ARM SoC hardware and support debugging of complex system software",
+        "Spearheaded cross-functional culture initiatives as elected \"Minister of Culture,\" planning activities for multiple teams and promoting Cognex's \"Work Hard, Play Hard, Move Fast\" values"
+      ],
+      "technologies": ["ARM", "Embedded Linux", "Hardware Validation", "Scrum", "SoC"]
+    },
+    {
+      "company": "Cognex Corp.",
+      "position": "Associate Software Engineer",
+      "startDate": "Jul 2016", 
+      "endDate": "Jan 2017",
+      "location": "Portland, OR",
+      "highlights": [
+        "Designed proprietary autofocus algorithm significantly decreasing focus time on embedded camera systems, creating Python simulation software for algorithm prototyping",
+        "Optimized low-level system performance by analyzing and improving discrete I/O drivers for embedded Linux systems"
+      ],
+      "technologies": ["Embedded Linux", "Firmware", "C/C++", "Python", "Algorithm Design"]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Oregon State University",
+      "degree": "Bachelor of Science in Electrical & Computer Engineering", 
+      "year": "2011 – 2016",
+      "location": "Corvallis, OR",
+      "honors": "Dean's List · IEEE Chapter President"
+    }
+  ],
+  "skills": {
+    "Security": ["DRM", "Cryptography", "Secure Boot", "TrustZone", "SEP", "Identity Management", "License Validation"],
+    "Languages": ["C/C++17", "Swift", "Python", "Objective-C"],
+    "Frameworks": ["FastAPI", "React", "Docker", "Yocto"],
+    "Tools": ["Git", "TeamCity", "Redis"],
+    "Domains": ["Enterprise Security", "Embedded Systems", "Media Services", "Cross-Platform Development"]
+  }
+}

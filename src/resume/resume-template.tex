@@ -1,0 +1,96 @@
+% Bryant Hayes – Single Column Professional Resume
+% NOTE: Compile with **XeLaTeX** or **LuaLaTeX** for system fonts
+% Generated from resume.json data
+
+\documentclass[10pt,letterpaper]{article}
+
+% ---------- Packages ----------
+\usepackage[letterpaper,margin=0.6in,top=0.5in,bottom=0.5in]{geometry}
+\usepackage{fontawesome5}         % icon set
+\usepackage{enumitem}             % compact itemize
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fontspec}
+\usepackage{titlesec}
+
+% ---------- Font Configuration ----------
+\setsansfont{SF Pro Text}[Scale=MatchLowercase]
+\IfFontExistsTF{SF Pro Text}{}{\setsansfont{Helvetica Neue}[Scale=MatchLowercase]}
+\renewcommand{\familydefault}{\sfdefault}
+
+% ---------- Global Style ----------
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlist[itemize]{noitemsep,topsep=0pt,leftmargin=*,parsep=0pt,itemsep=1pt}
+\pagenumbering{gobble}
+
+% ---------- Colors ----------
+\definecolor{headercolor}{HTML}{2C3E50}    % Dark blue-gray for headers
+\definecolor{accentcolor}{HTML}{34495E}    % Slightly lighter for accents
+\definecolor{rulecolor}{HTML}{BDC3C7}      % Light gray for lines
+
+% ---------- Section Formatting ----------
+\titleformat{\section}
+  {\vspace{2pt}\large\bfseries\color{headercolor}}
+  {}
+  {0pt}
+  {}
+  [{\color{rulecolor}\titlerule[0.5pt]}]
+
+\titlespacing{\section}{0pt}{8pt}{6pt}
+
+% ---------- Custom Commands ----------
+\newcommand{\resumeheader}[6]{
+  \begin{center}
+    {\Huge\bfseries\color{headercolor} #1}\\[0.2em]
+    {\Large\color{accentcolor} #2}\\[0.3em]
+    \small
+    \faPhone*{} \href{tel:#3}{#3} \quad|\quad
+    \faEnvelope{} \href{mailto:#4}{#4} \quad|\quad
+    \faMapMarker*{} #5 \quad|\quad
+    \faLinkedin{} \href{https://linkedin.com/in/#6}{linkedin.com/in/#6}
+  \end{center}
+  \vspace{0.5em}
+}
+
+\newcommand{\experienceitem}[4]{
+  \textbf{#1} \hfill \textcolor{accentcolor}{#2}\\
+  \textit{#3} \hfill \textit{#4}\\[-0.8em]
+}
+
+\newcommand{\educationitem}[4]{
+  \textbf{#1}\\
+  #2 \hfill #3\\
+  \textit{#4}
+}
+
+% ---------- Document ----------
+\begin{document}
+
+% ---------- Header ----------
+\resumeheader
+  {{{PERSONAL_NAME}}}
+  {{{PERSONAL_TITLE}}}
+  {{{PERSONAL_PHONE}}}
+  {{{PERSONAL_EMAIL}}}
+  {{{PERSONAL_LOCATION}}}
+  {{{PERSONAL_LINKEDIN}}}
+
+% ---------- Professional Summary ----------
+\section{PROFESSIONAL SUMMARY}
+{{PROFESSIONAL_SUMMARY}}
+
+% ---------- Education ----------
+\section{EDUCATION}
+{{EDUCATION_SECTION}}
+
+% ---------- Skills ----------
+\section{TECHNICAL SKILLS}
+{{SKILLS_SECTION}}
+
+% ---------- Professional Experience ----------
+\section{PROFESSIONAL EXPERIENCE}
+
+{{EXPERIENCE_SECTION}}
+
+\end{document}

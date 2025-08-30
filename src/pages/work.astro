@@ -2,86 +2,22 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ResumeViewer from '@/components/professional/ResumeViewer';
 
-// Work/Resume data - in production this would come from content collections
+// Read resume data from JSON file (single source of truth)
+import resumeJson from '@/data/resume.json';
+
+// Transform JSON structure to match ResumeViewer component expectations
 const resumeData = {
-  name: 'Bryant Hayes',
-  title: 'Senior Security Software Engineer',
-  location: 'Santa Clara, CA',
-  phone: '503-551-8418',
-  email: 'bryant.hayes@icloud.com',
-  linkedin: 'www.linkedin.com/in/bryantfhayes/',
-  github: 'github.com/bfhayes',
-  summary: 'Seasoned security engineer specializing in high-performance DRM and embedded Linux. Led cross-functional teams that shipped secure media services used by hundreds of millions of devices with zero critical incidents across two iOS releases.',
-  
-  experience: [
-    {
-      company: 'Apple Inc.',
-      position: 'Senior Security Software Engineer',
-      startDate: 'Dec 2020',
-      endDate: 'Present',
-      location: 'Cupertino, CA',
-      highlights: [
-        'Architected enterprise-scale security infrastructure serving 1+ billion devices, implementing intelligent pre-loading mechanisms that eliminated server load spikes and improved system reliability',
-        'Led end-to-end development of critical identity management framework from conception to production, securing cross-functional approval from 5+ teams and enabling seamless platform integrations',
-        'Designed reusable software frameworks adopted across multiple engineering teams, reducing code duplication by 40% through modular components for cryptography and inter-process communication',
-        'Delivered production-critical daemon functionality and client libraries, implementing secure license validation and application launch controls with microsecond-level performance'
-      ],
-      technologies: ['C/C++17', 'Swift', 'DRM', 'Cryptography', 'Secure Enclave', 'TrustZone']
-    },
-    {
-      company: 'Cognex Corp.',
-      position: 'Senior Software Engineer',
-      startDate: 'Feb 2019',
-      endDate: 'Nov 2020',
-      location: 'Portland, OR',
-      highlights: [
-        'Led creation of embedded Linux distribution build system using Yocto Project to produce software images for custom hardware, enabling multiple engineering teams to perform distributed builds',
-        'Architected secure boot infrastructure for ARM vision systems with TrustZone technology, implementing system-level security design and deployment'
-      ],
-      technologies: ['Yocto', 'Linux', 'Secure Boot', 'ARM', 'TrustZone', 'Docker', 'TeamCity']
-    },
-    {
-      company: 'Cognex Corp.',
-      position: 'Staff Software Engineer',
-      startDate: 'Feb 2017',
-      endDate: 'Jan 2019',
-      location: 'Portland, OR',
-      highlights: [
-        'Led platform architecture team as Scrum Master, developing diagnostic firmware to validate custom ARM SoC hardware and support debugging of complex system software',
-        'Spearheaded cross-functional culture initiatives as elected "Minister of Culture," planning activities for multiple teams and promoting Cognex\'s "Work Hard, Play Hard, Move Fast" values'
-      ],
-      technologies: ['ARM', 'Embedded Linux', 'Hardware Validation', 'Scrum', 'SoC']
-    },
-    {
-      company: 'Cognex Corp.',
-      position: 'Associate Software Engineer',
-      startDate: 'Jul 2016',
-      endDate: 'Jan 2017',
-      location: 'Portland, OR',
-      highlights: [
-        'Designed proprietary autofocus algorithm significantly decreasing focus time on embedded camera systems, creating Python simulation software for algorithm prototyping',
-        'Optimized low-level system performance by analyzing and improving discrete I/O drivers for embedded Linux systems'
-      ],
-      technologies: ['Embedded Linux', 'Firmware', 'C/C++', 'Python', 'Algorithm Design']
-    }
-  ],
-  
-  education: [
-    {
-      institution: 'Oregon State University',
-      degree: 'B.S. Electrical & Computer Engineering',
-      year: '2011 – 2016',
-      location: 'Corvallis, OR',
-      honors: 'Dean\'s List · IEEE Chapter President'
-    }
-  ],
-  
-  skills: {
-    'Security': ['DRM', 'Cryptography', 'Secure Boot', 'TrustZone', 'SEP'],
-    'Languages': ['C/C++17', 'Swift', 'Python'],
-    'Frameworks': ['FastAPI', 'React', 'Docker', 'Yocto'],
-    'Tools': ['Git', 'TeamCity', 'Redis']
-  }
+  name: resumeJson.personal.name,
+  title: resumeJson.personal.title,
+  location: resumeJson.personal.location,
+  phone: resumeJson.personal.phone,
+  email: resumeJson.personal.email,
+  linkedin: `www.linkedin.com/in/${resumeJson.personal.linkedin}/`,
+  github: `github.com/${resumeJson.personal.github}`,
+  summary: resumeJson.summary,
+  experience: resumeJson.experience,
+  education: resumeJson.education,
+  skills: resumeJson.skills
 };
 ---
 
