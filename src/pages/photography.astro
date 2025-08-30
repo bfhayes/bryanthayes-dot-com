@@ -23,10 +23,10 @@ const equipment = [
   <div class="container-custom py-12">
     <!-- Hero Section -->
     <div class="text-center mb-16">
-      <h1 class="text-4xl lg:text-6xl font-serif font-bold text-gray-900 mb-4">
+      <h1 class="text-4xl lg:text-6xl font-serif font-bold text-gray-900 dark:text-gray-100 mb-4">
         Photography
       </h1>
-      <p class="text-xl text-gray-700 max-w-3xl mx-auto">
+      <p class="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
         Capturing moments, emotions, and the beauty of our world through the lens. 
         From sweeping landscapes to intimate portraits, each image tells a story.
       </p>
@@ -49,15 +49,15 @@ const equipment = [
 
     <!-- Equipment Section -->
     <section class="mb-16">
-      <h2 class="text-3xl font-serif font-semibold text-gray-900 mb-8 text-center">Equipment</h2>
+      <h2 class="text-3xl font-serif font-semibold text-gray-900 dark:text-gray-100 mb-8 text-center">Equipment</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {equipment.map((category) => (
           <div class="card p-6">
-            <h3 class="font-semibold text-gray-900 mb-4">{category.category}</h3>
+            <h3 class="font-semibold text-gray-900 dark:text-gray-200 mb-4">{category.category}</h3>
             <ul class="space-y-2">
               {category.items.map((item) => (
-                <li class="text-sm text-gray-600 flex items-center">
-                  <span class="w-2 h-2 bg-pale-dogwood rounded-full mr-3"></span>
+                <li class="text-sm text-gray-600 dark:text-gray-300 flex items-center">
+                  <span class="w-2 h-2 bg-pale-dogwood dark:bg-gray-400 rounded-full mr-3"></span>
                   {item}
                 </li>
               ))}
@@ -69,9 +69,9 @@ const equipment = [
 
 
     <!-- Commission -->
-    <section class="bg-gray-50 border border-gray-200 rounded-lg p-6 text-center">
-      <h2 class="text-xl font-serif font-semibold mb-3 text-gray-900">Interested in Custom Work?</h2>
-      <p class="text-base mb-6 text-gray-600">
+    <section class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 text-center">
+      <h2 class="text-xl font-serif font-semibold mb-3 text-gray-900 dark:text-gray-100">Interested in Custom Work?</h2>
+      <p class="text-base mb-6 text-gray-600 dark:text-gray-300">
         Available for portraits, events, and fine art prints.
       </p>
       <a href="/contact" class="btn-primary text-sm px-6 py-2">

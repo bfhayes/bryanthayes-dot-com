@@ -14,10 +14,10 @@ const allProjects = await getCollection('engineering', ({ data }) => !data.draft
 >
   <div class="container-custom py-12">
     <div class="text-center mb-16">
-      <h1 class="text-4xl lg:text-6xl font-serif font-bold text-gray-900 mb-4">
+      <h1 class="text-4xl lg:text-6xl font-serif font-bold text-gray-900 dark:text-gray-100 mb-4">
         Engineering
       </h1>
-      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
         Building software applications and hardware solutions. From full-stack web development 
         to embedded systems and circuit design with Arduino and custom PCBs.
       </p>
@@ -39,9 +39,9 @@ const allProjects = await getCollection('engineering', ({ data }) => !data.draft
     )}
 
     <!-- Links Section -->
-    <section class="bg-gray-50 border border-gray-200 rounded-lg p-6 text-center">
-      <h2 class="text-xl font-serif font-semibold mb-3 text-gray-900">Explore My Engineering Work</h2>
-      <p class="text-base mb-6 text-gray-600">
+    <section class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 text-center">
+      <h2 class="text-xl font-serif font-semibold mb-3 text-gray-900 dark:text-gray-100">Explore My Engineering Work</h2>
+      <p class="text-base mb-6 text-gray-600 dark:text-gray-300">
         Check out my open source projects and professional development experience.
       </p>
       <div class="flex gap-3 justify-center">

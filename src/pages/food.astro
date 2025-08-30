@@ -14,10 +14,10 @@ const allProjects = await getCollection('food', ({ data }) => !data.draft && !da
 >
   <div class="container-custom py-12">
     <div class="text-center mb-16">
-      <h1 class="text-4xl lg:text-6xl font-serif font-bold text-gray-900 mb-4">
+      <h1 class="text-4xl lg:text-6xl font-serif font-bold text-gray-900 dark:text-gray-100 mb-4">
         Food
       </h1>
-      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
         Exploring flavors through BBQ, home cooking, and recipe development. 
         From low-and-slow brisket to experimental dishes and time-tested favorites.
       </p>
@@ -39,9 +39,9 @@ const allProjects = await getCollection('food', ({ data }) => !data.draft && !da
     )}
 
     <!-- Commission -->
-    <section class="bg-gray-50 border border-gray-200 rounded-lg p-6 text-center">
-      <h2 class="text-xl font-serif font-semibold mb-3 text-gray-900">Want to Share a Recipe?</h2>
-      <p class="text-base mb-6 text-gray-600">
+    <section class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 text-center">
+      <h2 class="text-xl font-serif font-semibold mb-3 text-gray-900 dark:text-gray-100">Want to Share a Recipe?</h2>
+      <p class="text-base mb-6 text-gray-600 dark:text-gray-300">
         Got a great recipe or cooking technique to share?
       </p>
       <a href="/contact" class="btn-primary text-sm px-6 py-2">
