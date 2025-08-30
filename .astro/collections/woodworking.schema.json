@@ -54,6 +54,55 @@
           "type": "boolean",
           "default": false
         },
+        "downloads": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "filename": {
+                "type": "string"
+              },
+              "fileSize": {
+                "type": "string"
+              },
+              "fileType": {
+                "type": "string",
+                "enum": [
+                  "pdf",
+                  "svg",
+                  "zip",
+                  "jpg",
+                  "png",
+                  "dwg",
+                  "stl",
+                  "other"
+                ]
+              },
+              "category": {
+                "type": "string",
+                "enum": [
+                  "pattern",
+                  "template",
+                  "instructions",
+                  "reference",
+                  "source"
+                ]
+              }
+            },
+            "required": [
+              "title",
+              "filename",
+              "fileType"
+            ],
+            "additionalProperties": false
+          }
+        },
         "difficulty": {
           "type": "string",
           "enum": [

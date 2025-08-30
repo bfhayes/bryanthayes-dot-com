@@ -24,6 +24,19 @@ dimensions: "6.1\" × 8.7\" (A5 size)"
 tags: ["journal", "notebook", "a5", "little-king-supply", "laser-cut"]
 featured: true
 draft: false
+downloads:
+  - title: "Pattern Template"
+    description: "Sample pattern file for testing downloads functionality"
+    filename: "pattern-sample.txt"
+    fileSize: "2 KB"
+    fileType: "other"
+    category: "pattern"
+  - title: "Assembly Instructions"
+    description: "Step-by-step construction guide"
+    filename: "instructions-sample.txt"
+    fileSize: "1 KB"
+    fileType: "other"
+    category: "instructions"
 ---
 
 # Leuchtturm 1917 A5 Journal Cover

@@ -11,6 +11,14 @@ const baseProjectSchema = z.object({
   featured: z.boolean().default(false),
   draft: z.boolean().default(false),
   hidden: z.boolean().default(false),
+  downloads: z.array(z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    filename: z.string(),
+    fileSize: z.string().optional(),
+    fileType: z.enum(['pdf', 'svg', 'zip', 'jpg', 'png', 'dwg', 'stl', 'other']),
+    category: z.enum(['pattern', 'template', 'instructions', 'reference', 'source']).optional(),
+  })).optional(),
 });
 
 // Photography projects
