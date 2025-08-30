@@ -64,8 +64,8 @@
   const toggle = document.getElementById('dark-mode-toggle');
   const html = document.documentElement;
   
-  // Check for saved preference or default to light mode
-  const currentTheme = localStorage.getItem('theme') || 'light';
+  // Check for saved preference or default to dark mode
+  const currentTheme = localStorage.getItem('theme') || 'dark';
   
   // Set initial theme
   if (currentTheme === 'dark') {
@@ -94,5 +94,7 @@
   // Prevent flash of incorrect theme on page load
   if (currentTheme === 'dark') {
     document.documentElement.style.colorScheme = 'dark';
+  } else {
+    document.documentElement.style.colorScheme = 'light';
   }
 </script>
