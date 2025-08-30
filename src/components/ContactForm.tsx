@@ -76,7 +76,7 @@ export default function ContactForm({}: ContactFormProps) {
             required
             value={formData.name}
             onChange={handleChange}
-            className="w-full px-4 py-2 border border-rose-quartz/30 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 dark:text-gray-100 focus:ring-2 focus:ring-pale-dogwood focus:border-transparent transition-all"
+            className="w-full px-4 py-2 border border-rose-quartz/30 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-pale-dogwood/50 focus:border-pale-dogwood transition-all"
             placeholder="Your name"
           />
         </div>
@@ -92,7 +92,7 @@ export default function ContactForm({}: ContactFormProps) {
             required
             value={formData.email}
             onChange={handleChange}
-            className="w-full px-4 py-2 border border-rose-quartz/30 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 dark:text-gray-100 focus:ring-2 focus:ring-pale-dogwood focus:border-transparent transition-all"
+            className="w-full px-4 py-2 border border-rose-quartz/30 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-pale-dogwood/50 focus:border-pale-dogwood transition-all"
             placeholder="your@email.com"
           />
         </div>
@@ -102,20 +102,27 @@ export default function ContactForm({}: ContactFormProps) {
         <label htmlFor="subject" className="block text-sm font-medium text-space-cadet dark:text-gray-200 mb-2">
           Subject *
         </label>
-        <select
-          id="subject"
-          name="subject"
-          required
-          value={formData.subject}
-          onChange={handleChange}
-          className="w-full px-4 py-2 border border-rose-quartz/30 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 dark:text-gray-100 focus:ring-2 focus:ring-pale-dogwood focus:border-transparent transition-all"
-        >
-          {subjects.map(subject => (
-            <option key={subject.value} value={subject.value}>
-              {subject.label}
-            </option>
-          ))}
-        </select>
+        <div className="relative">
+          <select
+            id="subject"
+            name="subject"
+            required
+            value={formData.subject}
+            onChange={handleChange}
+            className="w-full px-4 py-2 pr-10 border border-rose-quartz/30 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-pale-dogwood/50 focus:border-pale-dogwood transition-all appearance-none cursor-pointer"
+          >
+            {subjects.map(subject => (
+              <option key={subject.value} value={subject.value}>
+                {subject.label}
+              </option>
+            ))}
+          </select>
+          <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+            <svg className="h-5 w-5 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+        </div>
       </div>
 
       <div>

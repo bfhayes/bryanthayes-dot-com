@@ -8,8 +8,8 @@ import WorkInProgress from '@/components/projects/WorkInProgress.astro';
 const allProjects = await getCollection('photography', ({ data }) => !data.draft && !data.hidden);
 
 const equipment = [
-  { category: 'Camera Body', items: ['Panasonic Lumix G9 II (DC-G9M2)'] },
-  { category: 'Lenses', items: ['Panasonic Leica 9mm (≈18mm FF eq)', 'Panasonic 25mm (≈50mm FF eq)', 'Panasonic 50mm (≈100mm FF eq)'] },
+  { category: 'Camera Body', items: ['Panasonic Lumix G9 II'] },
+  { category: 'Lenses', items: ['Leica 9mm | 18mm FF', '25mm | 50mm FF', '50mm | 100mm FF'] },
   { category: 'Accessories', items: ['Carbon Fiber Tripod', 'ND Filters', 'Remote Shutter'] },
   { category: 'Software', items: ['Adobe Lightroom', 'Adobe Photoshop'] }
 ];
