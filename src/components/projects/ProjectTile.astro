@@ -126,28 +126,28 @@ const projectLink = `/${category}/${project.slug}`;
       {/* Featured Badge */}
       {featured && (
         <div class="mb-3">
-          <span class="inline-block px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-800 rounded-full">
+          <span class="inline-block px-2 py-1 text-xs font-medium bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 rounded-full">
             Featured
           </span>
         </div>
       )}
 
       {/* Title */}
-      <h3 class="text-xl font-serif font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+      <h3 class="text-xl font-serif font-semibold text-gray-900 dark:text-gray-100 mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
         {title}
       </h3>
 
       {/* Description */}
-      <p class="text-gray-600 mb-4 text-sm leading-relaxed">
+      <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm leading-relaxed">
         {description}
       </p>
       
       {/* Metadata */}
       <div class="flex justify-between items-center mb-3">
-        <span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded capitalize">
+        <span class="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded capitalize">
           {metadata.primary}
         </span>
-        <span class="text-xs text-gray-600">
+        <span class="text-xs text-gray-600 dark:text-gray-400">
           {metadata.secondary}
         </span>
       </div>
@@ -155,7 +155,7 @@ const projectLink = `/${category}/${project.slug}`;
       {/* Secondary metadata and tags */}
       <div class="space-y-3">
         {metadata.tertiary && (
-          <div class="text-xs text-gray-500">
+          <div class="text-xs text-gray-500 dark:text-gray-400">
             {metadata.tertiary}
           </div>
         )}
@@ -164,12 +164,12 @@ const projectLink = `/${category}/${project.slug}`;
         {tags.length > 0 && (
           <div class="flex flex-wrap gap-1">
             {tags.slice(0, 3).map((tag) => (
-              <span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded">
+              <span class="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">
                 {tag}
               </span>
             ))}
             {tags.length > 3 && (
-              <span class="text-xs px-2 py-1 bg-gray-200 text-gray-700 rounded">
+              <span class="text-xs px-2 py-1 bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-300 rounded">
                 +{tags.length - 3}
               </span>
             )}
