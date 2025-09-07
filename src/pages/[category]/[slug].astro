@@ -6,6 +6,7 @@ import AudioPlayer from '@/components/audio/AudioPlayer';
 import GalleryLightbox from '@/components/gallery/GalleryLightbox';
 import TabViewer from '@/components/music/TabViewer';
 import SheetMusicViewer from '@/components/music/SheetMusicViewer';
+import GamePlayer from '@/components/games/GamePlayer';
 
 export async function getStaticPaths() {
   const paths = [];
@@ -156,6 +157,23 @@ const { Content } = await project.render();
             </div>
           )}
 
+          {category === 'games' && (
+            <div class="grid grid-cols-3 gap-4">
+              <div class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                <div class="text-lg font-bold text-gray-900 dark:text-gray-100 capitalize">{project.data.gameType}</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">Genre</div>
+              </div>
+              <div class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                <div class="text-lg font-bold text-gray-900 dark:text-gray-100">{project.data.difficulty || 'Variable'}</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">Difficulty</div>
+              </div>
+              <div class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                <div class="text-lg font-bold text-gray-900 dark:text-gray-100">{project.data.playTime || '5-10 min'}</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">Play Time</div>
+              </div>
+            </div>
+          )}
+
           {(category === 'engineering' || category === 'costuming' || category === 'music' || category === 'food') && (
             <div class="grid grid-cols-2 gap-4">
               <div class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
@@ -175,6 +193,21 @@ const { Content } = await project.render();
         </div>
       </div>
     </div>
+
+    <!-- Game Player for Games -->
+    {category === 'games' && project.slug && (
+      <section class="mb-16">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="text-3xl font-serif font-semibold text-gray-900 dark:text-gray-100 mb-8 text-center">Play Game</h2>
+          <GamePlayer 
+            gameUrl={`/games/extracted/${project.slug}/index.html`}
+            title={project.data.title}
+            controls={project.data.controls}
+            client:load
+          />
+        </div>
+      </section>
+    )}
 
     <!-- Audio Player for Music Projects -->
     {category === 'music' && project.data.audioFile && (
@@ -323,6 +356,91 @@ const { Content } = await project.render();
       </section>
     )}
 
+    <!-- Games-specific details section -->
+    {category === 'games' && (
+      <section class="mb-16">
+        <div class="content-narrow">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div>
+              <h3 class="text-2xl font-serif font-semibold text-gray-900 dark:text-gray-100 mb-6">Game Details</h3>
+              <dl class="space-y-4">
+                {project.data.gameEngine && (
+                  <div class="flex">
+                    <dt class="font-medium text-gray-700 dark:text-gray-300 w-24">Engine:</dt>
+                    <dd class="text-gray-900 dark:text-gray-100">{project.data.gameEngine}</dd>
+                  </div>
+                )}
+                {project.data.platforms && project.data.platforms.length > 0 && (
+                  <div class="flex">
+                    <dt class="font-medium text-gray-700 dark:text-gray-300 w-24">Platforms:</dt>
+                    <dd class="text-gray-900 dark:text-gray-100">
+                      {project.data.platforms.map((platform: string, index: number) => (
+                        <span>
+                          {platform.charAt(0).toUpperCase() + platform.slice(1)}
+                          {index < project.data.platforms.length - 1 ? ', ' : ''}
+                        </span>
+                      ))}
+                    </dd>
+                  </div>
+                )}
+                {project.data.developmentTime && (
+                  <div class="flex">
+                    <dt class="font-medium text-gray-700 dark:text-gray-300 w-24">Dev Time:</dt>
+                    <dd class="text-gray-900 dark:text-gray-100">{project.data.developmentTime}</dd>
+                  </div>
+                )}
+                {project.data.itchUrl && (
+                  <div class="flex">
+                    <dt class="font-medium text-gray-700 dark:text-gray-300 w-24">Itch.io:</dt>
+                    <dd>
+                      <a 
+                        href={project.data.itchUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        class="text-blue-600 dark:text-blue-400 hover:underline"
+                      >
+                        View on Itch.io
+                      </a>
+                    </dd>
+                  </div>
+                )}
+              </dl>
+            </div>
+            <div>
+              {project.data.contributors && project.data.contributors.length > 0 && (
+                <>
+                  <h3 class="text-2xl font-serif font-semibold text-gray-900 dark:text-gray-100 mb-6">Contributors</h3>
+                  <div class="space-y-3">
+                    {project.data.contributors.map((contributor: any) => (
+                      <div class="flex items-center justify-between">
+                        <div>
+                          <div class="font-medium text-gray-900 dark:text-gray-100">
+                            {contributor.url ? (
+                              <a 
+                                href={contributor.url} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                class="text-blue-600 dark:text-blue-400 hover:underline"
+                              >
+                                {contributor.name}
+                              </a>
+                            ) : (
+                              contributor.name
+                            )}
+                          </div>
+                          <div class="text-sm text-gray-600 dark:text-gray-400">{contributor.role}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+    )}
+
     <!-- Category-specific details sections -->
     {category === 'woodworking' && project.data.materials && (
       <section class="mb-16">
@@ -434,7 +552,8 @@ const { Content } = await project.render();
         {category === 'photography' && "Available for portraits, events, and fine art prints."}
         {category === 'costuming' && "Let's create your perfect costume or cosplay."}
         {category === 'food' && "Want a custom recipe or cooking consultation?"}
-        {!['woodworking', 'leatherwork', 'photography', 'costuming', 'food'].includes(category) && `Let's discuss your custom ${categoryInfo.label.toLowerCase()} project.`}
+        {category === 'games' && "Interested in custom game development or prototypes?"}
+        {!['woodworking', 'leatherwork', 'photography', 'costuming', 'food', 'games'].includes(category) && `Let's discuss your custom ${categoryInfo.label.toLowerCase()} project.`}
       </p>
       <a href="/contact" class="btn-primary text-sm px-6 py-2">
         Get In Touch

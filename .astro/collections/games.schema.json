@@ -1,0 +1,199 @@
+{
+  "$ref": "#/definitions/games",
+  "definitions": {
+    "games": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "publishDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "integer",
+              "format": "unix-time"
+            }
+          ]
+        },
+        "heroImage": {
+          "type": "string"
+        },
+        "gallery": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "featured": {
+          "type": "boolean",
+          "default": false
+        },
+        "draft": {
+          "type": "boolean",
+          "default": false
+        },
+        "hidden": {
+          "type": "boolean",
+          "default": false
+        },
+        "downloads": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "filename": {
+                "type": "string"
+              },
+              "fileSize": {
+                "type": "string"
+              },
+              "fileType": {
+                "type": "string",
+                "enum": [
+                  "pdf",
+                  "svg",
+                  "zip",
+                  "jpg",
+                  "png",
+                  "dwg",
+                  "stl",
+                  "other"
+                ]
+              },
+              "category": {
+                "type": "string",
+                "enum": [
+                  "pattern",
+                  "template",
+                  "instructions",
+                  "reference",
+                  "source"
+                ]
+              }
+            },
+            "required": [
+              "title",
+              "filename",
+              "fileType"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "gameType": {
+          "type": "string",
+          "enum": [
+            "action",
+            "puzzle",
+            "platformer",
+            "rpg",
+            "strategy",
+            "arcade",
+            "racing",
+            "adventure",
+            "simulation",
+            "other"
+          ]
+        },
+        "gameEngine": {
+          "type": "string"
+        },
+        "platforms": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "web",
+              "windows",
+              "mac",
+              "linux"
+            ]
+          }
+        },
+        "controls": {
+          "type": "string"
+        },
+        "playTime": {
+          "type": "string"
+        },
+        "gameZip": {
+          "type": "string"
+        },
+        "itchUrl": {
+          "type": "string"
+        },
+        "contributors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "role": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "role"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "difficulty": {
+          "type": "string",
+          "enum": [
+            "Easy",
+            "Medium",
+            "Hard",
+            "Variable"
+          ]
+        },
+        "developmentTime": {
+          "type": "string"
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "description",
+        "publishDate",
+        "heroImage",
+        "gallery",
+        "gameType",
+        "platforms"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

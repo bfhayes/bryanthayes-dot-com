@@ -1,0 +1,60 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import ProjectTile from '@/components/projects/ProjectTile.astro';
+import WorkInProgress from '@/components/projects/WorkInProgress.astro';
+
+// Get all games from content collections
+const allGames = await getCollection('games', ({ data }) => !data.draft && !data.hidden);
+---
+
+<BaseLayout 
+  title="Games" 
+  description="HTML5 games and interactive experiences created by Bryant Hayes"
+>
+  <div class="container-custom py-12">
+    <div class="text-center mb-16">
+      <h1 class="text-4xl lg:text-6xl font-serif font-bold text-gray-900 dark:text-gray-100 mb-4">
+        Games
+      </h1>
+      <p class="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
+        Interactive HTML5 games and digital experiences. Built for fun, learning, and experimentation.
+        Play directly in your browser or download for offline play.
+      </p>
+    </div>
+
+    {allGames.length > 0 ? (
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        {allGames.map((game) => (
+          <ProjectTile project={game} category="games" />
+        ))}
+      </div>
+    ) : (
+      <div class="mb-16">
+        <WorkInProgress category="games" />
+      </div>
+    )}
+
+
+    <!-- Game Development Services -->
+    <section class="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 border border-blue-200 dark:border-gray-600 rounded-lg p-6 text-center">
+      <h2 class="text-xl font-serif font-semibold mb-3 text-gray-900 dark:text-gray-100">Interested in Game Development?</h2>
+      <p class="text-base mb-6 text-gray-600 dark:text-gray-300">
+        Available for game development projects, prototypes, and interactive experiences.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/contact" class="btn-primary text-sm px-6 py-2">
+          Discuss Your Project
+        </a>
+        <a 
+          href="https://itch.io/profile/your-profile" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="btn-ghost text-sm px-6 py-2"
+        >
+          View on Itch.io
+        </a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

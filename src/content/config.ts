@@ -194,6 +194,27 @@ const projects = defineCollection({
   })
 });
 
+// Games collection
+const games = defineCollection({
+  type: 'content',
+  schema: baseProjectSchema.extend({
+    gameType: z.enum(['action', 'puzzle', 'platformer', 'rpg', 'strategy', 'arcade', 'racing', 'adventure', 'simulation', 'other']),
+    gameEngine: z.string().optional(),
+    platforms: z.array(z.enum(['web', 'windows', 'mac', 'linux'])),
+    controls: z.string().optional(),
+    playTime: z.string().optional(),
+    gameZip: z.string().optional(),
+    itchUrl: z.string().optional(),
+    contributors: z.array(z.object({
+      name: z.string(),
+      role: z.string(),
+      url: z.string().optional()
+    })).optional(),
+    difficulty: z.enum(['Easy', 'Medium', 'Hard', 'Variable']).optional(),
+    developmentTime: z.string().optional(),
+  })
+});
+
 export const collections = {
   photography,
   woodworking,
@@ -202,6 +223,7 @@ export const collections = {
   engineering,
   costuming,
   food,
+  games,
   experience,
   projects,
 };
@@ -249,6 +271,12 @@ export const CATEGORIES = {
     label: 'Food',
     icon: '🍖',
     description: 'Recipes and cooking projects'
+  },
+  games: {
+    collection: 'games',
+    label: 'Games',
+    icon: '🎮',
+    description: 'HTML5 games and interactive experiences'
   }
 } as const;
 
