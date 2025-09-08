@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import EnhancedHero from './EnhancedHero.astro';
+import CircularInterests from './CircularInterests.astro';
 
 // Get recent projects from ALL collections
 const allCollections = [
@@ -117,38 +118,7 @@ const interests = [
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {interests.map((interest, index) => (
-        <a 
-          href={interest.href} 
-          class="group block transform transition-all duration-300 hover:-translate-y-1 hover:z-10 relative"
-          style={`animation: fade-in-up 0.5s ease-out ${index * 100}ms both`}
-        >
-          <article class="relative bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 h-full p-6 text-center overflow-visible">
-            <!-- Gradient overlay that appears on hover -->
-            <div class="absolute inset-0 bg-gradient-to-br from-blue-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-blue-500/5 group-hover:via-purple-500/5 group-hover:to-pink-500/5 transition-all duration-500"></div>
-            
-            <!-- Animated border gradient - removed to prevent glitching -->
-            
-            <!-- Content -->
-            <div class="relative z-10">
-              <!-- Icon with animation -->
-              <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                <span class="text-3xl transition-transform duration-300">{interest.icon}</span>
-              </div>
-              
-              <h3 class="text-xl font-serif font-semibold text-gray-900 dark:text-gray-100 mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-300">
-                {interest.title}
-              </h3>
-              
-              <p class="text-sm text-gray-600 dark:text-gray-400 mb-3 group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors">
-                {interest.description}
-              </p>
-            </div>
-          </article>
-        </a>
-      ))}
-    </div>
+    <CircularInterests interests={interests} />
   </section>
 
   <!-- Recent Highlights -->

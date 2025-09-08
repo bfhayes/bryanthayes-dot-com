@@ -67,7 +67,7 @@ export default function GalleryLightbox({ images, projectTitle }: GalleryLightbo
             <img 
               src={image} 
               alt={`${projectTitle} - Image ${index + 1}`}
-              className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+              className="w-full h-48 object-cover object-top group-hover:scale-105 transition-transform duration-300"
             />
           </div>
         ))}
