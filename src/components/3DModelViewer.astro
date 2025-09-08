@@ -1,0 +1,83 @@
+---
+interface Props {
+  modelUrl: string;
+  title?: string;
+  height?: string;
+}
+
+const { modelUrl, title = "3D Model", height = "500px" } = Astro.props;
+---
+
+<!-- Load Model Viewer Script -->
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
+
+<div class="model-viewer-container">
+  <h3 class="text-2xl font-serif font-semibold text-gray-900 dark:text-gray-100 mb-4">
+    {title}
+  </h3>
+  <div class="bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg">
+    <model-viewer
+      src={modelUrl}
+      alt="Interactive 3D Model"
+      auto-rotate
+      camera-controls
+      touch-action="pan-y"
+      camera-orbit="30deg 75deg 3m"
+      min-camera-orbit="auto 0deg 0.5m"
+      max-camera-orbit="auto 180deg 5m"
+      field-of-view="30deg"
+      exposure="0.5"
+      shadow-intensity="0.3"
+      ar
+      ar-modes="webxr scene-viewer quick-look"
+      style={`width: 100%; height: ${height};`}
+      loading="eager"
+      reveal="auto"
+      class="model-viewer"
+    >
+      <button slot="ar-button" class="ar-button">
+        View in your space
+      </button>
+    </model-viewer>
+  </div>
+  <p class="text-sm text-gray-600 dark:text-gray-400 mt-2 text-center">
+    Use your mouse or touch to rotate, zoom, and pan the 3D model
+  </p>
+</div>
+
+<style>
+  .model-viewer-container {
+    margin: 2rem 0;
+  }
+
+  model-viewer {
+    background-color: #f3f4f6;
+  }
+  
+  :global(.dark) model-viewer {
+    background-color: #1f2937;
+  }
+
+  .ar-button {
+    background-color: #4a4e69;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: background-color 0.2s;
+  }
+
+  .ar-button:hover {
+    background-color: #22223b;
+  }
+
+  /* Hide AR button if AR is not supported */
+  model-viewer:not([ar-modes]) .ar-button {
+    display: none;
+  }
+</style>

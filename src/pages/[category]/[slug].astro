@@ -7,6 +7,7 @@ import GalleryLightbox from '@/components/gallery/GalleryLightbox';
 import TabViewer from '@/components/music/TabViewer';
 import SheetMusicViewer from '@/components/music/SheetMusicViewer';
 import GamePlayer from '@/components/games/GamePlayer';
+import ModelViewer from '@/components/3DModelViewer.astro';
 
 export async function getStaticPaths() {
   const paths = [];
@@ -251,6 +252,19 @@ const { Content } = await project.render();
             tempo={project.data.tempo}
             songKey={project.data.key}
             client:load
+          />
+        </div>
+      </section>
+    )}
+
+    <!-- 3D Model Viewer (for Woodworking projects with models) -->
+    {category === 'woodworking' && project.data.modelUrl && (
+      <section class="mb-16">
+        <div class="content-narrow">
+          <ModelViewer 
+            modelUrl={project.data.modelUrl}
+            title="Interactive 3D Model"
+            height="500px"
           />
         </div>
       </section>

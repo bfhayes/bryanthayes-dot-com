@@ -55,6 +55,7 @@ const woodworking = defineCollection({
       materials: z.number().optional(),
       total: z.number().optional(),
     }).optional(),
+    modelUrl: z.string().optional(), // URL to 3D model file (GLTF, GLB, etc.)
   }),
 });
 

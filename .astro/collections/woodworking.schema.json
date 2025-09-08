@@ -153,6 +153,9 @@
           },
           "additionalProperties": false
         },
+        "modelUrl": {
+          "type": "string"
+        },
         "$schema": {
           "type": "string"
         }
