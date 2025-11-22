@@ -79,6 +79,27 @@ npm run preview          # Preview production build
 npm run check            # Run Astro type checking
 ```
 
+### Resume Management
+
+The resume system uses a **single source of truth** approach with automatic generation:
+
+**Source of Truth**: `src/data/resume.json` - Edit this file to update your resume content.
+
+**Updating Your Resume**:
+
+1. Edit `src/data/resume.json` with your changes
+2. Run `./update_resume.sh` to regenerate all formats:
+   - Generates `src/resume/resume.tex` from JSON
+   - Compiles LaTeX to PDF
+   - Copies PDF to `public/resume/Bryant_Hayes_Resume.pdf`
+   - Website automatically uses updated JSON data
+
+**Requirements**:
+- Node.js (for JSON to LaTeX conversion)
+- LaTeX with `latexmk` and XeLaTeX (for PDF compilation)
+
+**Note**: Never manually edit `src/resume/resume.tex` - it's auto-generated and your changes will be overwritten.
+
 ## 📁 Project Structure
 
 ```

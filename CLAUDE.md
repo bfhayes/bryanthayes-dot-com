@@ -89,6 +89,34 @@ This is a modern portfolio website built with **Astro's Islands Architecture**, 
 
 **Image Organization**: Images stored in `public/images/projects/` with naming convention `{slug}-{number}.jpg`.
 
+## Resume Management
+
+**IMPORTANT**: The resume uses a single source of truth architecture:
+
+**Source of Truth**: `src/data/resume.json` - This is the ONLY file you should edit for resume content changes.
+
+**Resume Update Workflow**:
+
+1. **Edit JSON**: Make all content changes in `src/data/resume.json`
+2. **Run Update Script**: Execute `./update_resume.sh` which will:
+   - Generate `src/resume/resume.tex` from JSON using `scripts/generate-latex.js`
+   - Compile LaTeX to PDF using XeLaTeX
+   - Copy PDF to `public/resume/Bryant_Hayes_Resume.pdf` for download
+   - Website automatically uses updated JSON data for web version
+
+**Critical Rules**:
+- ❌ **NEVER** manually edit `src/resume/resume.tex` - it's auto-generated and will be overwritten
+- ✅ **ALWAYS** edit `src/data/resume.json` for resume changes
+- ✅ **ALWAYS** run `./update_resume.sh` after editing JSON
+- ✅ The script requires Node.js and LaTeX (latexmk + XeLaTeX)
+
+**Files in Resume System**:
+- `src/data/resume.json` - Source of truth (EDIT THIS)
+- `scripts/generate-latex.js` - JSON to LaTeX converter
+- `src/resume/resume.tex` - Auto-generated LaTeX (DO NOT EDIT)
+- `update_resume.sh` - Master update script
+- `public/resume/Bryant_Hayes_Resume.pdf` - Final PDF for download
+
 ## Deployment
 
 **Cloudflare Pages Integration**: 
