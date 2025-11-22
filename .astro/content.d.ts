@@ -172,14 +172,6 @@ declare module 'astro:content' {
   rendered?: RenderedContent;
   filePath?: string;
 }>;
-"electronics": Record<string, {
-  id: string;
-  body?: string;
-  collection: "electronics";
-  data: any;
-  rendered?: RenderedContent;
-  filePath?: string;
-}>;
 "engineering": Record<string, {
   id: string;
   render(): Render[".md"];
@@ -220,14 +212,6 @@ declare module 'astro:content' {
   rendered?: RenderedContent;
   filePath?: string;
 }>;
-"golf": Record<string, {
-  id: string;
-  body?: string;
-  collection: "golf";
-  data: any;
-  rendered?: RenderedContent;
-  filePath?: string;
-}>;
 "leatherwork": Record<string, {
   id: string;
   render(): Render[".md"];
@@ -255,14 +239,6 @@ declare module 'astro:content' {
   body: string;
   collection: "photography";
   data: InferEntrySchema<"photography">;
-  rendered?: RenderedContent;
-  filePath?: string;
-}>;
-"programming": Record<string, {
-  id: string;
-  body?: string;
-  collection: "programming";
-  data: any;
   rendered?: RenderedContent;
   filePath?: string;
 }>;
